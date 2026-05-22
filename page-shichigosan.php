@@ -269,10 +269,10 @@ $plans = [
   </section>
 
   <!-- 753 PLAN -->
-  <section class="bg-white px-20" id="plan">
+  <section class="mt-150 bg-white px-20" id="plan">
     <div class="mx-auto max-w-1200">
 
-      <div class="mt-150 flex justify-center">
+      <div class="flex justify-center">
         <h2 class="text-16 font-montserrat font-light tracking-[0.05em]">
           753 PLAN
         </h2>
