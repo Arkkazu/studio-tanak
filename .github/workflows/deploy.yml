@@ -41,10 +41,16 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p 10022 ${{ secrets.XSERVER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Create remote directory
+        run: |
+          ssh -p 10022 -i ~/.ssh/id_rsa \
+            ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }} \
+            "mkdir -p ${{ steps.vars.outputs.remote_path }}"
+
       - name: Deploy via rsync
         run: |
           rsync -avzr --delete \
-            -e "ssh -p 10022 -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            -e "ssh -p 10022 -i ~/.ssh/id_rsa" \
             --exclude='.git/' \
             --exclude='.github/' \
             --exclude='.vscode/' \
