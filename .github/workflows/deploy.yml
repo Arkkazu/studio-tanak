@@ -1,9 +1,8 @@
-name: Deploy
+name: Deploy to Staging
 
 on:
   push:
     branches:
-      - main
       - staging
   workflow_dispatch:
 
@@ -26,15 +25,6 @@ jobs:
           npm ci
           npm run build
 
-      - name: Set remote path
-        id: vars
-        run: |
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            echo "remote_path=${{ secrets.PROD_REMOTE_PATH }}" >> $GITHUB_OUTPUT
-          else
-            echo "remote_path=${{ secrets.STAGING_REMOTE_PATH }}" >> $GITHUB_OUTPUT
-          fi
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -46,7 +36,7 @@ jobs:
         run: |
           ssh -p 10022 -i ~/.ssh/id_rsa \
             ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }} \
-            "mkdir -p ${{ steps.vars.outputs.remote_path }}"
+            "mkdir -p ${{ secrets.STAGING_REMOTE_PATH }}"
 
       - name: Deploy via rsync
         run: |
@@ -64,4 +54,4 @@ jobs:
             --exclude='tailwind.config.js' \
             --exclude='*.local' \
             ./ \
-            ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }}:${{ steps.vars.outputs.remote_path }}/
+            ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }}:${{ secrets.STAGING_REMOTE_PATH }}/
