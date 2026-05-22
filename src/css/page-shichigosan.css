@@ -1,0 +1,22 @@
+/* accordion */
+.js-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+/* tab panels */
+.js-tab-panel[aria-hidden="true"] {
+  display: none;
+}
+.js-tab-panel[aria-hidden="false"] {
+  display: block;
+}
+
+/* tab button active */
+.js-tab-btn[aria-selected="true"] {
+  opacity: 1;
+}
+.js-tab-btn[aria-selected="false"] {
+  opacity: 0.6;
+}

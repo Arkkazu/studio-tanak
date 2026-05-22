@@ -1,0 +1,60 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Set remote path
+        id: vars
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "remote_path=${{ secrets.PROD_REMOTE_PATH }}" >> $GITHUB_OUTPUT
+          else
+            echo "remote_path=${{ secrets.STAGING_REMOTE_PATH }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.XSERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 10022 ${{ secrets.XSERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avzr --delete \
+            -e "ssh -p 10022" \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.vscode/' \
+            --exclude='node_modules/' \
+            --exclude='src/js/' \
+            --exclude='src/css/' \
+            --exclude='index.html' \
+            --exclude='vite.config*.js' \
+            --exclude='package*.json' \
+            --exclude='tailwind.config.js' \
+            --exclude='*.local' \
+            ./ \
+            ${{ secrets.XSERVER_USER }}@${{ secrets.XSERVER_HOST }}:${{ steps.vars.outputs.remote_path }}/

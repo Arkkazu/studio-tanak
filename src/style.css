@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/NotoSansJP-Tin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif JP";
+  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/NotoSerifJP-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/Montserrat-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  /* scrollbar-gutter: stable; */
+  font-size: 1px;
+  @media only screen and (max-width: 1271px) {
+    font-size: calc(100vw / 1024);
+  }
+  @media only screen and (max-width: 1023px) {
+    font-size: calc(100vw / 768);
+  }
+  @media only screen and (max-width: 767px) {
+    font-size: calc(100vw / 640);
+  }
+  @media only screen and (max-width: 639px) {
+    font-size: calc(100vw / 480);
+  }
+  @media only screen and (max-width: 479px) {
+    font-size: calc(100vw / 420);
+  }
+}
+
+body {
+  @apply text-14 pc:text-16 text-black font-light font-noto-sans leading-[1.5];
+  line-break: strict;
+}
+
+/* @theme {
+  --*: initial;
+} */
+
+@layer components {
+  .c-container {
+    padding-inline: 20rem;
+    @media only screen and (max-width: 1271px) {
+      padding-inline: 128rem; /* 20rem + ((1024 - 768)/2) */
+    }
+    @media only screen and (max-width: 1023px) {
+      padding-inline: 20rem;
+    }
+    @media only screen and (max-width: 767px) {
+      padding-inline: 130rem; /* 20rem + ((640 - 420)/2) */
+    }
+    @media only screen and (max-width: 639px) {
+      padding-inline: 50rem; /* 20rem + ((480 - 420)/2) */
+    }
+    @media only screen and (max-width: 479px) {
+      padding-inline: 20rem;
+    }
+  }
+}
+
+@layer utilities {
+  .dot-grid {
+    --dot-diameter: 2rem; /* ドットの直径 */
+    --gap-x: 8rem; /* 横方向の間隔 */
+    --gap-y: 8rem; /* 縦方向の間隔 */
+    --dot-color: #000; /* ドットの色 */
+
+    background-image: radial-gradient(circle, var(--dot-color) 0 calc(var(--dot-diameter) / 2), transparent calc(calc(var(--dot-diameter) / 2) + 1rem));
+    background-size: var(--gap-x) var(--gap-y);
+    background-repeat: repeat;
+    background-position: 0 0;
+  }
+}
+
+button {
+  @apply hoverable:cursor-pointer;
+}
+.c-scrollbar {
+  /* scrollbar-gutter: stable; */
+  /* スクロールバー全体のスタイル */
+  &::-webkit-scrollbar {
+    @apply w-8 h-8;
+  }
+  /* スクロールバーの背景 */
+  &::-webkit-scrollbar-track {
+    @apply bg-white border-border rounded-4;
+  }
+  /* スクロールバーのつまみ部分（スクロールする部分） */
+  &::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-4;
+  }
+  /* スクロールバーのつまみ部分にホバーしたときのスタイル */
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray;
+  }
+}
+
+.is-sp-menu-opened {
+  @apply overflow-hidden;
+  .js-burger-line-1 {
+    @apply rotate-45 top-11;
+  }
+  .js-burger-line-2 {
+    @apply opacity-0;
+  }
+  .js-burger-line-3 {
+    @apply -rotate-45 top-11;
+  }
+  .js-sp-menu {
+    @apply opacity-100 visible;
+  }
+}
+
+.circle-text-wrap {
+  --count: 36;
+  --radius: 60rem;
+  animation: circle-rotate 12s linear infinite;
+}
+@keyframes circle-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.circle-text-char {
+  @apply absolute left-1/2 top-1/2 text-14 text-white font-montserrat font-light leading-none tracking-[0.05em];
+  transform: translate(-50%, -50%) rotate(calc(360deg / var(--count) * var(--i))) translateY(calc(var(--radius) * -1));
+  transform-origin: center;
+}
