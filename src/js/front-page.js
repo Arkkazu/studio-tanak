@@ -75,10 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateActiveIndicator = (activeIndicator) => {
     indicators.forEach((item) => {
-      item.classList.toggle("w-40", item === activeIndicator);
-      item.classList.toggle("opacity-100", item === activeIndicator);
-      item.classList.toggle("w-24", item !== activeIndicator);
-      item.classList.toggle("opacity-60", item !== activeIndicator);
+      const isActive = item === activeIndicator;
+      item.classList.toggle("w-32", isActive);
+      item.classList.toggle("opacity-100", isActive);
+      item.classList.toggle("w-16", !isActive);
+      item.classList.toggle("opacity-60", !isActive);
+      item.classList.toggle("is-current", isActive);
     });
   };
 
@@ -88,10 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     indicators.forEach((indicator, index) => {
-      indicator.classList.toggle("w-40", index === activeIndex);
-      indicator.classList.toggle("opacity-100", index === activeIndex);
-      indicator.classList.toggle("w-24", index !== activeIndex);
-      indicator.classList.toggle("opacity-60", index !== activeIndex);
+      const isActive = index === activeIndex;
+      indicator.classList.toggle("w-32", isActive);
+      indicator.classList.toggle("opacity-100", isActive);
+      indicator.classList.toggle("w-16", !isActive);
+      indicator.classList.toggle("opacity-60", !isActive);
+      indicator.classList.toggle("is-current", isActive);
     });
   };
 
@@ -225,42 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateActiveIndicator(activeItem.indicator);
   };
-
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener("click", () => {
-      const scrollTarget = indicator.dataset.scrollTarget;
-
-      if (scrollTarget) {
-        const target = document.querySelector(scrollTarget);
-        if (!target) return;
-
-        updateActiveIndicator(indicator);
-
-        window.scrollTo({
-          top: target.getBoundingClientRect().top + window.scrollY,
-          behavior: "smooth",
-        });
-
-        return;
-      }
-
-      if (isAnimating) return;
-
-      if (window.scrollY > 0) {
-        window.scrollTo(0, 0);
-      }
-
-      if (index === currentIndex) {
-        updateActivePanelClass(currentIndex);
-        return;
-      }
-
-      requestAnimationFrame(() => {
-        const direction = index > currentIndex ? 1 : -1;
-        goToSection(index, direction);
-      });
-    });
-  });
 
   window.addEventListener(
     "scroll",

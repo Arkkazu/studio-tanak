@@ -14,11 +14,11 @@ $plans = [
     'id'          => '01',
     'title'       => 'Studio shooting',
     'open'        => false,
-    'default_tab' => 'premium',
+    'default_tab' => 'light',
     'tabs' => [
-      'light'    => ['color' => '#c8c0b5', 'label' => 'Light'],
-      'standard' => ['color' => '#b8b0a5', 'label' => 'Standard'],
-      'premium'  => ['color' => '#a89080', 'label' => 'Premium'],
+      'light'    => ['color' => '#c1bbac', 'label' => 'Light'],
+      'standard' => ['color' => '#aa9e93', 'label' => 'Standard'],
+      'premium'  => ['color' => '#ad9189', 'label' => 'Premium'],
     ],
     'courses' => [
       'light' => [
@@ -44,7 +44,7 @@ $plans = [
           ['label' => 'Products 01', 'html' => 'セレクトデータ２０カット'],
           ['label' => 'Products 02', 'html' => '２面台紙（六つ切り２枚）'],
         ],
-        'products_placeholder' => '#b8b0a5',
+        'products_placeholder' => '#aa9e93',
       ],
       'standard' => [
         'name'     => 'WEEKDAY / STANDARD COURSE',
@@ -114,12 +114,12 @@ $plans = [
   [
     'id'          => '02',
     'title'       => 'Go out / No location photo',
-    'open'        => true,
-    'default_tab' => '3years',
+    'open'        => false,
+    'default_tab' => '7years',
     'tabs' => [
-      '7years'  => ['color' => '#c8c0b5', 'label' => '7 years'],
-      '5years'  => ['color' => '#b8b0a5', 'label' => '5 years'],
-      '3years'  => ['color' => '#a89080', 'label' => '3 years'],
+      '7years'  => ['color' => '#c1bbac', 'label' => '7 years'],
+      '5years'  => ['color' => '#aa9e93', 'label' => '5 years'],
+      '3years'  => ['color' => '#ad9189', 'label' => '3 years'],
     ],
     'courses' => [
       '7years' => [
@@ -144,13 +144,13 @@ $plans = [
           '衣装はグレードにより別途',
           'ヘア／メイク／着付は本人分のみとなっております'
         ],
+        'products'        => [],
+        'products_placeholder' => '#aa9e93',
         'grades' => [
           ['letter' => 'A', 'price' => '¥9,900'],
           ['letter' => 'B', 'price' => '¥18,700'],
           ['letter' => 'C', 'price' => '¥27,500'],
         ],
-        'products'        => [],
-        'products_placeholder' => '#b8b0a5',
       ],
       '5years' => [
         'name'            => 'WEEKDAY / 5 years COURSE',
@@ -173,13 +173,13 @@ $plans = [
           '衣装はグレードにより別途',
           'ヘア／メイク／着付は本人分のみとなっております'
         ],
+        'products'        => [],
+        'products_placeholder' => '#a8a098',
         'grades' => [
           ['letter' => 'A', 'price' => '¥5,500'],
           ['letter' => 'B', 'price' => '¥9,900'],
           ['letter' => 'C', 'price' => '¥16,500'],
         ],
-        'products'        => [],
-        'products_placeholder' => '#a8a098',
       ],
       '3years' => [
         'name'            => 'WEEKDAY / 3 years COURSE',
@@ -202,42 +202,131 @@ $plans = [
           '衣装はグレードにより別途',
           'ヘア／メイク／着付は本人分のみとなっております'
         ],
+        'products'        => [],
+        'products_placeholder' => '#ad9189',
         'grades' => [
           ['letter' => 'A', 'price' => '¥5,500'],
           ['letter' => 'B', 'price' => '¥9,900'],
           ['letter' => 'C', 'price' => '¥16,500'],
         ],
-        'products'        => [],
-        'products_placeholder' => '#a89080',
       ],
     ],
   ],
   [
     'id'          => '03',
     'title'       => 'Go out / Location photo',
+    'open'        => true,
+    'default_tab' => '7years',
     'tabs' => [
-      'light'    => ['color' => '#c8c0b5', 'label' => 'Light'],
-      'standard' => ['color' => '#b8b0a5', 'label' => 'Standard'],
-      'premium'  => ['color' => '#a89080', 'label' => 'Premium'],
+      '7years'  => ['color' => '#c1bbac', 'label' => '7 years'],
+      '5years'  => ['color' => '#aa9e93', 'label' => '5 years'],
+      '3years'  => ['color' => '#ad9189', 'label' => '3 years'],
     ],
     'courses' => [
-      'light' => [
-        'name'     => 'LOCATION LIGHT COURSE',
-        'subtitle' => 'ステップ③お参り＋ロケーション撮影',
-        'price'    => '¥45,000',
-        'duration' => '120',
+      '7years' => [
+        'name'            => 'LOCATION / 7 years COURSE',
+        'subtitle'        => 'お出かけ / 出張撮影あり',
+        'price'           => '¥62,700',
+        'duration'        => '120',
+        'features'        => [
+          '土日祝日は＋¥5,500となります',
+          'グレードにより衣装代別途',
+          '外出衣装貸出は一日延長＋¥5,500となります',
+          '衣裳持ち込み＋¥9,900となります',
+          ['text' => '各種オプション詳細は ', 'link' => ['href' => '#', 'label' => 'こちら']],
+        ],
+        'campaign_border' => '#8a8078',
+        'contents'        => [
+          ['label' => 'Contents/01', 'text' => '出張撮影'],
+          ['label' => 'Contents/02', 'text' => 'ヘアメイク'],
+          ['label' => 'Contents/03', 'text' => '着付け'],
+        ],
+        'contents_note'   => [
+          '衣装はグレードにより別途',
+          'ヘア／メイク／着付は本人分のみとなっております'
+        ],
+        'products'        => [
+          ['label' => 'Products 01', 'html' => 'セレクトデータ２０カット'],
+          ['label' => 'Products 02', 'html' => '２面台紙（六つ切り２枚）'],
+        ],
+        'products_placeholder' => '#aa9e93',
+        'grades' => [
+          ['letter' => 'A', 'price' => '¥9,900'],
+          ['letter' => 'B', 'price' => '¥18,700'],
+          ['letter' => 'C', 'price' => '¥27,500'],
+        ],
       ],
-      'standard' => [
-        'name'     => 'LOCATION STANDARD COURSE',
-        'subtitle' => 'ステップ③お参り＋ロケーション撮影',
-        'price'    => '¥65,000',
-        'duration' => '120',
+      '5years' => [
+        'name'            => 'LOCATION / 5 years COURSE',
+        'subtitle'        => 'ステップ③お参り＋ロケーション撮影',
+        'price'           => '¥65,000',
+        'duration'        => '120',
+        'features'        => [
+          '土日祝日は＋¥5,500となります',
+          'グレードにより衣装代別途',
+          '外出衣装貸出は一日延長＋¥5,500となります',
+          '衣裳持ち込み＋¥9,900となります',
+          ['text' => '各種オプション詳細は ', 'link' => ['href' => '#', 'label' => 'こちら']],
+        ],
+        'campaign_border' => '#8a8078',
+        'contents'        => [
+          ['label' => 'Contents/01', 'text' => 'ヘアメイク'],
+          ['label' => 'Contents/02', 'text' => '着付け'],
+        ],
+        'contents_note'   => [
+          '衣装はグレードにより別途',
+          'ヘア／メイク／着付は本人分のみとなっております'
+        ],
+        'products'        => [
+          ['label' => 'Products 01', 'html' => 'セレクトデータ50カット'],
+          ['label' => 'Products 02', 'html' => 'クレイミニ8P×8カット'],
+          ['label' => 'Products 03', 'html' => 'ロケットペンダント（チェーン付）'],
+          ['label' => 'Products 04', 'html' => 'AGアートポスター'],
+          ['label' => 'Products 05', 'html' => 'AGアートデータ'],
+          ['label' => 'Products 06', 'html' => 'ナチュラルフォトブロック2個'],
+        ],
+        'products_placeholder' => '#a8a098',
+        'grades' => [
+          ['letter' => 'A', 'price' => '¥9,900'],
+          ['letter' => 'B', 'price' => '¥18,700'],
+          ['letter' => 'C', 'price' => '¥27,500'],
+        ],
       ],
-      'premium' => [
-        'name'     => 'LOCATION PREMIUM COURSE',
-        'subtitle' => 'ステップ③お参り＋ロケーション撮影',
-        'price'    => '¥85,000',
-        'duration' => '120',
+      '3years' => [
+        'name'            => 'LOCATION / 3 years COURSE',
+        'subtitle'        => 'ステップ③お参り＋ロケーション撮影',
+        'price'           => '¥85,000',
+        'duration'        => '120',
+        'features'        => [
+          '土日祝日は＋¥5,500となります',
+          'グレードにより衣装代別途',
+          '外出衣装貸出は一日延長＋¥5,500となります',
+          '衣裳持ち込み＋¥9,900となります',
+          ['text' => '各種オプション詳細は ', 'link' => ['href' => '#', 'label' => 'こちら']],
+        ],
+        'campaign_border' => '#7a6858',
+        'contents'        => [
+          ['label' => 'Contents/01', 'text' => 'ヘアメイク'],
+          ['label' => 'Contents/02', 'text' => '着付け'],
+        ],
+        'contents_note'   => [
+          '衣装はグレードにより別途',
+          'ヘア／メイク／着付は本人分のみとなっております'
+        ],
+        'products'        => [
+          ['label' => 'Products 01', 'html' => 'セレクトデータ50カット'],
+          ['label' => 'Products 02', 'html' => 'クレイミニ10P×10カット'],
+          ['label' => 'Products 03', 'html' => 'ロケットペンダント（チェーン付）'],
+          ['label' => 'Products 04', 'html' => 'AGアートポスター'],
+          ['label' => 'Products 05', 'html' => 'AGアートデータ'],
+          ['label' => 'Products 06', 'html' => 'ナチュラルフォトブロック2個'],
+        ],
+        'products_placeholder' => '#907060',
+        'grades' => [
+          ['letter' => 'A', 'price' => '¥9,900'],
+          ['letter' => 'B', 'price' => '¥18,700'],
+          ['letter' => 'C', 'price' => '¥27,500'],
+        ],
       ],
     ],
   ],
@@ -296,7 +385,7 @@ $plans = [
             </button>
             <div class="js-accordion-content" <?php if ($is_open) echo ' style="max-height:none"'; ?>>
               <div class="pb-80">
-                <div class="pt-80 js-tab-group">
+                <div class="pt-80 js-tab-group flex flex-col">
 
                   <div class="grid grid-cols-3 gap-10">
                     <?php foreach ($plan['tabs'] as $tab_key => $tab) : ?>
@@ -378,6 +467,20 @@ $plans = [
                           </div>
                         <?php endif; ?>
 
+                        <?php if (!empty($course['products'])) : ?>
+                          <div class="grid gap-80">
+                            <?php $heading_block('COURSE PRODUCTS', 'セット内容'); ?>
+                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-40">
+                              <?php foreach ($course['products'] as $product) : ?>
+                                <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => $product['label'], 'html' => $product['html']]); ?>
+                              <?php endforeach; ?>
+                            </div>
+                            <?php if (!empty($course['products_placeholder'])) : ?>
+                              <div class="mt-80 aspect-video" style="background-color:<?php echo esc_attr($course['products_placeholder']); ?>"></div>
+                            <?php endif; ?>
+                          </div>
+                        <?php endif; ?>
+
                         <?php if (!empty($course['grades'])) : ?>
                           <div class="grid gap-80">
                             <?php $heading_block('COSTUME GRADE', '衣装グレード'); ?>
@@ -395,26 +498,12 @@ $plans = [
                           </div>
                         <?php endif; ?>
 
-                        <?php if (!empty($course['products'])) : ?>
-                          <div class="grid gap-80">
-                            <?php $heading_block('COURSE PRODUCTS', 'セット内容'); ?>
-                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-40">
-                              <?php foreach ($course['products'] as $product) : ?>
-                                <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => $product['label'], 'html' => $product['html']]); ?>
-                              <?php endforeach; ?>
-                            </div>
-                            <?php if (!empty($course['products_placeholder'])) : ?>
-                              <div class="mt-80 aspect-[16/9]" style="background-color:<?php echo esc_attr($course['products_placeholder']); ?>"></div>
-                            <?php endif; ?>
-                          </div>
-                        <?php endif; ?>
-
                       </div>
 
                     </div>
                   <?php endforeach; ?>
 
-                  <div class="grid grid-cols-3 gap-10">
+                  <div class="grid grid-cols-3 gap-10 a">
                     <?php foreach ($plan['tabs'] as $tab_key => $tab) : ?>
                       <button
                         type="button"
@@ -451,7 +540,7 @@ $plans = [
         </div>
         <div class="grid grid-cols-4 gap-8">
           <?php for ($i = 1; $i <= 8; $i++) : ?>
-            <div class="aspect-square bg-[#c8c0b5]">
+            <div class="aspect-square bg-[#c1bbac]">
               <!-- ギャラリー画像 <?php echo $i; ?> -->
             </div>
           <?php endfor; ?>

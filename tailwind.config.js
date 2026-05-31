@@ -156,6 +156,12 @@ export default {
           "text-orientation": "upright",
           "-webkit-text-orientation": "upright",
         },
+        ".vertical-rl-mixed": {
+          writingMode: "vertical-rl",
+          "-webkit-writing-mode": "vertical-rl",
+          "text-orientation": "mixed",
+          "-webkit-text-orientation": "mixed",
+        },
         ".half-leading": {
           marginBlock: "calc((1em - 1lh) / 2)",
         },

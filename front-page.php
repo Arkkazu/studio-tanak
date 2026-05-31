@@ -76,6 +76,23 @@ get_header();
     transform: translateY(0);
     transition-delay: 1.6s;
   }
+
+  /* パネルラベル: 1文字ずつ表示 */
+  .js-panel-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(4rem);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .js-panel-indicator.is-current .js-panel-char {
+    opacity: 1;
+    transform: translateY(0);
+    /* 線が伸び切る(duration-300 = 0.3s)のを待ってから1文字ずつ */
+    transition-delay: calc(0.3s + var(--i) * 0.05s);
+  }
 </style>
 
 <main class="relative">
@@ -671,37 +688,32 @@ get_header();
       </div>
     </div>
   </section>
+  <?php
+  $panel_indicators = [
+    ['label' => 'Top'],
+    ['label' => 'A moment forever'],
+    ['label' => 'Irreplaceable value'],
+    ['label' => 'To the future'],
+    ['label' => 'Art gallery'],
+    ['label' => 'Recommend', 'target' => '#recommend'],
+    ['label' => 'News', 'target' => '#news'],
+    ['label' => 'Shooting', 'target' => '#shooting'],
+    ['label' => 'Gallery', 'target' => '#gallery'],
+    ['label' => 'Access', 'target' => '#access'],
+  ];
+  ?>
   <div class="fixed right-0 top-1/2 z-[500] -translate-y-1/2 flex flex-col items-end mix-blend-difference" aria-hidden="true">
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="1つ目のセクションへ移動">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="2つ目のセクションへ移動">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="3つ目のセクションへ移動">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="4つ目のセクションへ移動">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="5つ目のセクションへ移動">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="RECOMMENDセクションへ移動" data-scroll-target="#recommend">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="NEWSセクションへ移動" data-scroll-target="#news">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="SHOOTINGセクションへ移動" data-scroll-target="#shooting">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="GALLERYセクションへ移動" data-scroll-target="#gallery">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
-    <button type="button" class="js-panel-indicator flex items-center w-24 h-16 opacity-60 transition-all duration-300" aria-label="ACCESSセクションへ移動" data-scroll-target="#access">
-      <span class="block h-[1px] w-full bg-white"></span>
-    </button>
+    <?php foreach ($panel_indicators as $indicator) : ?>
+      <div class="js-panel-indicator relative flex items-center w-16 h-8 opacity-60 transition-all duration-300" <?php echo isset($indicator['target']) ? ' data-scroll-target="' . esc_attr($indicator['target']) . '"' : ''; ?>>
+        <span class="js-panel-label absolute -left-4 -bottom-2 translate-y-full vertical-rl-mixed whitespace-nowrap text-10 text-white font-montserrat"><?php
+          foreach (preg_split('//u', $indicator['label'], -1, PREG_SPLIT_NO_EMPTY) as $ci => $char) {
+            $glyph = $char === ' ' ? '&nbsp;' : esc_html($char);
+            echo '<span class="js-panel-char" style="--i:' . $ci . '">' . $glyph . '</span>';
+          }
+        ?></span>
+        <span class="block h-[1px] w-full bg-white"></span>
+      </div>
+    <?php endforeach; ?>
   </div>
 
 </main>
