@@ -4,8 +4,8 @@ get_header();
 
 $heading_block = function (string $title, string $subtitle): void { ?>
   <div class="text-center">
-    <p class="text-14 font-montserrat font-light tracking-[0.15em] border-b border-border pb-8"><?php echo esc_html($title); ?></p>
-    <p class="mt-8 text-11 font-thin tracking-[0.05em]"><?php echo esc_html($subtitle); ?></p>
+    <p class="text-14 font-montserrat tracking-[0.15em] border-b border-border pb-8"><?php echo esc_html($title); ?></p>
+    <p class="mt-8 text-11 tracking-[0.05em]"><?php echo esc_html($subtitle); ?></p>
   </div>
 <?php };
 
@@ -349,7 +349,7 @@ $plans = [
             <?php echo $wh; ?>>
         </div>
         <div class="">
-          <span class="text-14 font-montserrat font-light tracking-[0.3em] text-black">
+          <span class="text-14 font-montserrat tracking-[0.3em] text-black">
             SHICHIGOSAN
           </span>
         </div>
@@ -358,16 +358,16 @@ $plans = [
   </section>
 
   <!-- 753 PLAN -->
-  <section class="mt-150 bg-white px-20" id="plan">
+  <section class="mt-40 pc:mt-150 bg-white px-20 pb-80 pc:pb-150" id="plan">
     <div class="mx-auto max-w-1200">
 
       <div class="flex justify-center">
-        <h2 class="text-16 font-montserrat font-light tracking-[0.05em]">
+        <h2 class="text-16 font-montserrat tracking-[0.05em]">
           753 PLAN
         </h2>
       </div>
 
-      <div class="mt-150 mx-auto max-w-756 grid gap-80">
+      <div class="mt-40 pc:mt-150 mx-auto max-w-756 grid gap-40 pc:gap-80">
 
         <?php foreach ($plans as $plan) :
           $is_open    = !empty($plan['open']);
@@ -378,20 +378,20 @@ $plans = [
               type="button"
               class="js-accordion-trigger mx-auto max-w-335 w-full border-b border-[#605f5f] flex items-center justify-between pl-20 py-8 transition-opacity duration-300 pc:hover:opacity-50"
               aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>">
-              <span class="text-12 font-montserrat font-light tracking-[0.05em]">
+              <span class="text-12 font-montserrat tracking-[0.05em]">
                 <?php echo esc_html($plan['id']); ?>&emsp;<?php echo esc_html($plan['title']); ?>
               </span>
-              <span class="js-accordion-icon text-22 font-light leading-none"><?php echo $is_open ? '−' : '+'; ?></span>
+              <span class="js-accordion-icon text-22 leading-none"><?php echo $is_open ? '−' : '+'; ?></span>
             </button>
             <div class="js-accordion-content" <?php if ($is_open) echo ' style="max-height:none"'; ?>>
               <div class="pb-80">
-                <div class="pt-80 js-tab-group flex flex-col">
+                <div class="max-pc:-mx-20 pt-40 pc:pt-80 js-tab-group flex flex-col">
 
                   <div class="grid grid-cols-3 gap-10">
                     <?php foreach ($plan['tabs'] as $tab_key => $tab) : ?>
                       <button
                         type="button"
-                        class="js-tab-btn [clip-path:polygon(10rem_0%,100%_0%,100%_100%,0%_100%,0%_10rem)] py-16 text-12 font-montserrat font-light tracking-[0.1em] transition-opacity duration-200"
+                        class="js-tab-btn [clip-path:polygon(10rem_0%,100%_0%,100%_100%,0%_100%,0%_10rem)] py-16 text-12 font-montserrat tracking-[0.1em] transition-opacity duration-200"
                         style="background-color:<?php echo esc_attr($tab['color']); ?>"
                         data-tab="<?php echo esc_attr($tab_key); ?>"
                         aria-selected="<?php echo $tab_key === $default_tab ? 'true' : 'false'; ?>">
@@ -404,38 +404,38 @@ $plans = [
                     $course = $plan['courses'][$tab_key];
                   ?>
                     <div
-                      class="js-tab-panel px-60 py-150"
+                      class="js-tab-panel px-40 pc:px-60 py-80 pc:py-150"
                       style="background-color:<?php echo esc_attr($tab['color']); ?>"
                       data-tab-panel="<?php echo esc_attr($tab_key); ?>"
                       aria-hidden="<?php echo $tab_key === $default_tab ? 'false' : 'true'; ?>">
 
-                      <div class="grid gap-150">
+                      <div class="grid gap-80 pc:gap-150">
                         <div class="grid gap-80">
                           <?php $heading_block($course['name'], $course['subtitle']); ?>
-                          <div class="grid pc:grid-cols-2 gap-80">
-                            <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => 'Price',    'value' => $course['price'],    'suffix' => '(tax in)', 'value_class' => 'text-22 font-light', 'montserrat' => true]); ?>
-                            <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => 'Duration', 'value' => $course['duration'], 'suffix' => 'min',      'value_class' => 'text-22 font-light', 'montserrat' => true]); ?>
+                          <div class="grid pc:grid-cols-2 gap-16 pc:gap-80">
+                            <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => 'Price',    'value' => $course['price'],    'suffix' => '(tax in)', 'value_class' => 'text-22', 'montserrat' => true]); ?>
+                            <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => 'Duration', 'value' => $course['duration'], 'suffix' => 'min',      'value_class' => 'text-22', 'montserrat' => true]); ?>
                           </div>
                           <?php if (!empty($course['features'])) : ?>
-                            <ul class="flex flex-wrap justify-center gap-40">
+                            <ul class="flex flex-wrap justify-center gap-x-24 gap-y-12">
                               <?php foreach ($course['features'] as $feature) : ?>
-                                <li class="text-center text-11 font-thin leading-[2]">・<?php
-                                                                                        if (is_array($feature)) {
-                                                                                          echo esc_html($feature['text']);
-                                                                                          if (!empty($feature['link'])) {
-                                                                                            printf('<a href="%s" class="underline">%s</a>', esc_url($feature['link']['href']), esc_html($feature['link']['label']));
-                                                                                          }
-                                                                                        } else {
-                                                                                          echo esc_html($feature);
-                                                                                        }
-                                                                                        ?></li>
+                                <li class="text-center text-12 leading-[2]">・<?php
+                                                                              if (is_array($feature)) {
+                                                                                echo esc_html($feature['text']);
+                                                                                if (!empty($feature['link'])) {
+                                                                                  printf('<a href="%s" class="underline">%s</a>', esc_url($feature['link']['href']), esc_html($feature['link']['label']));
+                                                                                }
+                                                                              } else {
+                                                                                echo esc_html($feature);
+                                                                              }
+                                                                              ?></li>
                               <?php endforeach; ?>
                             </ul>
                           <?php endif; ?>
                           <?php if (!empty($course['campaign_border'])) : ?>
                             <div class="border p-32 text-center" style="border-color:<?php echo esc_attr($course['campaign_border']); ?>">
-                              <p class="text-11 font-montserrat font-light tracking-[0.1em] mb-12">CAMPAIGN</p>
-                              <p class="text-11 font-thin leading-[2]">※キャンペーン期間中は商品の組み合わせが自由</p>
+                              <p class="text-11 font-montserrat tracking-[0.1em] mb-12">CAMPAIGN</p>
+                              <p class="text-11 leading-[2]">※キャンペーン期間中は商品の組み合わせが自由</p>
                             </div>
                           <?php endif; ?>
                         </div>
@@ -443,24 +443,24 @@ $plans = [
                         <?php if (!empty($course['contents'])) : ?>
                           <div class="grid gap-80">
                             <?php $heading_block('COURSE CONTENTS', 'コース内容'); ?>
-                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-40">
+                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-16 pc:gap-y-40">
                               <?php foreach ($course['contents'] as $item) : ?>
                                 <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => $item['label'], 'html' => esc_html($item['text'])]); ?>
                               <?php endforeach; ?>
                             </div>
                             <?php if (!empty($course['contents_note'])) : ?>
-                              <ul class="flex flex-wrap justify-center gap-40">
+                              <ul class="flex flex-wrap pc:justify-center gap-x-24 gap-y-8">
                                 <?php foreach ($course['contents_note'] as $note) : ?>
-                                  <li class="text-center text-10 font-thin leading-[2]">・<?php
-                                                                                          if (is_array($note)) {
-                                                                                            echo esc_html($note['text']);
-                                                                                            if (!empty($note['link'])) {
-                                                                                              printf('<a href="%s" class="underline">%s</a>', esc_url($note['link']['href']), esc_html($note['link']['label']));
-                                                                                            }
-                                                                                          } else {
-                                                                                            echo esc_html($note);
-                                                                                          }
-                                                                                          ?></li>
+                                  <li class="text-center text-10 leading-[2]">・<?php
+                                                                                if (is_array($note)) {
+                                                                                  echo esc_html($note['text']);
+                                                                                  if (!empty($note['link'])) {
+                                                                                    printf('<a href="%s" class="underline">%s</a>', esc_url($note['link']['href']), esc_html($note['link']['label']));
+                                                                                  }
+                                                                                } else {
+                                                                                  echo esc_html($note);
+                                                                                }
+                                                                                ?></li>
                                 <?php endforeach; ?>
                               </ul>
                             <?php endif; ?>
@@ -469,14 +469,14 @@ $plans = [
 
                         <?php if (!empty($course['products'])) : ?>
                           <div class="grid gap-80">
-                            <?php $heading_block('COURSE PRODUCTS', 'セット内容'); ?>
-                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-40">
+                            <?php $heading_block('COURSE PRODUCTS', 'コース商品'); ?>
+                            <div class="grid pc:grid-cols-2 gap-x-80 gap-y-16 pc:gap-y-40">
                               <?php foreach ($course['products'] as $product) : ?>
                                 <?php get_template_part('template-parts/common/inc-dash-row', null, ['label' => $product['label'], 'html' => $product['html']]); ?>
                               <?php endforeach; ?>
                             </div>
                             <?php if (!empty($course['products_placeholder'])) : ?>
-                              <div class="mt-80 aspect-video" style="background-color:<?php echo esc_attr($course['products_placeholder']); ?>"></div>
+                              <div class="mt-40 pc:mt-80 aspect-video" style="background-color:<?php echo esc_attr($course['products_placeholder']); ?>"></div>
                             <?php endif; ?>
                           </div>
                         <?php endif; ?>
@@ -488,10 +488,10 @@ $plans = [
                               <?php foreach ($course['grades'] as $grade) : ?>
                                 <div class="text-center">
                                   <div class="aspect-square bg-[#605f5f] flex flex-col items-center justify-center gap-8">
-                                    <span class="text-32 font-montserrat font-light text-white leading-none"><?php echo esc_html($grade['letter']); ?></span>
-                                    <span class="text-10 font-montserrat font-light text-white tracking-[0.2em]">GRADE</span>
+                                    <span class="text-32 font-montserrat text-white leading-none"><?php echo esc_html($grade['letter']); ?></span>
+                                    <span class="text-10 font-montserrat text-white tracking-[0.2em]">GRADE</span>
                                   </div>
-                                  <p class="mt-8 text-12 font-montserrat font-light leading-none"><?php echo esc_html($grade['price']); ?></p>
+                                  <p class="mt-8 text-12 font-montserrat leading-none"><?php echo esc_html($grade['price']); ?></p>
                                 </div>
                               <?php endforeach; ?>
                             </div>
@@ -503,11 +503,11 @@ $plans = [
                     </div>
                   <?php endforeach; ?>
 
-                  <div class="grid grid-cols-3 gap-10 a">
+                  <div class="js-tab-nav--bottom grid grid-cols-3 gap-10">
                     <?php foreach ($plan['tabs'] as $tab_key => $tab) : ?>
                       <button
                         type="button"
-                        class="js-tab-btn [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-10rem),calc(100%-10rem)_100%,0%_100%,0%_0%)] py-16 text-12 font-montserrat font-light tracking-[0.1em] transition-opacity duration-200"
+                        class="js-tab-btn js-tab-btn--bottom py-16 text-12 font-montserrat tracking-[0.1em] transition-opacity duration-200"
                         style="background-color:<?php echo esc_attr($tab['color']); ?>"
                         data-tab="<?php echo esc_attr($tab_key); ?>"
                         aria-selected="<?php echo $tab_key === $default_tab ? 'true' : 'false'; ?>">
@@ -524,8 +524,6 @@ $plans = [
 
       </div><!-- end accordion list -->
 
-      <div class="pb-150"></div>
-
     </div>
   </section>
 
@@ -534,7 +532,7 @@ $plans = [
     <div class="mx-auto max-w-1200">
       <div class="grid gap-80">
         <div class="flex justify-center">
-          <h2 class="text-14 font-montserrat font-light tracking-[0.05em]">
+          <h2 class="text-14 font-montserrat tracking-[0.05em]">
             GALLERY
           </h2>
         </div>

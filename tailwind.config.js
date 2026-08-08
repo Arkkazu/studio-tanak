@@ -10,7 +10,7 @@ export default {
         montserrat: ["Montserrat", "sans-serif"],
       },
       colors: {
-        black: "#282828",
+        black: "#231815",
         border: "#606060",
 
         orange: "#EF742E",

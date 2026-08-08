@@ -3,11 +3,14 @@
 add_action('wp_enqueue_scripts', function () {
 
   /* ───── 環境判定 ───── */
-  $host   = $_SERVER['HTTP_HOST'];
-  $is_dev = str_contains($host, 'localhost') || str_contains($host, '127.0.0.1');
-  $vite   = $is_dev
-    ? 'http://localhost:5173'
-    : get_template_directory_uri() . '/dist/assets';
+  $host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+  $host = preg_replace('/:\\d+$/', '', $host);
+  $is_vite_proxy = $host === 'studio-tanaka.test' && ($_SERVER['HTTP_X_STUDIO_TANAKA_VITE'] ?? '') === '1';
+  $is_local_dev = in_array($host, ['localhost', '127.0.0.1'], true);
+  $is_dev = $is_vite_proxy || $is_local_dev;
+  $vite = $is_vite_proxy
+    ? 'http://studio-tanaka.test'
+    : ($is_local_dev ? 'http://localhost:5173' : get_template_directory_uri() . '/dist/assets');
 
   /* ───── 共通アセット ───── */
   if ($is_dev) {

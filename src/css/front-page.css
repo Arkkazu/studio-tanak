@@ -24,7 +24,7 @@
 [data-panel].is-active [data-gallery-anime-1] {
   opacity: 1;
   transform: translate(0, 0);
-  transition-delay: 0.5s;
+  transition-delay: 1s;
 }
 
 [data-gallery-anime-2] {
@@ -37,7 +37,7 @@
 [data-panel].is-active [data-gallery-anime-2] {
   opacity: 1;
   transform: translate(0, 0);
-  transition-delay: 1s;
+  transition-delay: 2s;
 }
 
 [data-gallery-anime-3] {
@@ -50,7 +50,7 @@
 [data-panel].is-active [data-gallery-anime-3] {
   opacity: 1;
   transform: translate(0, 0);
-  transition-delay: 1.5s;
+  transition-delay: 3s;
 }
 
 [data-gallery-anime-4] {
@@ -63,5 +63,5 @@
 [data-panel].is-active [data-gallery-anime-4] {
   opacity: 1;
   transform: translate(0, 0);
-  transition-delay: 2s;
+  transition-delay: 4s;
 }

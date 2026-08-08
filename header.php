@@ -1,6 +1,7 @@
 <?php
 // TOPページかどうかのフラグ
-$is_home = (is_home() || is_front_page());
+$is_front_page = is_front_page();
+$is_home = (is_home() || $is_front_page);
 
 $common_title = '';
 $common_desc  = '';
@@ -207,6 +208,22 @@ $og_url = home_url(add_query_arg(null, null));
   <?php if ($first_view !== '') : ?>
     <style id="critical-first-view">
       <?php echo $first_view; ?>
+    </style>
+  <?php endif; ?>
+
+  <?php if ($is_front_page) : ?>
+    <style id="front-page-header-intro">
+      .js-fv-header {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js-fv-header {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     </style>
   <?php endif; ?>
 

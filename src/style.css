@@ -3,22 +3,43 @@
 
 @font-face {
   font-family: "Noto Sans JP";
-  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/NotoSansJP-Tin.woff2") format("woff2");
+  src: url("./fonts/NotoSansJP-Thin.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
+  font-family: "Noto Sans JP";
+  src: url("./fonts/NotoSansJP-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Noto Serif JP";
-  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/NotoSerifJP-ExtraLight.woff2") format("woff2");
+  src: url("./fonts/NotoSerifJP-ExtraLight.woff2") format("woff2");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
+  font-family: "Noto Serif JP";
+  src: url("./fonts/NotoSerifJP-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Montserrat";
-  src: url("/wp-content/themes/studio-tanak_theme/src/fonts/Montserrat-Light.woff2") format("woff2");
+  src: url("./fonts/Montserrat-Light.woff2") format("woff2");
   font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -44,7 +65,7 @@ html {
 }
 
 body {
-  @apply text-14 pc:text-16 text-black font-light font-noto-sans leading-[1.5];
+  @apply text-14 pc:text-16 text-black font-noto-sans leading-[1.5];
   line-break: strict;
 }
 
@@ -140,7 +161,7 @@ button {
   }
 }
 .circle-text-char {
-  @apply absolute left-1/2 top-1/2 text-14 text-white font-montserrat font-light leading-none tracking-[0.05em];
+  @apply absolute left-1/2 top-1/2 text-14 text-white font-montserrat leading-none tracking-[0.05em];
   transform: translate(-50%, -50%) rotate(calc(360deg / var(--count) * var(--i))) translateY(calc(var(--radius) * -1));
   transform-origin: center;
 }

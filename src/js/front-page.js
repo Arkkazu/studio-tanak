@@ -4,50 +4,80 @@ import Splide from "@splidejs/splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import "@splidejs/splide/css/core";
 
+const gsapDisabled = new URLSearchParams(window.location.search).get("gsap") === "off";
+
 if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
+  history.scrollRestoration = gsapDisabled ? "auto" : "manual";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  window.scrollTo(0, 0);
+  if (!gsapDisabled) {
+    window.scrollTo(0, 0);
 
-  window.addEventListener(
-    "load",
-    () => {
-      window.scrollTo(0, 0);
-    },
-    { once: true },
-  );
+    window.addEventListener(
+      "load",
+      () => {
+        window.scrollTo(0, 0);
+      },
+      { once: true },
+    );
+  }
 
   //// fv背景
   const fvBg = document.querySelector(".js-fv-bg");
 
   if (fvBg) {
-    gsap.to(fvBg, {
-      opacity: 0.6,
-      duration: 5,
+    if (gsapDisabled) {
+      fvBg.style.opacity = "0.6";
+    } else {
+      gsap.to(fvBg, {
+        opacity: 0.6,
+        duration: 3,
+        delay: 3,
+        ease: "power2.out",
+      });
+    }
+  }
+  //// end fv背景
+
+  //// fvヘッダー
+  const fvHeaders = document.querySelectorAll(".js-fv-header");
+
+  if (fvHeaders.length && (gsapDisabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    fvHeaders.forEach((header) => {
+      header.style.visibility = "visible";
+      header.style.opacity = "1";
+    });
+  } else if (fvHeaders.length) {
+    gsap.to(fvHeaders, {
+      autoAlpha: 1,
+      duration: 0.3,
       delay: 3,
       ease: "power2.out",
     });
   }
-  //// end fv背景
+  //// end fvヘッダー
 
   //// splide 無限スライダー
-  new Splide(".splide-infinity", {
-    type: "loop",
-    drag: "free",
-    arrows: false,
-    pagination: false,
-    gap: "64rem",
-    fixedWidth: "250rem",
-    perPage: 2,
-    perMove: 1,
-    autoScroll: {
-      speed: 0.5,
-      pauseOnHover: false,
-      pauseOnFocus: false,
-    },
-  }).mount({ AutoScroll });
+  const infinitySplideEl = document.querySelector(".splide-infinity");
+
+  if (infinitySplideEl) {
+    new Splide(infinitySplideEl, {
+      type: "loop",
+      drag: "free",
+      arrows: false,
+      pagination: false,
+      gap: "64rem",
+      fixedWidth: "250rem",
+      perPage: 2,
+      perMove: 1,
+      autoScroll: {
+        speed: 0.5,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+      },
+    }).mount({ AutoScroll });
+  }
   //// end splide 無限スライダー
 
   const panels = Array.from(document.querySelectorAll("[data-panel]"));
@@ -64,13 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const EASE = "power3.inOut";
   const WHEEL_THRESHOLD = 30;
 
-  gsap.set(panels, {
-    yPercent: 100,
-  });
+  const setPanelPosition = (panel, yPercent, zIndex) => {
+    if (gsapDisabled) {
+      panel.style.transform = `translateY(${yPercent}%)`;
+      panel.style.zIndex = zIndex;
+      return;
+    }
 
-  gsap.set(panels[0], {
-    yPercent: 0,
-    zIndex: panels.length + 1,
+    gsap.set(panel, { yPercent, zIndex });
+  };
+
+  panels.forEach((panel, index) => {
+    setPanelPosition(panel, index === 0 ? 0 : 100, index === 0 ? panels.length + 1 : index + 1);
   });
 
   const updateActiveIndicator = (activeIndicator) => {
@@ -102,20 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetPanels = (activeIndex) => {
     panels.forEach((panel, index) => {
       if (index < activeIndex) {
-        gsap.set(panel, {
-          yPercent: -100,
-          zIndex: index + 1,
-        });
+        setPanelPosition(panel, -100, index + 1);
       } else if (index === activeIndex) {
-        gsap.set(panel, {
-          yPercent: 0,
-          zIndex: panels.length + 1,
-        });
+        setPanelPosition(panel, 0, panels.length + 1);
       } else {
-        gsap.set(panel, {
-          yPercent: 100,
-          zIndex: index + 1,
-        });
+        setPanelPosition(panel, 100, index + 1);
       }
     });
 
@@ -123,7 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   requestAnimationFrame(() => {
-    updateActivePanelClass(0);
+    if (!isAnimating) {
+      updateActivePanelClass(currentIndex);
+    }
   });
 
   function goToSection(nextIndex, direction) {
@@ -138,6 +166,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nextStart = direction === 1 ? 100 : -100;
     const currentEnd = direction === 1 ? -100 : 100;
+
+    if (gsapDisabled) {
+      currentIndex = nextIndex;
+      resetPanels(currentIndex);
+      isAnimating = false;
+      return;
+    }
 
     currentPanel.classList.remove("is-active");
     nextPanel.classList.remove("is-active");

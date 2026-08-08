@@ -4,6 +4,15 @@ add_action('wp_enqueue_scripts', function () {
     return;
   }
 
+  $host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
+  $host = preg_replace('/:\\d+$/', '', $host);
+  $is_vite_proxy = $host === 'studio-tanaka.test' && ($_SERVER['HTTP_X_STUDIO_TANAKA_VITE'] ?? '') === '1';
+  $is_local_vite = in_array($host, ['localhost', '127.0.0.1'], true);
+
+  if ($is_vite_proxy || $is_local_vite) {
+    return;
+  }
+
   $theme_dir = get_template_directory();
   $theme_uri = get_template_directory_uri();
 

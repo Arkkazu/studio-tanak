@@ -4,9 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "docker compose --profile dev -f ../../../docker-compose.yml up dev",
+    "dev:container": "vite --host 0.0.0.0",
+    "dev:local": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "coding:gate": "node MyBrain/verify/coding-rule-gate.mjs"
   },
   "devDependencies": {
     "fast-glob": "^3.3.3",

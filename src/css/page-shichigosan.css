@@ -5,6 +5,17 @@
   transition: max-height 0.5s ease;
 }
 
+@media (max-width: 1271px) {
+  .js-accordion-content {
+    margin-inline: -20rem;
+    padding-inline: 20rem;
+  }
+
+  .js-tab-group--full-bleed {
+    margin-inline: -20rem;
+  }
+}
+
 /* tab panels */
 .js-tab-panel[aria-hidden="true"] {
   display: none;
@@ -19,4 +30,34 @@
 }
 .js-tab-btn[aria-selected="false"] {
   opacity: 0.6;
+}
+
+.js-tab-nav--bottom {
+  grid-template-columns: calc((100% - 20rem) / 3) calc((100% - 20rem) / 3) minmax(0, 1fr);
+  margin-top: -1px;
+}
+
+.js-tab-btn--bottom {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10rem), calc(100% - 10rem) 100%, 0% 100%);
+}
+
+.js-tab-btn--bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.js-tab-btn--bottom[aria-selected="false"] {
+  color: rgba(40, 40, 40, 0.6);
+  opacity: 1;
+}
+
+.js-tab-btn--bottom[aria-selected="false"]::before {
+  opacity: 0.4;
 }
