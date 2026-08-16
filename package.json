@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "docker compose --profile dev -f ../../../docker-compose.yml up dev",
+    "dev": "docker compose --profile dev -f ../../../../docker-compose.yml up dev",
     "dev:container": "vite --host 0.0.0.0",
     "dev:local": "vite",
     "build": "vite build",

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 70.92 70.92">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #e2dac9;
+        stroke-miterlimit: 10;
+        stroke-width: .72px;
+      }
+
+      .cls-3 {
+        fill: #e2dac9;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <polygon class="cls-1" points="0 70.92 0 0 70.92 0 0 70.92"/>
+    </clipPath>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <g>
+      <g class="cls-4">
+        <g>
+          <path class="cls-3" d="M4.91,23.65c0-8.47,4.62-12.88,9.55-12.88s9.55,4.4,9.55,12.91-4.62,12.88-9.55,12.88-9.55-4.4-9.55-12.91ZM9.72,23.65c0,6.44,2.63,8.77,4.74,8.77s4.74-2.33,4.74-8.77-2.66-8.73-4.74-8.73-4.74,2.33-4.74,8.73Z"/>
+          <path class="cls-3" d="M42.36,27.5h2.89v3.85h-2.89v4.66h-4.51v-4.66h-12.06v-2.15l12.25-17.87h4.33v16.17ZM37.84,27.5v-9.4l-6.37,9.4h6.37Z"/>
+        </g>
+      </g>
+      <line class="cls-2" x1="63.72" y1="7.51" x2="4.06" y2="67.17"/>
+    </g>
+  </g>
+</svg>

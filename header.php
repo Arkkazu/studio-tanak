@@ -264,4 +264,5 @@ $og_url = home_url(add_query_arg(null, null));
 
 <body <?php body_class('bg-white'); ?>>
   <?php get_template_part('template-parts/common/inc', 'header'); ?>
+  <?php get_template_part('template-parts/common/inc', 'sp-menu'); ?>
   <div class="js-scroll-container flex-1 overflow-x-hidden flex flex-col justify-between">

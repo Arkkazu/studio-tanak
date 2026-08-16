@@ -133,17 +133,8 @@ button {
 
 .is-sp-menu-opened {
   @apply overflow-hidden;
-  .js-burger-line-1 {
-    @apply rotate-45 top-11;
-  }
-  .js-burger-line-2 {
-    @apply opacity-0;
-  }
-  .js-burger-line-3 {
-    @apply -rotate-45 top-11;
-  }
   .js-sp-menu {
-    @apply opacity-100 visible;
+    @apply opacity-100 pointer-events-auto;
   }
 }
 

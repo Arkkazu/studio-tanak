@@ -261,7 +261,7 @@ get_header();
 
       <div class="relative flex justify-center">
         <p class="text-17 font-semibold font-montserrat tracking-[0.05em]">
-          Art gallery
+          ART GALLERY
         </p>
       </div>
 
