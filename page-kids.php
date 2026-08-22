@@ -459,23 +459,29 @@ get_header();
       </div>
     </section>
   <?php endforeach; ?>
-
-  <?php foreach ($menu_sections as $modal_section) : ?>
-    <?php foreach ($modal_section['groups'] as $modal_group) : ?>
-      <?php foreach ($modal_group['courses'] as $modal_course) : ?>
-        <?php if (!empty($modal_course['modal'])) : ?>
-          <?php get_template_part('template-parts/common/inc-course-modal', null, [
-            'modal' => $modal_course['modal'],
-            'course' => $modal_course,
-            'section_title' => $modal_section['title_ja'],
-            'group_title' => $modal_course['modal']['group_title'] ?? $modal_group['title_ja'],
-          ]); ?>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    <?php endforeach; ?>
-  <?php endforeach; ?>
-
-  <?php get_template_part('template-parts/common/inc-course-modal', null, ['id' => 'kids-course-modal']); ?>
 </main>
+
+<?php
+add_action('wp_footer', static function () use ($menu_sections): void {
+  foreach ($menu_sections as $modal_section) {
+    foreach ($modal_section['groups'] as $modal_group) {
+      foreach ($modal_group['courses'] as $modal_course) {
+        if (empty($modal_course['modal'])) {
+          continue;
+        }
+
+        get_template_part('template-parts/common/inc-course-modal', null, [
+          'modal' => $modal_course['modal'],
+          'course' => $modal_course,
+          'section_title' => $modal_section['title_ja'],
+          'group_title' => $modal_course['modal']['group_title'] ?? $modal_group['title_ja'],
+        ]);
+      }
+    }
+  }
+
+  get_template_part('template-parts/common/inc-course-modal', null, ['id' => 'kids-course-modal']);
+}, 5);
+?>
 
 <?php get_footer(); ?>

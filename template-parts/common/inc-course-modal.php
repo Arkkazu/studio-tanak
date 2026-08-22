@@ -32,7 +32,9 @@ $render_course_modal_section = static function (string $title, string $title_ja,
 
 ?>
 <dialog id="<?php echo esc_attr($modal_id); ?>" class="js-kids-course-modal fixed top-1/2 left-1/2 m-0 max-h-none h-[100dvh] md:h-[calc(100dvh-40rem)] w-full max-w-480 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-0 bg-white p-0 text-black opacity-0 transition-opacity duration-300 md:backdrop:bg-[rgba(0,0,0,0.6)]" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
-  <button type="button" class="js-kids-course-modal-close absolute top-16 right-16 z-10 flex size-40 items-center justify-center" aria-label="モーダルを閉じる">
+  <?php [$src, $wh] = theme_img_src_wh('src/images/common/svg-logo-icon.svg'); ?>
+  <img class="absolute top-24 left-24 z-10 block w-20 brightness-0" src="<?php echo $src; ?>" alt="" loading="lazy" <?php echo $wh; ?>>
+  <button type="button" class="js-kids-course-modal-close absolute top-16 right-16 z-10 flex size-40 items-center justify-center focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-gray focus-visible:outline-offset-2" aria-label="モーダルを閉じる">
     <span class="absolute h-[1px] w-32 rotate-45 bg-gray"></span>
     <span class="absolute h-[1px] w-32 -rotate-45 bg-gray"></span>
   </button>

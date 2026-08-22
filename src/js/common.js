@@ -201,8 +201,41 @@ const initKidsCourseModal = () => {
     document.querySelector(".js-burger"),
     ...document.querySelectorAll(".js-scroll-lock-fixed"),
   ].filter(Boolean))];
+  const backgroundState = new Map();
+  const modalFocusableElements = (modal) => [...modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+  )].filter((element) => !element.hidden && element.getClientRects().length > 0);
+
+  const setBackgroundInert = (activeModal) => {
+    [...document.body.children].forEach((element) => {
+      if (element === activeModal) return;
+
+      backgroundState.set(element, {
+        ariaHidden: element.getAttribute("aria-hidden"),
+        inert: element.inert,
+      });
+      element.inert = true;
+      element.setAttribute("aria-hidden", "true");
+    });
+  };
+
+  const releaseBackgroundInert = () => {
+    backgroundState.forEach((state, element) => {
+      element.inert = state.inert;
+      if (state.ariaHidden === null) {
+        element.removeAttribute("aria-hidden");
+        return;
+      }
+      element.setAttribute("aria-hidden", state.ariaHidden);
+    });
+    backgroundState.clear();
+  };
 
   if (!modals.length || !triggers.length) return;
+
+  modals.forEach((modal) => {
+    modal.inert = !modal.open;
+  });
 
   const lockMainScroll = () => {
     if (document.body.classList.contains("is-kids-course-modal-scroll-locked")) return;
@@ -266,7 +299,9 @@ const initKidsCourseModal = () => {
 
       lastTriggers.set(modal, trigger);
       lockMainScroll();
+      modal.inert = false;
       modal.showModal();
+      setBackgroundInert(modal);
       window.requestAnimationFrame(() => {
         modal.classList.add("opacity-100", "is-kids-course-modal-visible");
         modal.querySelector(".js-kids-course-modal-close")?.focus();
@@ -291,9 +326,35 @@ const initKidsCourseModal = () => {
     modal.addEventListener("close", () => {
       delete modal.dataset.closing;
       modal.classList.remove("opacity-100", "is-kids-course-modal-visible");
+      modal.inert = true;
       releaseMainScroll();
+      releaseBackgroundInert();
       lastTriggers.get(modal)?.focus();
     });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+
+    const activeModal = [...modals].find((modal) => modal.open);
+    if (!activeModal) return;
+
+    const focusableElements = modalFocusableElements(activeModal);
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (!firstElement || !lastElement) return;
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
   });
 
   const initialModal = new URLSearchParams(window.location.search).get("course-modal");
