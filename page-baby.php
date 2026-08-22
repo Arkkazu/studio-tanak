@@ -143,7 +143,7 @@ get_header();
 
   <?php foreach ($menu_sections as $section) : ?>
     <section class="mt-80 pc:mt-160 px-20">
-      <div class="mx-auto max-w-688">
+      <div class="mx-auto max-w-688 pc:relative">
         <div class="relative flex items-center justify-center">
           <div class="relative flex flex-col items-center gap-4">
             <?php [$src, $wh] = theme_img_src_wh('src/images/common/' . $section['number'] . '.svg'); ?>
@@ -157,11 +157,11 @@ get_header();
           </div>
         </div>
 
-        <div class="mt-80 flex flex-col gap-40 pc:mt-120 pc:gap-80">
+        <div class="mt-20 pc:mt-80 flex flex-col gap-90 pc:gap-150">
           <?php foreach ($section['groups'] as $group) : ?>
             <section class="flex flex-col gap-40 pc:gap-80">
-              <div class="relative flex min-h-120 items-center justify-between">
-                <div class="flex w-170 shrink-0 flex-col gap-6 pc:w-auto pc:shrink">
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col gap-6 w-170 pc:w-auto shrink-0 pc:shrink">
                   <h3 class="text-14 font-montserrat font-light leading-[1.2] tracking-[0.05em]">
                     <?php echo esc_html($group['title']); ?>
                   </h3>
@@ -169,13 +169,13 @@ get_header();
                     <?php echo esc_html($group['title_ja']); ?>
                   </p>
                 </div>
-                <div class="relative max-pc:-mr-16 w-160 shrink-0 pc:absolute pc:right-0 pc:top-1/2 pc:w-147 pc:-translate-y-1/2">
+                <div class="relative max-pc:-mr-16 pc:absolute pc:-top-42 pc:right-0 w-160 pc:w-147 shrink-0">
                   <?php [$src, $wh] = theme_img_src_wh($section['image']); ?>
                   <img class="block w-full" src="<?php echo $src; ?>" alt="" loading="lazy" <?php echo $wh; ?>>
                 </div>
               </div>
 
-              <ul class="px-20 grid gap-y-56 pc:grid-cols-2 pc:gap-x-120">
+              <ul class="px-20 grid pc:grid-cols-2 gap-x-80 pc:gap-x-120 gap-y-56">
                 <?php foreach ($group['courses'] as $course) : ?>
                   <?php $modal_id = $course['modal']['id'] ?? 'baby-course-modal'; ?>
                   <li class="<?php echo !empty($course['emphasis']) ? '' : 'pl-40'; ?>">
