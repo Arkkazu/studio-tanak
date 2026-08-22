@@ -24,6 +24,7 @@ TEXT;
 
 $menu_sections = [
   [
+    'anchor' => 'kids-shichigosan',
     'number' => '01',
     'title' => 'Shichi-Go-San',
     'title_ja' => '七五三',
@@ -196,6 +197,7 @@ $menu_sections = [
     ],
   ],
   [
+    'anchor' => 'kids-admission-graduation',
     'number' => '02',
     'title' => 'Admission Graduation',
     'title_ja' => '入園・卒園・入学・卒業',
@@ -223,6 +225,7 @@ $menu_sections = [
     ],
   ],
   [
+    'anchor' => 'kids-graduation-hakama',
     'number' => '03',
     'title' => 'Graduation Hakama',
     'title_ja' => '卒業袴',
@@ -294,6 +297,7 @@ $menu_sections = [
     ],
   ],
   [
+    'anchor' => 'kids-half-coming-of-age',
     'number' => '04',
     'title' => 'Half coming of age<br>ceremony',
     'title_ja' => 'ハーフ成人式',
@@ -387,7 +391,7 @@ get_header();
   </section>
 
   <?php foreach ($menu_sections as $section) : ?>
-    <section class="mt-120 pc:mt-160 px-20">
+    <section id="<?php echo esc_attr($section['anchor']); ?>" class="mt-120 pc:mt-160 px-20">
       <div class="mx-auto max-w-688 pc:relative">
         <div class="relative flex items-center justify-center">
 

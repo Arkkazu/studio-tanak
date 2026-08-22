@@ -89,6 +89,8 @@ const initSpMenu = () => {
     burger.setAttribute("aria-expanded", String(isOpen));
     burger.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
     if (burgerLabel) burgerLabel.textContent = isOpen ? "CLOSE" : "MENU";
+    spMenu.style.opacity = isOpen ? "1" : "0";
+    spMenu.style.pointerEvents = isOpen ? "auto" : "none";
     spMenu.setAttribute("aria-hidden", String(!isOpen));
     spMenu.inert = !isOpen;
     backgroundElements.forEach((element) => {
@@ -104,6 +106,12 @@ const initSpMenu = () => {
 
   burger.addEventListener("click", () => {
     setMenuState(!document.body.classList.contains("is-sp-menu-opened"));
+  });
+
+  spMenu.querySelectorAll("a[href]").forEach((link) => {
+    link.addEventListener("click", () => {
+      setMenuState(false);
+    });
   });
 
   if (shootingMenuTrigger && shootingMenuPanel) {

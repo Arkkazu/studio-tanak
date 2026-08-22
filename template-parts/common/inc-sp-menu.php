@@ -1,14 +1,14 @@
 <?php
 $shooting_menu_items = [
-  ['label' => 'ニューボーン', 'path' => '/newborn/'],
-  ['label' => 'お宮参り', 'path' => '/omiyamairi/'],
-  ['label' => 'バースデー', 'path' => '/birthday/'],
-  ['label' => '七五三', 'path' => '/shichigosan/'],
-  ['label' => '入園・卒園・入学・卒業', 'path' => '/admission-graduation/'],
-  ['label' => 'ハーフ成人式', 'path' => '/half-coming-of-age/'],
+  ['label' => 'ニューボーン', 'path' => '/baby/#baby-newborn'],
+  ['label' => 'お宮参り', 'path' => '/baby/#baby-omiyamairi'],
+  ['label' => 'バースデー', 'path' => '/baby/#baby-birthday'],
+  ['label' => '七五三', 'path' => '/kids/#kids-shichigosan'],
+  ['label' => '入園・卒園・入学・卒業', 'path' => '/kids/#kids-admission-graduation'],
+  ['label' => 'ハーフ成人式', 'path' => '/kids/#kids-half-coming-of-age'],
   ['label' => '成人式女性', 'path' => '/coming-of-age-women/'],
   ['label' => '成人式男性', 'path' => '/coming-of-age-men/'],
-  ['label' => '卒業袴', 'path' => '/graduation-hakama/'],
+  ['label' => '卒業袴', 'path' => '/kids/#kids-graduation-hakama'],
   ['label' => '家族撮影・記念撮影', 'path' => '/family-photo/'],
   ['label' => 'ポートレート撮影', 'path' => '/portrait/'],
   ['label' => '証明写真', 'path' => '/id-photo/'],
@@ -32,7 +32,7 @@ $site_menu_items = [
 ];
 ?>
 
-<div id="sp-menu" class="js-sp-menu fixed inset-0 z-[700] bg-[#323232] opacity-0 pointer-events-none transition-opacity duration-500" aria-hidden="true" inert>
+<div id="sp-menu" class="js-sp-menu fixed inset-0 z-[700] bg-[#323232] opacity-0 pointer-events-none transition-opacity duration-500" style="opacity: 0; pointer-events: none;" aria-hidden="true" inert>
   <div class="h-full overflow-y-auto overscroll-contain px-40 pt-60 pb-48">
     <nav aria-label="サイトメニュー">
       <ul class="mt-6 flex flex-col gap-18 pl-12">

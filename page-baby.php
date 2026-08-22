@@ -8,6 +8,7 @@ $studio_course_notes = [
 
 $menu_sections = [
   [
+    'anchor' => 'baby-newborn',
     'number' => '01',
     'title' => 'New born',
     'title_ja' => 'ages 0 to 2',
@@ -36,6 +37,7 @@ $menu_sections = [
     ],
   ],
   [
+    'anchor' => 'baby-omiyamairi',
     'number' => '02',
     'title' => 'Omiyamairi',
     'title_ja' => '生後１ヶ月頃',
@@ -64,6 +66,7 @@ $menu_sections = [
     ],
   ],
   [
+    'anchor' => 'baby-birthday',
     'number' => '03',
     'title' => 'Birthday',
     'title_ja' => '１歳から毎年のお誕生日',
@@ -142,7 +145,7 @@ get_header();
   </section>
 
   <?php foreach ($menu_sections as $section) : ?>
-    <section class="mt-80 pc:mt-160 px-20">
+    <section id="<?php echo esc_attr($section['anchor']); ?>" class="mt-80 pc:mt-160 px-20">
       <div class="mx-auto max-w-688 pc:relative">
         <div class="relative flex items-center justify-center">
           <div class="relative flex flex-col items-center gap-4">
