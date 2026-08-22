@@ -10,7 +10,7 @@
       <?php echo $wh; ?>>
   </a>
 </header>
-<button type="button" class="js-burger fixed top-0 right-0 z-[800] flex justify-center items-center w-60 h-60 mix-blend-difference transition-opacity duration-300 pc:hidden<?php echo esc_attr($fv_header_class); ?>" aria-label="メニューを開く" aria-controls="sp-menu" aria-expanded="false">
+<button type="button" class="js-burger fixed top-0 right-0 z-[800] flex justify-center items-center w-60 h-60 mix-blend-difference transition-opacity duration-300 <?php echo esc_attr($fv_header_class); ?>" aria-label="メニューを開く" aria-controls="sp-menu" aria-expanded="false">
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-24 flex items-center gap-8">
     <span class="js-burger-label text-10 text-white font-montserrat tracking-[0.1em]">MENU</span>
 

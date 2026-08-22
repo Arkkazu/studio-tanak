@@ -92,6 +92,7 @@ body {
       padding-inline: 20rem;
     }
   }
+
 }
 
 @layer utilities {
@@ -131,8 +132,26 @@ button {
   }
 }
 
-.is-sp-menu-opened {
+.is-sp-menu-scroll-locked {
   @apply overflow-hidden;
+}
+
+.is-kids-course-modal-scroll-locked {
+  @apply overflow-hidden;
+}
+
+@media only screen and (min-width: 768px) {
+  .js-kids-course-modal::backdrop {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  .js-kids-course-modal.is-kids-course-modal-visible::backdrop {
+    opacity: 1;
+  }
+}
+
+.is-sp-menu-opened {
   .js-sp-menu {
     @apply opacity-100 pointer-events-auto;
   }

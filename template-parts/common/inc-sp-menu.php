@@ -32,7 +32,7 @@ $site_menu_items = [
 ];
 ?>
 
-<div id="sp-menu" class="js-sp-menu fixed inset-0 z-[700] bg-[#323232] opacity-0 pointer-events-none transition-opacity duration-500 pc:hidden" aria-hidden="true" inert>
+<div id="sp-menu" class="js-sp-menu fixed inset-0 z-[700] bg-[#323232] opacity-0 pointer-events-none transition-opacity duration-500" aria-hidden="true" inert>
   <div class="h-full overflow-y-auto overscroll-contain px-40 pt-60 pb-48">
     <nav aria-label="サイトメニュー">
       <ul class="mt-6 flex flex-col gap-18 pl-12">

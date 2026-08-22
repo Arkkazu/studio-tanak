@@ -5,6 +5,7 @@ const initSpMenu = () => {
   const shootingMenuTrigger = document.querySelector(".js-sp-shooting-menu-trigger");
   const shootingMenuPanel = document.querySelector(".js-sp-shooting-menu-panel");
   const shootingMenuTriggerIcon = document.querySelector(".js-sp-shooting-menu-trigger-icon");
+  const fixedElements = [...new Set([burger, document.querySelector("header"), ...document.querySelectorAll(".js-scroll-lock-fixed")].filter(Boolean))];
   const backgroundElements = [document.querySelector("header"), document.querySelector(".js-scroll-container")].filter(Boolean);
 
   if (!burger || !spMenu) return;
@@ -13,13 +14,78 @@ const initSpMenu = () => {
 
   burger.setAttribute("aria-controls", spMenu.id);
 
+  let scrollLockReleaseTimer;
+  let scrollLockTransitionEndHandler;
+
+  const clearScrollLockRelease = () => {
+    if (scrollLockReleaseTimer) {
+      window.clearTimeout(scrollLockReleaseTimer);
+      scrollLockReleaseTimer = undefined;
+    }
+
+    if (scrollLockTransitionEndHandler) {
+      spMenu.removeEventListener("transitionend", scrollLockTransitionEndHandler);
+      scrollLockTransitionEndHandler = undefined;
+    }
+  };
+
+  const releaseScrollLock = () => {
+    clearScrollLockRelease();
+    document.body.classList.remove("is-sp-menu-scroll-locked");
+    document.body.style.removeProperty("padding-right");
+    fixedElements.forEach((element) => element.style.removeProperty("right"));
+  };
+
+  const lockScroll = () => {
+    clearScrollLockRelease();
+
+    if (document.body.classList.contains("is-sp-menu-scroll-locked")) return;
+
+    const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+    const bodyPaddingRight = Number.parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+
+    document.body.style.paddingRight = `${bodyPaddingRight + scrollbarWidth}px`;
+    fixedElements.forEach((element) => {
+      const right = Number.parseFloat(window.getComputedStyle(element).right) || 0;
+      element.style.right = `${right + scrollbarWidth}px`;
+    });
+    document.body.classList.add("is-sp-menu-scroll-locked");
+  };
+
+  const getScrollLockReleaseDelay = () => {
+    const styles = window.getComputedStyle(spMenu);
+    const durations = styles.transitionDuration.split(",").map((value) => Number.parseFloat(value) * (value.includes("ms") ? 1 : 1000));
+    const delays = styles.transitionDelay.split(",").map((value) => Number.parseFloat(value) * (value.includes("ms") ? 1 : 1000));
+
+    return Math.max(...durations.map((duration, index) => duration + (delays[index] ?? delays[0] ?? 0)), 0) + 50;
+  };
+
+  const releaseScrollLockAfterMenuTransition = () => {
+    if (!document.body.classList.contains("is-sp-menu-scroll-locked")) return;
+
+    scrollLockTransitionEndHandler = (event) => {
+      if (event.target !== spMenu || event.propertyName !== "opacity") return;
+      releaseScrollLock();
+    };
+
+    spMenu.addEventListener("transitionend", scrollLockTransitionEndHandler);
+    scrollLockReleaseTimer = window.setTimeout(releaseScrollLock, getScrollLockReleaseDelay());
+  };
+
   const focusableMenuElements = () => [
     burger,
     ...spMenu.querySelectorAll('a[href], button:not([disabled])'),
   ];
 
   const setMenuState = (isOpen) => {
-    document.body.classList.toggle("is-sp-menu-opened", isOpen);
+    if (isOpen) {
+      lockScroll();
+      document.body.classList.add("is-sp-menu-opened");
+    } else {
+      document.body.classList.remove("is-sp-menu-opened");
+      releaseScrollLockAfterMenuTransition();
+    }
+
     burger.setAttribute("aria-expanded", String(isOpen));
     burger.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
     if (burgerLabel) burgerLabel.textContent = isOpen ? "CLOSE" : "MENU";
@@ -125,8 +191,123 @@ const initSpMenu = () => {
   });
 };
 
+const initKidsCourseModal = () => {
+  const triggers = document.querySelectorAll(".js-kids-course-modal-trigger");
+  const closeButtons = document.querySelectorAll(".js-kids-course-modal-close");
+  const modals = document.querySelectorAll(".js-kids-course-modal");
+  const lastTriggers = new WeakMap();
+  const fixedElements = [...new Set([
+    document.querySelector("header"),
+    document.querySelector(".js-burger"),
+    ...document.querySelectorAll(".js-scroll-lock-fixed"),
+  ].filter(Boolean))];
+
+  if (!modals.length || !triggers.length) return;
+
+  const lockMainScroll = () => {
+    if (document.body.classList.contains("is-kids-course-modal-scroll-locked")) return;
+
+    const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+    const bodyPaddingRight = Number.parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+
+    document.body.style.paddingRight = `${bodyPaddingRight + scrollbarWidth}px`;
+    fixedElements.forEach((element) => {
+      const right = Number.parseFloat(window.getComputedStyle(element).right) || 0;
+      element.style.right = `${right + scrollbarWidth}px`;
+    });
+    document.body.classList.add("is-kids-course-modal-scroll-locked");
+  };
+
+  const releaseMainScroll = () => {
+    document.body.classList.remove("is-kids-course-modal-scroll-locked");
+    document.body.style.removeProperty("padding-right");
+    fixedElements.forEach((element) => element.style.removeProperty("right"));
+  };
+
+  const closeModal = (modal) => {
+    if (!modal?.open || modal.dataset.closing === "true") return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      modal.close();
+      return;
+    }
+
+    modal.dataset.closing = "true";
+    modal.classList.remove("opacity-100", "is-kids-course-modal-visible");
+
+    const finishClosing = (event) => {
+      if (event && (event.target !== modal || event.propertyName !== "opacity")) return;
+
+      modal.removeEventListener("transitionend", finishClosing);
+      if (modal.open) modal.close();
+    };
+
+    modal.addEventListener("transitionend", finishClosing);
+    window.setTimeout(finishClosing, 350);
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const modal = document.getElementById(trigger.dataset.kidsCourseModalTarget);
+      if (!modal || typeof modal.showModal !== "function") return;
+
+      const title = modal.querySelector("[data-kids-course-modal-name]");
+      const group = modal.querySelector("[data-kids-course-modal-group]");
+      const groupJa = modal.querySelector("[data-kids-course-modal-group-ja]");
+      const price = modal.querySelector("[data-kids-course-modal-price]");
+
+      if (title) title.textContent = trigger.dataset.kidsCourseModalName ?? "";
+      if (group) group.textContent = trigger.dataset.kidsCourseModalGroup ?? "";
+      if (groupJa) groupJa.textContent = trigger.dataset.kidsCourseModalGroupJa ?? "";
+      if (price) {
+        price.textContent = trigger.dataset.kidsCourseModalPrice ?? "";
+        price.hidden = !price.textContent;
+      }
+
+      lastTriggers.set(modal, trigger);
+      lockMainScroll();
+      modal.showModal();
+      window.requestAnimationFrame(() => {
+        modal.classList.add("opacity-100", "is-kids-course-modal-visible");
+        modal.querySelector(".js-kids-course-modal-close")?.focus();
+      });
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => closeModal(button.closest(".js-kids-course-modal")));
+  });
+
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal(modal);
+    });
+
+    modal.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeModal(modal);
+    });
+
+    modal.addEventListener("close", () => {
+      delete modal.dataset.closing;
+      modal.classList.remove("opacity-100", "is-kids-course-modal-visible");
+      releaseMainScroll();
+      lastTriggers.get(modal)?.focus();
+    });
+  });
+
+  const initialModal = new URLSearchParams(window.location.search).get("course-modal");
+  if (initialModal === "light") {
+    document.querySelector('[data-kids-course-modal-target="kids-course-modal-light"]')?.click();
+  }
+};
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initSpMenu, { once: true });
+  document.addEventListener("DOMContentLoaded", () => {
+    initSpMenu();
+    initKidsCourseModal();
+  }, { once: true });
 } else {
   initSpMenu();
+  initKidsCourseModal();
 }
