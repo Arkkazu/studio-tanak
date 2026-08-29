@@ -6,9 +6,9 @@ $shooting_menu_items = [
   ['label' => '七五三', 'path' => '/kids/#kids-shichigosan'],
   ['label' => '入園・卒園・入学・卒業', 'path' => '/kids/#kids-admission-graduation'],
   ['label' => 'ハーフ成人式', 'path' => '/kids/#kids-half-coming-of-age'],
-  ['label' => '成人式女性', 'path' => '/coming-of-age-women/'],
-  ['label' => '成人式男性', 'path' => '/coming-of-age-men/'],
-  ['label' => '卒業袴', 'path' => '/kids/#kids-graduation-hakama'],
+  ['label' => '成人式女性', 'path' => '/kimono-hakama/#kimono-hakama-women'],
+  ['label' => '成人式男性', 'path' => '/kimono-hakama/#kimono-hakama-men'],
+  ['label' => '卒業袴', 'path' => '/kimono-hakama/#kimono-hakama-graduation-hakama'],
   ['label' => '家族撮影・記念撮影', 'path' => '/family-photo/'],
   ['label' => 'ポートレート撮影', 'path' => '/portrait/'],
   ['label' => '証明写真', 'path' => '/id-photo/'],
@@ -16,7 +16,7 @@ $shooting_menu_items = [
   ['label' => '出張撮影', 'path' => '/location-photo/'],
   ['label' => '店舗・住宅撮影', 'path' => '/store-home-photo/'],
   ['label' => '結婚式前撮り（ロケ撮影）', 'path' => '/wedding-photo/'],
-  ['label' => 'オプションメニュー', 'path' => '/option/'],
+  ['label' => 'オプションメニュー', 'path' => '/options/'],
 ];
 
 $site_menu_items = [

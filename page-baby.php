@@ -138,7 +138,7 @@ get_header();
         </span>
       </div>
       <div class="mx-auto w-280 pc:w-560">
-        <?php [$src, $wh] = theme_img_src_wh('src/images/baby/baby-fv.jpg'); ?>
+        <?php [$src, $wh] = theme_img_src_wh('src/images/baby/baby-fv.webp'); ?>
         <img class="block w-full" src="<?php echo $src; ?>" alt="" loading="eager" fetchpriority="high" <?php echo $wh; ?>>
       </div>
     </div>
@@ -146,7 +146,7 @@ get_header();
 
   <?php foreach ($menu_sections as $section) : ?>
     <section id="<?php echo esc_attr($section['anchor']); ?>" class="mt-80 pc:mt-160 px-20">
-      <div class="mx-auto max-w-688 pc:relative">
+      <div class="mx-auto max-w-1116 pc:relative">
         <div class="relative flex items-center justify-center">
           <div class="relative flex flex-col items-center gap-4">
             <?php [$src, $wh] = theme_img_src_wh('src/images/common/' . $section['number'] . '.svg'); ?>

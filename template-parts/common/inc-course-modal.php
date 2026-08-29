@@ -5,6 +5,7 @@ $course = $args['course'] ?? [];
 $modal_id = $modal['id'] ?? ($args['id'] ?? 'course-modal');
 $section_title = $args['section_title'] ?? '';
 $group_title = $args['group_title'] ?? '';
+$has_centered_header = $has_detail && !empty($modal['centered_header']);
 $render_course_modal_section = static function (string $title, string $title_ja, string $item_prefix, array $items, ?string $note = null): void {
 ?>
   <section class="mt-80">
@@ -17,7 +18,7 @@ $render_course_modal_section = static function (string $title, string $title_ja,
         <div class="flex items-baseline gap-16">
           <span class="text-11 font-montserrat font-light leading-none whitespace-nowrap"><?php echo esc_html($item_prefix); ?> /<?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
           <span class="flex-1 border-b border-dashed border-black"></span>
-          <span class="text-12 font-noto-sans font-light leading-none text-right"><?php echo esc_html($item); ?></span>
+          <span class="text-12 font-noto-sans font-light leading-none text-right whitespace-pre-line"><?php echo esc_html($item); ?></span>
         </div>
       <?php endforeach; ?>
     </div>
@@ -40,24 +41,33 @@ $render_course_modal_section = static function (string $title, string $title_ja,
   </button>
   <div class="h-full overflow-y-auto">
     <?php if ($has_detail) : ?>
-      <div class="flex flex-col bg-[#e3dfdf] px-24 py-32">
-        <p class="text-center text-11 font-noto-sans font-semibold leading-none text-gray"><?php echo esc_html($section_title); ?></p>
-        <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="mt-80 px-20 text-center text-17 font-montserrat font-semibold leading-[1.2] tracking-[0.02em]">
-          <?php echo esc_html($modal['name']); ?>
-        </h2>
-        <?php if (empty($modal['compact_header'])) : ?>
-          <div class="mt-60 px-20 text-center">
+      <?php if ($has_centered_header) : ?>
+        <div class="relative flex min-h-280 items-center justify-center bg-[#e3dfdf] px-24">
+          <p class="absolute top-32 left-0 w-full px-20 text-center text-11 font-noto-sans font-semibold leading-none text-gray"><?php echo esc_html($section_title); ?></p>
+          <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="px-20 text-center text-17 font-noto-sans font-light leading-[1.8] tracking-[0.12em]">
+            <?php echo esc_html($modal['name']); ?>
+          </h2>
+        </div>
+      <?php else : ?>
+        <div class="flex flex-col bg-[#e3dfdf] px-24 py-32">
+          <p class="text-center text-11 font-noto-sans font-semibold leading-none text-gray"><?php echo esc_html($section_title); ?></p>
+          <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="mt-80 px-20 text-center text-17 font-montserrat font-semibold leading-[1.2] tracking-[0.02em]">
+            <?php echo esc_html($modal['name']); ?>
+          </h2>
+          <?php if (empty($modal['compact_header'])) : ?>
+            <div class="mt-60 px-20 text-center">
+              <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($group_title); ?></p>
+              <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($modal['subtitle']); ?></p>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <?php if (!empty($modal['compact_header'])) : ?>
+          <div class="px-20 py-60 text-center">
             <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($group_title); ?></p>
             <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($modal['subtitle']); ?></p>
           </div>
         <?php endif; ?>
-      </div>
-
-      <?php if (!empty($modal['compact_header'])) : ?>
-        <div class="px-20 py-60 text-center">
-          <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($group_title); ?></p>
-          <p class="text-12 font-noto-sans font-light leading-[1.8] tracking-[0.12em]"><?php echo esc_html($modal['subtitle']); ?></p>
-        </div>
       <?php endif; ?>
 
       <div class="px-40 pb-64">
@@ -86,7 +96,7 @@ $render_course_modal_section = static function (string $title, string $title_ja,
               <li>
                 <?php echo esc_html($note['text']); ?>
                 <?php if (!empty($note['link'])) : ?>
-                  <span class="underline"><?php echo esc_html($note['link']); ?></span>
+                  <a class="underline" href="<?php echo esc_url(home_url('/options/')); ?>"><?php echo esc_html($note['link']); ?></a>
                 <?php endif; ?>
               </li>
             <?php endforeach; ?>
