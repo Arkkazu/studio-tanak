@@ -59,22 +59,20 @@ foreach ($gallery_posts as $gallery_post) {
 }
 
 $hero_item = $gallery_items[0] ?? null;
+[$gallery_kv_src, $gallery_kv_wh] = theme_img_src_wh('src/images/gallery/gallery-kv.jpg');
 
 get_header();
 ?>
 
 <main class="gallery-page overflow-hidden bg-white pb-120 pc:pb-240">
   <section class="gallery-page__hero relative h-450 overflow-hidden bg-[#f1ede7]" aria-labelledby="gallery-page-title">
-    <?php if ($hero_item) : ?>
-      <img
-        class="gallery-page__hero-image absolute inset-0 block h-full w-full object-cover"
-        src="<?php echo esc_url($hero_item['url']); ?>"
-        alt="<?php echo esc_attr($hero_item['alt']); ?>"
-        loading="eager"
-        fetchpriority="high"
-        width="<?php echo esc_attr((string) $hero_item['width']); ?>"
-        height="<?php echo esc_attr((string) $hero_item['height']); ?>">
-    <?php endif; ?>
+    <img
+      class="gallery-page__hero-image absolute inset-0 block h-full w-full object-cover"
+      src="<?php echo esc_url($gallery_kv_src); ?>"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      <?php echo $gallery_kv_wh; ?>>
     <h1 id="gallery-page-title" class="gallery-page__title vertical-rl-mixed absolute left-24 top-96 z-10 text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:left-48 pc:top-120 pc:text-24">
       ART GALLERY
     </h1>
