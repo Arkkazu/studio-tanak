@@ -65,10 +65,10 @@ get_header();
 ?>
 
 <main class="gallery-page overflow-hidden bg-white pb-120 pc:pb-240">
-  <section class="gallery-page__hero relative h-450 overflow-hidden bg-[#f1ede7] pc:h-auto pc:overflow-visible pc:pt-120" aria-labelledby="gallery-page-title">
-    <div class="relative h-full pc:h-auto">
+  <section class="gallery-page__hero relative h-450 overflow-hidden bg-[#f1ede7] pc:h-[100dvh] pc:pt-120" aria-labelledby="gallery-page-title">
+    <div class="relative h-full">
     <img
-      class="gallery-page__hero-image absolute inset-0 block h-full w-full object-cover pc:static pc:h-auto pc:w-full pc:object-contain"
+      class="gallery-page__hero-image absolute inset-0 block h-full w-full object-cover pc:static pc:h-full pc:w-full pc:object-cover"
       src="<?php echo esc_url($gallery_kv_src); ?>"
       alt=""
       loading="eager"
