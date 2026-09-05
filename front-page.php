@@ -392,7 +392,7 @@ get_header();
         <div class="mx-auto max-w-700 w-full">
           <ul class="grid auto-rows-fr md:grid-cols-2 gap-64">
             <li class="flex">
-              <a class="flex w-full h-full flex-col gap-16" href="">
+              <a class="flex w-full h-full flex-col gap-16" href="/baby/">
                 <div class="flex w-full h-full items-start justify-between border-b border-black pb-12">
                   <span class="flex flex-col gap-2">
                     <span class="text-14 text-black font-montserrat leading-[1.2] tracking-[0.02em]">
@@ -408,7 +408,7 @@ get_header();
               </a>
             </li>
             <li class="flex">
-              <a class="flex w-full h-full flex-col gap-16" href="">
+              <a class="flex w-full h-full flex-col gap-16" href="/kimono-hakama/">
                 <div class="flex w-full h-full items-start justify-between border-b border-black pb-12">
                   <span class="flex flex-col gap-2">
                     <span class="text-14 text-black font-montserrat leading-[1.2] tracking-[0.02em]">
@@ -424,7 +424,7 @@ get_header();
               </a>
             </li>
             <li class="flex">
-              <a class="flex w-full h-full flex-col gap-16" href="">
+              <a class="flex w-full h-full flex-col gap-16" href="/kids/">
                 <div class="flex w-full h-full items-start justify-between border-b border-black pb-12">
                   <span class="flex flex-col gap-2">
                     <span class="text-14 text-black font-montserrat leading-[1.2] tracking-[0.02em]">
@@ -440,7 +440,7 @@ get_header();
               </a>
             </li>
             <li class="flex">
-              <a class="flex w-full h-full flex-col gap-16" href="">
+              <a class="flex w-full h-full flex-col gap-16" href="/others/">
                 <div class="flex w-full h-full items-start justify-between border-b border-black pb-12">
                   <span class="flex flex-col gap-2">
                     <span class="text-14 text-black font-montserrat leading-[1.2] tracking-[0.02em]">
