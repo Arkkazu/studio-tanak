@@ -9,13 +9,10 @@ $shooting_menu_items = [
   ['label' => '成人式女性', 'path' => '/kimono-hakama/#kimono-hakama-women'],
   ['label' => '成人式男性', 'path' => '/kimono-hakama/#kimono-hakama-men'],
   ['label' => '卒業袴', 'path' => '/kimono-hakama/#kimono-hakama-graduation-hakama'],
-  ['label' => '家族撮影・記念撮影', 'path' => '/family-photo/'],
-  ['label' => 'ポートレート撮影', 'path' => '/portrait/'],
-  ['label' => '証明写真', 'path' => '/id-photo/'],
-  ['label' => '遺影撮影', 'path' => '/funeral-photo/'],
+  ['label' => '証明写真', 'path' => '/others/#others-id-photo'],
   ['label' => '出張撮影', 'path' => '/location-photo/'],
-  ['label' => '店舗・住宅撮影', 'path' => '/store-home-photo/'],
-  ['label' => '結婚式前撮り（ロケ撮影）', 'path' => '/wedding-photo/'],
+  ['label' => '店舗・住宅撮影', 'path' => '/others/#others-store-real-estate'],
+  ['label' => '結婚式前撮り（ロケ撮影）', 'path' => '/others/#others-pre-wedding'],
   ['label' => 'オプションメニュー', 'path' => '/options/'],
 ];
 
