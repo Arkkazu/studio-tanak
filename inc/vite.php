@@ -27,6 +27,10 @@ add_action('wp_enqueue_scripts', function () {
   /* ───── ページ専用バンドル ───── */
   $candidates = [];
 
+  if (is_front_page()) {
+    $candidates[] = 'src/js/front-page.js';
+  }
+
   /* 1) テンプレートファイル名（例: archive-staff.php → archive-staff.js） */
   if (isset($GLOBALS['template'])) {
     $base = basename($GLOBALS['template'], '.php');
@@ -77,7 +81,7 @@ add_action('wp_enqueue_scripts', function () {
         'page-script',
         $vite . '/' . basename($rel_path, '.js') . '.js',
         [],
-        null,
+        filemtime($prod_path),
         true
       );
       break;
