@@ -367,7 +367,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const deltaX = touch.clientX - swipe.x;
     const deltaY = swipe.y - touch.clientY;
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // Small sideways movement is finger jitter, not a horizontal gesture.
+    // Do not discard the touch before it has travelled far enough to decide.
+    if (Math.abs(deltaX) >= SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY)) {
       swipe = null;
       return;
     }
@@ -383,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cancel from the first vertical move; waiting for the threshold lets the
     // browser begin native scrolling before the panel animation can claim it.
     event.preventDefault();
-    if (Math.abs(deltaY) < SWIPE_THRESHOLD) return;
+    if (Math.abs(deltaY) < SWIPE_THRESHOLD || Math.abs(deltaY) <= Math.abs(deltaX)) return;
 
     swipe.handled = true;
     goToSection(nextIndex, direction);

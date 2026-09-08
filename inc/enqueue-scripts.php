@@ -4,6 +4,12 @@ add_action('wp_enqueue_scripts', function () {
     return;
   }
 
+  // The homepage bundle is registered as a versioned ES module by inc/vite.php.
+  // Registering it again here would execute an ES module as a classic script.
+  if (is_front_page()) {
+    return;
+  }
+
   $host = strtolower((string) ($_SERVER['HTTP_HOST'] ?? ''));
   $host = preg_replace('/:\\d+$/', '', $host);
   $is_vite_proxy = $host === 'studio-tanaka.test' && ($_SERVER['HTTP_X_STUDIO_TANAKA_VITE'] ?? '') === '1';
