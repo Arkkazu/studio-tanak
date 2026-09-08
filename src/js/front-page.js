@@ -321,6 +321,78 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false },
   );
 
+  // Keep native scrolling outside the stacked panels, and at their boundaries.
+  // Listen on the panel wrapper so menu gestures never become panel gestures.
+  const panelContainer = panels[0].parentElement;
+  const SWIPE_THRESHOLD = 40; // Touch coordinates use CSS pixels, not theme rem.
+  let swipe = null;
+
+  const isPanelTouchBlocked = () =>
+    document.body.classList.contains("is-sp-menu-scroll-locked") ||
+    document.body.classList.contains("is-kids-course-modal-scroll-locked") ||
+    (window.visualViewport?.scale ?? 1) > 1;
+
+  panelContainer.addEventListener("touchstart", (event) => {
+    swipe = null;
+    if (event.touches.length !== 1 || window.scrollY > 1 || isPanelTouchBlocked()) return;
+    if (event.target.closest("a, button, input, textarea, select, [contenteditable], [role='button']")) return;
+
+    const touch = event.touches[0];
+    swipe = {
+      id: touch.identifier,
+      x: touch.clientX,
+      y: touch.clientY,
+      handled: isAnimating,
+    };
+  }, { passive: true });
+
+  panelContainer.addEventListener("touchmove", (event) => {
+    if (!swipe) return;
+    if (event.touches.length !== 1 || isPanelTouchBlocked()) {
+      swipe = null;
+      return;
+    }
+
+    const touch = event.touches[0];
+    if (touch.identifier !== swipe.id) {
+      swipe = null;
+      return;
+    }
+
+    // Consume the rest of a claimed gesture, including after animation ends.
+    if (swipe.handled) {
+      if (event.cancelable) event.preventDefault();
+      return;
+    }
+
+    const deltaX = touch.clientX - swipe.x;
+    const deltaY = swipe.y - touch.clientY;
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      swipe = null;
+      return;
+    }
+    if (deltaY === 0) return;
+
+    const direction = deltaY > 0 ? 1 : -1;
+    const nextIndex = currentIndex + direction;
+    if (window.scrollY > 1 || nextIndex < 0 || nextIndex >= panels.length || !event.cancelable) {
+      swipe = null;
+      return;
+    }
+
+    // Cancel from the first vertical move; waiting for the threshold lets the
+    // browser begin native scrolling before the panel animation can claim it.
+    event.preventDefault();
+    if (Math.abs(deltaY) < SWIPE_THRESHOLD) return;
+
+    swipe.handled = true;
+    goToSection(nextIndex, direction);
+  }, { passive: false });
+
+  const resetSwipe = () => { swipe = null; };
+  panelContainer.addEventListener("touchend", resetSwipe, { passive: true });
+  panelContainer.addEventListener("touchcancel", resetSwipe, { passive: true });
+
   window.addEventListener("keydown", (event) => {
     if (isAnimating) return;
 
