@@ -255,7 +255,7 @@ get_header();
       </div>
     </section>
 
-    <section class="absolute inset-0 overflow-hidden flex flex-col items-center pt-120 z-[5]" data-panel>
+    <section class="absolute inset-0 overflow-hidden flex flex-col items-center pt-40 pc:pt-120 z-[5]" data-panel>
 
       <!-- <div class="absolute inset-0 bg-[#666]"></div> -->
 
