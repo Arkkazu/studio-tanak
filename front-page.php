@@ -255,7 +255,7 @@ get_header();
       </div>
     </section>
 
-    <section class="absolute inset-0 overflow-hidden flex flex-col items-center pt-40 pc:pt-120 z-[5]" data-panel>
+    <section class="absolute inset-0 overflow-hidden flex flex-col items-center pt-80 pc:pt-120 z-[5]" data-panel>
 
       <!-- <div class="absolute inset-0 bg-[#666]"></div> -->
 
@@ -269,7 +269,7 @@ get_header();
 
         <div class="relative w-full flex items-cente justify-center">
 
-          <div class="relative w-280 aspect[280/372]">
+          <div class="relative w-240 pc:w-280 aspect[280/372]">
             <div class="absolute -top-48 -left-48 w-full" data-gallery-anime-1>
               <img class="w-full" src="/wp-content/themes/studio-tanak_theme/src/images/home/ta7ca_sp07@2x.webp" alt="アートギャラリー" loading="lazy" width="561" height="757">
             </div>
