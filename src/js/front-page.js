@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let isAnimating = false;
   let wheelLocked = false;
+  let wheelDistance = 0;
+  let wheelIdleTimer;
   let isScrollIndicatorTicking = false;
 
   const DURATION = 1.05;
@@ -277,46 +279,47 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true },
   );
 
-  function handleWheel(event) {
-    if (isAnimating) return;
-
-    const delta = event.deltaY;
-
-    if (Math.abs(delta) < WHEEL_THRESHOLD) return;
-
-    if (delta > 0) {
-      goToSection(currentIndex + 1, 1);
-    } else {
-      goToSection(currentIndex - 1, -1);
-    }
-  }
-
   window.addEventListener(
     "wheel",
     (event) => {
-      const delta = event.deltaY;
-
-      if (Math.abs(delta) < WHEEL_THRESHOLD) return;
+      // Trackpads emit small pixel deltas; cancel native scrolling before
+      // applying the threshold, otherwise scrollY > 0 disables every panel.
+      if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (document.body.classList.contains("is-sp-menu-scroll-locked") ||
+          document.body.classList.contains("is-kids-course-modal-scroll-locked")) return;
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+      const delta = event.deltaY * unit;
+      if (!delta || window.scrollY > 1) return;
 
       const isScrollDown = delta > 0;
       const isScrollUp = delta < 0;
       const isFirstPanel = currentIndex === 0;
       const isLastPanel = currentIndex === panels.length - 1;
 
-      if (window.scrollY > 0) return;
-      if (isLastPanel && isScrollDown) return;
-      if (isFirstPanel && isScrollUp) return;
-
+      // Finish the claimed gesture before releasing the first/last boundary.
+      // Restart the idle timer for momentum events, not just the first event.
+      if (!isAnimating && !wheelLocked &&
+          ((isLastPanel && isScrollDown) || (isFirstPanel && isScrollUp))) {
+        wheelDistance = 0;
+        return;
+      }
+      if (!event.cancelable) return;
       event.preventDefault();
-
-      if (wheelLocked) return;
-
-      wheelLocked = true;
-      handleWheel(event);
-
-      setTimeout(() => {
+      clearTimeout(wheelIdleTimer);
+      wheelIdleTimer = setTimeout(() => {
         wheelLocked = false;
+        wheelDistance = 0;
       }, 180);
+
+      if (isAnimating || wheelLocked) return;
+      if (wheelDistance * delta < 0) wheelDistance = 0;
+      wheelDistance += delta;
+      if (Math.abs(wheelDistance) < WHEEL_THRESHOLD) return;
+
+      const direction = wheelDistance > 0 ? 1 : -1;
+      wheelDistance = 0;
+      wheelLocked = true;
+      goToSection(currentIndex + direction, direction);
     },
     { passive: false },
   );
