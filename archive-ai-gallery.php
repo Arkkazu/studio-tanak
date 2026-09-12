@@ -1,14 +1,15 @@
 <?php
+
 /**
  * Gallery archive template.
  *
- * The gallery images are managed as the gallery custom post type. Images are
+ * The gallery images are managed as the ai-gallery custom post type. Images are
  * rendered from each post's featured image so editors can add or reorder work
  * without changing the template.
  */
 
 $gallery_query_args = [
-  'post_type'      => 'gallery',
+  'post_type'      => 'ai-gallery',
   'post_status'    => 'publish',
   'posts_per_page' => -1,
   'orderby'        => [
@@ -18,10 +19,10 @@ $gallery_query_args = [
   'no_found_rows'  => true,
 ];
 
-if (taxonomy_exists('gallery-cat')) {
+if (taxonomy_exists('ai-gallery-cat')) {
   $gallery_query_args['tax_query'] = [
     [
-      'taxonomy' => 'gallery-cat',
+      'taxonomy' => 'ai-gallery-cat',
       'field'    => 'slug',
       'terms'    => ['on-location'],
       'operator' => 'NOT IN',
@@ -58,42 +59,39 @@ foreach ($gallery_posts as $gallery_post) {
   ];
 }
 
-$hero_item = $gallery_items[0] ?? null;
-[$gallery_kv_src, $gallery_kv_wh] = theme_img_src_wh('src/images/gallery/gallery-kv.jpg');
+[$gallery_fv_pc_src, $gallery_fv_pc_wh] = theme_img_src_wh('src/images/gallery/fv-pc.webp');
+[$gallery_fv_sp_src, $gallery_fv_sp_wh] = theme_img_src_wh('src/images/gallery/fv-sp.webp');
 
 get_header();
 ?>
 
-<main class="gallery-page overflow-hidden bg-white pb-120 pc:pb-240">
-  <section class="gallery-page__hero relative h-450 overflow-hidden bg-[#f1ede7] pc:h-[100dvh]" aria-labelledby="gallery-page-title">
+<main class="overflow-hidden bg-white pb-120 pc:pb-240">
+  <section class="relative aspect-square pc:aspect-[1920/480] overflow-hidden bg-[#f1ede7]" aria-labelledby="gallery-page-title">
     <div class="relative h-full">
-    <img
-      class="gallery-page__hero-image absolute inset-0 block h-full w-full object-cover pc:absolute pc:h-full pc:w-full pc:object-cover"
-      src="<?php echo esc_url($gallery_kv_src); ?>"
-      alt=""
-      loading="eager"
-      fetchpriority="high"
-      <?php echo $gallery_kv_wh; ?>>
-      <div class="gallery-page__title-layer absolute inset-0 mx-auto max-w-688">
-        <h1 id="gallery-page-title" class="gallery-page__title vertical-rl-mixed absolute left-24 top-96 z-10 text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:left-0 pc:top-200 pc:text-24">
+      <div class="absolute inset-0 mx-auto max-w-920">
+        <h1 id="gallery-page-title" class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 text-18 pc:text-20 font-montserrat font-light leading-none tracking-[0.18em] pc:tracking-[0.22em] [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
           ART GALLERY
         </h1>
       </div>
+      <picture>
+        <source media="(min-width: 1272px)" srcset="<?php echo esc_url($gallery_fv_pc_src); ?>">
+        <img class="absolute inset-0 block h-full w-full object-cover" src="<?php echo esc_url($gallery_fv_sp_src); ?>" alt="" loading="eager" fetchpriority="high" <?php echo $gallery_fv_sp_wh; ?>>
+      </picture>
     </div>
   </section>
 
-  <section class="gallery-page__works bg-white px-24 pt-96 pc:px-40 pc:pt-160" aria-labelledby="gallery-page-works-title">
-    <h2 id="gallery-page-works-title" class="gallery-page__works-title sr-only">
+  <section class="bg-white px-20 pc:px-40 pt-80 pc:pt-150" aria-labelledby="gallery-page-works-title">
+    <h2 id="gallery-page-works-title" class="sr-only">
       アートギャラリー作品一覧
     </h2>
 
     <?php if ($gallery_items) : ?>
-      <ul class="gallery-page__grid mx-auto grid max-w-1200 grid-cols-2 gap-x-24 gap-y-48 pc:gap-x-32 pc:gap-y-64">
+      <ul class="mx-auto grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64">
         <?php foreach ($gallery_items as $gallery_item) : ?>
-          <li class="gallery-page__item min-w-0">
-            <a class="gallery-page__link block aspect-square overflow-hidden transition-opacity duration-300 hoverable:hover:opacity-70" href="<?php echo esc_url($gallery_item['url']); ?>">
+          <li class="min-w-0">
+            <a class="block aspect-square overflow-hidden transition-opacity duration-300 hoverable:hover:opacity-70" href="<?php echo esc_url($gallery_item['url']); ?>">
               <img
-                class="gallery-page__image block h-full w-full object-cover"
+                class="block h-full w-full object-cover"
                 src="<?php echo esc_url($gallery_item['url']); ?>"
                 alt="<?php echo esc_attr($gallery_item['alt']); ?>"
                 loading="lazy"
@@ -105,7 +103,7 @@ get_header();
         <?php endforeach; ?>
       </ul>
     <?php else : ?>
-      <p class="gallery-page__empty mx-auto max-w-1200 text-center text-14 font-noto-sans font-light text-gray">
+      <p class="mx-auto max-w-840 text-center text-14 font-noto-sans font-light text-gray">
         作品が登録されていません。
       </p>
     <?php endif; ?>
