@@ -1,5 +1,10 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @config "../tailwind.config.js";
+@source "../*.php";
+@source "../index.html";
+@source "../inc/**/*.php";
+@source "../template-parts/**/*.php";
+@source "./**/*.js";
 
 @font-face {
   font-family: "Noto Sans JP";

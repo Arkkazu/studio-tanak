@@ -3,16 +3,23 @@
 // テーマ内の相対パスから src と width/height を返す
 function theme_img_wh(string $rel_path): string
 {
+  // 同じリクエスト内のモーダル等で、同じ画像の寸法を繰り返し読み取らない。
+  // リクエストをまたがないため、画像差し替えは次の表示で反映される。
+  static $dimensions = [];
   $rel_path  = ltrim($rel_path, '/');
   $file_path = get_theme_file_path($rel_path);
 
+  if (array_key_exists($file_path, $dimensions)) {
+    return $dimensions[$file_path];
+  }
+
   if (!is_readable($file_path)) {
-    return '';
+    return $dimensions[$file_path] = '';
   }
 
   $size = @getimagesize($file_path);
   if (!is_array($size) || empty($size[0]) || empty($size[1])) {
-    return '';
+    return $dimensions[$file_path] = '';
   }
 
   $w = (int) $size[0];
@@ -24,7 +31,7 @@ function theme_img_wh(string $rel_path): string
     $h = intdiv($h, 2);
   }
 
-  return ' width="' . esc_attr((string) $w) . '" height="' . esc_attr((string) $h) . '"';
+  return $dimensions[$file_path] = ' width="' . esc_attr((string) $w) . '" height="' . esc_attr((string) $h) . '"';
 }
 
 /**

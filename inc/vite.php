@@ -69,7 +69,9 @@ add_action('wp_enqueue_scripts', function () {
     $prod_path = get_template_directory() . '/dist/assets/' . basename($rel_path, '.js') . '.js';
 
     if ($is_dev) {
-      /* dev は存在確認せず登録（404 はコンソール警告のみ）*/
+      if (!is_file(get_template_directory() . '/' . $rel_path)) {
+        continue;
+      }
       add_action(
         'wp_footer',
         fn() =>

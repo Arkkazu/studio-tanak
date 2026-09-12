@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import fg from "fast-glob";
 import path from "node:path";
+import { tailwindSourceCache } from "./scripts/vite-tailwind-source-cache.js";
 
 export default defineConfig(({ mode }) => {
   const wordpressProxyTarget = process.env.VITE_WP_PROXY_TARGET;
@@ -27,7 +28,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: mode === "development" ? "/" : "/wp-content/themes/studio-tanak_theme/dist/",
-    plugins: [tailwindcss()],
+    plugins: [tailwindSourceCache(usePolling && Boolean(wordpressProxyTarget)), tailwindcss()],
     server: {
       host: wordpressProxyTarget ? "0.0.0.0" : "localhost",
       port: 5173,
@@ -37,8 +38,9 @@ export default defineConfig(({ mode }) => {
       origin: hmrHost ? `http://${hmrHost}` : undefined,
       watch: {
         usePolling,
-        interval: usePolling ? Number(process.env.CHOKIDAR_INTERVAL || 1000) : undefined,
-        ignored: ["**/media/**", "**/dist/**", "**/MyBrain/**"],
+        interval: usePolling ? Math.max(500, Number(process.env.CHOKIDAR_INTERVAL || 1000)) : undefined,
+        binaryInterval: usePolling ? 2000 : undefined,
+        ignored: ["**/media/**", "**/dist/**", "**/MyBrain/**", "**/tmp/**", "**/.coding-gate/**", "**/*.log"],
       },
       hmr: hmrHost
         ? {

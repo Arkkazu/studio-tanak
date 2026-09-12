@@ -10,7 +10,6 @@ $shooting_menu_items = [
   ['label' => '成人式男性', 'path' => '/kimono-hakama/#kimono-hakama-men'],
   ['label' => '卒業袴', 'path' => '/kimono-hakama/#kimono-hakama-graduation-hakama'],
   ['label' => '証明写真', 'path' => '/others/#others-id-photo'],
-  ['label' => '出張撮影', 'path' => '/location-photo/'],
   ['label' => '店舗・住宅撮影', 'path' => '/others/#others-store-real-estate'],
   ['label' => '結婚式前撮り（ロケ撮影）', 'path' => '/others/#others-pre-wedding'],
   ['label' => 'オプションメニュー', 'path' => '/options/'],
@@ -19,7 +18,7 @@ $shooting_menu_items = [
 $site_menu_items = [
   ['label' => 'Art gallery', 'path' => '/art-gallery/'],
   ['label' => 'News/Topics', 'path' => '/news/'],
-  ['label' => 'Clothing', 'path' => '/clothing/'],
+  ['label' => 'Costume', 'path' => '/costume/'],
   ['label' => 'Product', 'path' => '/product/'],
   ['label' => 'Q&A', 'path' => '/qa/'],
   ['label' => 'Access', 'path' => '/access/'],

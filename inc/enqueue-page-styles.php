@@ -36,6 +36,37 @@ add_action('wp_enqueue_scripts', function () {
     return;
   }
 
+  // 旧撮影メニューページは旧テーマのユーティリティを専用CSSとして読み込む。
+  // 現行ページでは読み込まないため、現行テーマのCSSへ影響させない。
+  $legacy_old_pages = [
+    'birthday-old',
+    'building-old',
+    'graduation-hakama-old',
+    'half-adult-ceremony-old',
+    'milmil-old',
+    'new-born-old',
+    'omiyamairi-old',
+    'options-old',
+    'publication-old',
+    'school-ceremony-old',
+    'seijinshiki-ladies-old',
+    'seijinshiki-mens-old',
+    'shichigosan-old',
+    'various-old',
+    'wedding-old',
+  ];
+
+  if (is_page($legacy_old_pages)) {
+    $legacy_css = '/src/css/legacy-old.css';
+    wp_enqueue_style(
+      'legacy-old-theme',
+      get_template_directory_uri() . $legacy_css,
+      [],
+      $ver($legacy_css)
+    );
+    return;
+  }
+
   // 七五三
   if (is_page('shichigosan')) {
     wp_enqueue_style(
@@ -104,11 +135,13 @@ add_action('wp_enqueue_scripts', function () {
 
   // 既定（lower）
   wp_enqueue_style('swiper', $swiper_css, [], null);
-  wp_enqueue_style(
-    'ifh-lower',
-    get_template_directory_uri() . '/assets/css/lower.css',
-    [],
-    $ver('/assets/css/lower.css')
-  );
+  if (is_file(get_template_directory() . '/assets/css/lower.css')) {
+    wp_enqueue_style(
+      'ifh-lower',
+      get_template_directory_uri() . '/assets/css/lower.css',
+      [],
+      $ver('/assets/css/lower.css')
+    );
+  }
 }, 20);
 //// end 各ページのcss設定
