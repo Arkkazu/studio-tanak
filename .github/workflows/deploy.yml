@@ -46,7 +46,10 @@ jobs:
             --exclude='.github/' \
             --exclude='.vscode/' \
             --exclude='node_modules/' \
-            --exclude='src/js/' \
+            --include='src/js/' \
+            --include='src/js/legacy-old/' \
+            --include='src/js/legacy-old/**' \
+            --exclude='src/js/**' \
             --exclude='src/css/' \
             --exclude='index.html' \
             --exclude='vite.config*.js' \
