@@ -23,7 +23,7 @@ get_header();
   <!-- l-wrap -->
 
   <script src="/wp-content/themes/studio-tanaka_theme/assets/js/common.js"></script>
-  <script src="/wp-content/themes/studio-tanaka_theme/src/js/menu-tab.js"></script>
+  <script src="/wp-content/themes/studio-tanak_theme/src/js/legacy-old/menu-tab.js"></script>
 
   <?php wp_footer(); ?>
 </body>
