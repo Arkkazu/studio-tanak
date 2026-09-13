@@ -40,7 +40,7 @@ function legacy_old_asset_url(string $url): string
         '2men-1.webp'             => 'products/2men.webp',
         'block2.webp'             => 'products/block.webp',
         'cray-1.webp'             => 'products/clay.webp',
-        'アセット-66@2x.webp'       => 'products/productsimg_pc.webp',
+        'アセット-66@2x.webp'       => 'building/asset-66.webp',
     ];
 
     return isset($map[$filename])
