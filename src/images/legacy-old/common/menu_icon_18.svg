@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147 180">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #605f5f;
+        font-family: HiraginoSans-W0-83pv-RKSJ-H, 'Hiragino Sans';
+        font-size: 43.64px;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <g>
+      <text class="cls-2" transform="translate(51.68 81.84)"><tspan x="0" y="0">♡</tspan></text>
+      <rect class="cls-1" width="147" height="180"/>
+    </g>
+  </g>
+</svg>

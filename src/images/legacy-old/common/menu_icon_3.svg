@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147 180">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #605f5f;
+        font-family: NotoSansJP-Regular-83pv-RKSJ-H, 'Noto Sans JP';
+        font-size: 10.17px;
+        glyph-orientation-vertical: 0deg;
+        letter-spacing: .05em;
+        text-orientation: upright;
+        writing-mode: tb;
+      }
+
+      .cls-2 {
+        stroke: #605f5f;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <g>
+      <g>
+        <rect class="cls-2" x="51.14" y="41.23" width="27.52" height="50.34"/>
+        <rect class="cls-2" x="83.81" y="52.45" width="3.92" height="39.12"/>
+        <rect class="cls-2" x="91.94" y="52.45" width="3.92" height="39.12"/>
+        <path class="cls-2" d="M58.39,44.67h13.02c1.24,0,2.25,1.01,2.25,2.25v1.51h-17.51v-1.51c0-1.24,1.01-2.25,2.25-2.25Z"/>
+        <text class="cls-3" transform="translate(64.98 53.36)"><tspan x="0" y="0">千歳飴</tspan></text>
+      </g>
+      <rect class="cls-1" width="147" height="180"/>
+    </g>
+  </g>
+</svg>

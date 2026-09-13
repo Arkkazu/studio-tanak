@@ -12,8 +12,8 @@ get_header();
 
       <div class="relative w-full">
         <picture>
-          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanaka_theme/assets/media/images/various/otherimg_pc.webp'>
-          <img class='w-full' src='/wp-content/themes/studio-tanaka_theme/assets/media/images/various/otherimg_sp.webp' alt='各種撮影' loading='lazy' width='1125' height='1130'>
+          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/various/otherimg_pc.webp'>
+          <img class='w-full' src='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/various/otherimg_sp.webp' alt='各種撮影' loading='lazy' width='1125' height='1130'>
         </picture>
         <div class="absolute left-0 md:left-160 pc:left-450 top-1/2 -translate-y-1/2">
           <h1 class="text-20 pc:text-30 font-zenMaruGothic opacity-0 md:opacity-100">各種撮影</h1>
@@ -58,7 +58,7 @@ get_header();
                 </div>
                 <div class="flex justify-center">
                   <div class="md:w-568">
-                    <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/various/various-001.svg" alt="" class="w-full" width="295" height="54">
+                    <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/various/various-001.svg" alt="" class="w-full" width="295" height="54">
                   </div>
                 </div>
                 <div class="w-full h-px bg-black"></div>
@@ -68,7 +68,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-88 pc:w-136">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -82,7 +82,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-64 pc:w-90">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/family_on.svg" alt="" class="w-full" width="144" height="140">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/family_on.svg" alt="" class="w-full" width="144" height="140">
                         </div>
                       </div>
                       <div class="flex justify-center items-center">
@@ -95,7 +95,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-56 pc:w-82">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/satuei.svg" alt="" class="w-full" width="132" height="100">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/satuei.svg" alt="" class="w-full" width="132" height="100">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -179,7 +179,7 @@ get_header();
                 </div>
                 <div class="flex justify-center">
                   <div class="md:w-568">
-                    <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/various/various-001.svg" alt="" class="w-full" width="295" height="54">
+                    <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/various/various-001.svg" alt="" class="w-full" width="295" height="54">
                   </div>
                 </div>
                 <div class="w-full h-px bg-black"></div>
@@ -189,7 +189,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-88 pc:w-136">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -203,7 +203,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-64 pc:w-90">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/family_on.svg" alt="" class="w-full" width="144" height="140">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/family_on.svg" alt="" class="w-full" width="144" height="140">
                         </div>
                       </div>
                       <div class="flex justify-center items-center">
@@ -216,7 +216,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-56 pc:w-82">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/satuei.svg" alt="" class="w-full" width="132" height="100">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/satuei.svg" alt="" class="w-full" width="132" height="100">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -300,7 +300,7 @@ get_header();
                 </div>
                 <div class="flex justify-center">
                   <div class="md:w-568">
-                    <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/various/various-002.svg" alt="" class="w-full" width="295" height="54">
+                    <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/various/various-002.svg" alt="" class="w-full" width="295" height="54">
                   </div>
                 </div>
                 <div class="w-full h-px bg-black"></div>
@@ -311,7 +311,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-56 pc:w-82">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/satuei.svg" alt="" class="w-full" width="132" height="100">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/satuei.svg" alt="" class="w-full" width="132" height="100">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -323,7 +323,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-48 pc:w-65">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/daishi.svg" alt="" class="w-full" width="65" height="78">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/daishi.svg" alt="" class="w-full" width="65" height="78">
                         </div>
                       </div>
                       <div class="flex justify-center items-center">

@@ -12,8 +12,8 @@ get_header();
 
       <div class="relative w-full">
         <picture>
-          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanaka_theme/assets/media/images/graduation-hakama/hakamaimg_pc.webp'>
-          <img class='w-full' src='/wp-content/themes/studio-tanaka_theme/assets/media/images/graduation-hakama/hakamaimg_sp.webp' alt='卒業袴' loading='lazy' width='1125' height='1130'>
+          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/graduation-hakama/hakamaimg_pc.webp'>
+          <img class='w-full' src='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/graduation-hakama/hakamaimg_sp.webp' alt='卒業袴' loading='lazy' width='1125' height='1130'>
         </picture>
         <div class="absolute left-0 md:left-160 pc:left-450 top-1/2 -translate-y-1/2">
           <h1 class="text-20 pc:text-30 font-zenMaruGothic opacity-0 md:opacity-100">卒業袴</h1>
@@ -87,7 +87,7 @@ get_header();
                         </div>
                       </div>
                       <div class="w-14 pc:w-23">
-                        <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/circle-plus.svg" alt="プラス" class="w-full" width="23" height="23">
+                        <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/circle-plus.svg" alt="プラス" class="w-full" width="23" height="23">
                       </div>
                       <div class="flex items-center gap-x-8 pc:gap-x-12">
                         <div class="h-16 pc:h-30 px-8 pc:px-16 bg-white border border-black flex justify-center items-center">
@@ -110,10 +110,10 @@ get_header();
                   </div>
                   <div class="flex flex-col pc:flex-row items-center gap-y-24 gap-x-24">
                     <div class="md:w-568">
-                      <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/graduation-hakama/hakamaA01.svg" alt="" class="w-full" width="295" height="54">
+                      <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/graduation-hakama/hakamaA01.svg" alt="" class="w-full" width="295" height="54">
                     </div>
                     <div class="md:w-568">
-                      <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/graduation-hakama/hakamaA02.svg" alt="" class="w-full" width="295" height="54">
+                      <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/graduation-hakama/hakamaA02.svg" alt="" class="w-full" width="295" height="54">
                     </div>
                   </div>
                   <div class="w-full h-px bg-black"></div>
@@ -122,7 +122,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-32 pc:w-50">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/data.svg" alt="" class="w-full" width="79" height="79">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/data.svg" alt="" class="w-full" width="79" height="79">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -135,7 +135,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-48 pc:w-72">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/isyou01.svg" alt="" class="w-full" width="107" height="109">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/isyou01.svg" alt="" class="w-full" width="107" height="109">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -147,7 +147,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-80 pc:w-120">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -159,7 +159,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-82">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/satuei.svg" alt="" class="w-full" width="132" height="100">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/satuei.svg" alt="" class="w-full" width="132" height="100">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -171,7 +171,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-88">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -198,37 +198,37 @@ get_header();
                           <div class="grid grid-cols-3 md:grid-cols-6 gap-24 pc:gap-32">
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Agrade.svg" alt="Aグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Agrade.svg" alt="Aグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥22,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Bgrade.svg" alt="Bグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Bgrade.svg" alt="Bグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥33,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Cgrade.svg" alt="Cグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Cgrade.svg" alt="Cグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥44,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Dgrade.svg" alt="Dグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Dgrade.svg" alt="Dグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥55,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Egrade.svg" alt="Eグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Egrade.svg" alt="Eグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥66,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Sgrade.svg" alt="Sグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Sgrade.svg" alt="Sグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥88,000</span>
                             </div>
@@ -279,7 +279,7 @@ get_header();
                         </div>
                       </div>
                       <div class="w-14 pc:w-23">
-                        <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/circle-plus.svg" alt="プラス" class="w-full" width="23" height="23">
+                        <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/circle-plus.svg" alt="プラス" class="w-full" width="23" height="23">
                       </div>
                       <div class="flex items-center gap-x-8 pc:gap-x-12">
                         <div class="h-16 pc:h-30 px-8 pc:px-16 bg-white border border-black flex justify-center items-center">
@@ -302,7 +302,7 @@ get_header();
                   </div>
                   <div class="flex justify-center">
                     <div class="md:w-568">
-                      <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/graduation-hakama/hakamaB.svg" alt="" class="w-full" width="889" height="257">
+                      <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/graduation-hakama/hakamaB.svg" alt="" class="w-full" width="889" height="257">
                     </div>
                   </div>
                   <div class="w-full h-px bg-black"></div>
@@ -311,7 +311,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-48 pc:w-72">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/isyou01.svg" alt="" class="w-full" width="107" height="109">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/isyou01.svg" alt="" class="w-full" width="107" height="109">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -323,7 +323,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-80 pc:w-120">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -335,7 +335,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-88">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -364,37 +364,37 @@ get_header();
                           <div class="grid grid-cols-3 md:grid-cols-6 gap-24 pc:gap-32">
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Agrade.svg" alt="Aグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Agrade.svg" alt="Aグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥44,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Bgrade.svg" alt="Bグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Bgrade.svg" alt="Bグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥88,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Cgrade.svg" alt="Cグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Cgrade.svg" alt="Cグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥132,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Dgrade.svg" alt="Dグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Dgrade.svg" alt="Dグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥165,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Egrade.svg" alt="Eグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Egrade.svg" alt="Eグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥220,000</span>
                             </div>
                             <div class="flex flex-col items-center justify-center">
                               <div class="w-48 pc:w-88">
-                                <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/Sgrade.svg" alt="Sグレード" class="w-full" width="91" height="91">
+                                <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/Sgrade.svg" alt="Sグレード" class="w-full" width="91" height="91">
                               </div>
                               <span class="text-12 pc:text-23 leading-[1.8]">¥297,000</span>
                             </div>
@@ -586,7 +586,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-32 pc:w-50">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/data.svg" alt="" class="w-full" width="79" height="79">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/data.svg" alt="" class="w-full" width="79" height="79">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -599,7 +599,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-80 pc:w-120">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -611,7 +611,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-82">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/satuei.svg" alt="" class="w-full" width="132" height="100">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/satuei.svg" alt="" class="w-full" width="132" height="100">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -623,7 +623,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-88">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -674,7 +674,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-80 pc:w-120">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/kitukehair.svg" alt="" class="w-full" width="56" height="31">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">
@@ -686,7 +686,7 @@ get_header();
                       <div class="flex items-center flex-col gap-8">
                         <div class="h-62 pc:h-90 flex justify-center items-center">
                           <div class="w-56 pc:w-88">
-                            <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
+                            <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/gaisyutu.svg" alt="" class="w-full" width="57" height="33">
                           </div>
                         </div>
                         <div class="h-21 pc:h-56 flex justify-center items-center">

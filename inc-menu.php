@@ -67,7 +67,7 @@
                       $tab_id = 'menu-' . $menu_index . '-tab-' . ($i + 1);
                     ?>
                       <button
-                        class="relative w-80 pc:w-160 aspect-square bg-light-gray opacity-40 aria-selected:opacity-100 transition-opacity duration-300 group after:content-[''] after:absolute after:-bottom-4 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:w-50 after:h-44 aria-selected:after:bg-[url('/wp-content/themes/studio-tanaka_theme/assets/media/images/common/svg-triangle.svg')]"
+                        class="relative w-80 pc:w-160 aspect-square bg-light-gray opacity-40 aria-selected:opacity-100 transition-opacity duration-300 group after:content-[''] after:absolute after:-bottom-4 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:w-50 after:h-44 aria-selected:after:bg-[url('/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/svg-triangle.svg')]"
                         id="<?php echo esc_attr($tab_id); ?>"
                         type="button"
                         role="tab"

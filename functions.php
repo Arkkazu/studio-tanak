@@ -257,7 +257,7 @@ function ifh_output_structured_data_by_config(array $cfg): void
     $site_id = $home . '#website';
     $page_id = $page_url . '#webpage';
 
-    $logo = get_template_directory_uri() . '/assets/media/images/common/ifhgroup_logo.svg';
+    $logo = get_template_directory_uri() . '/src/images/legacy-old/common/logo.svg';
 
     $local_business_graph = [];
     $item_list_elements = [];

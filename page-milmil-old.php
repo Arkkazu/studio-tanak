@@ -12,8 +12,8 @@ get_header();
 
       <div class="relative w-full">
         <picture>
-          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanaka_theme/assets/media/images/milmil/miruimg_pc.webp'>
-          <img class='w-full' src='/wp-content/themes/studio-tanaka_theme/assets/media/images/milmil/miruimg_sp.webp' alt='ミルミル' loading='lazy' width='1125' height='1130'>
+          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/milmil/miruimg_pc.webp'>
+          <img class='w-full' src='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/milmil/miruimg_sp.webp' alt='ミルミル' loading='lazy' width='1125' height='1130'>
         </picture>
         <div class="absolute left-0 md:left-160 pc:left-450 top-1/2 -translate-y-1/2">
           <h1 class="text-20 pc:text-30 font-zenMaruGothic opacity-0 md:opacity-100">ミルミル</h1>
@@ -58,7 +58,7 @@ get_header();
                 </div>
                 <div class="flex justify-center">
                   <div class="md:w-568">
-                    <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/milmil/milmil-001.svg" alt="" class="w-full" width="295" height="61">
+                    <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/milmil/milmil-001.svg" alt="" class="w-full" width="295" height="61">
                   </div>
                 </div>
                 <div class="w-full h-px bg-black"></div>
@@ -68,7 +68,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-88 pc:w-136">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/dataordaishi.svg" alt="" class="w-full" width="213" height="122">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -82,7 +82,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-48 pc:w-72">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/dress_on.svg" alt="" class="w-full" width="128" height="129">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/dress_on.svg" alt="" class="w-full" width="128" height="129">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -94,7 +94,7 @@ get_header();
                     <div class="flex items-center flex-col gap-8">
                       <div class="h-62 pc:h-90 flex justify-center items-center">
                         <div class="w-56 pc:w-82">
-                          <img src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/baby.svg" alt="" class="w-full" width="46" height="35">
+                          <img src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/baby.svg" alt="" class="w-full" width="46" height="35">
                         </div>
                       </div>
                       <div class="h-32 pc:h-56 flex justify-center items-center">
@@ -152,7 +152,7 @@ get_header();
                       </span>
                       <div class="absolute top-1/2 right-10 -translate-y-1/2">
                         <div class="w-6">
-                          <img class="w-full" src="/wp-content/themes/studio-tanaka_theme/assets/media/images/common/chevron-right-white-double.svg" alt="" loading="lazy" width="6" height="7">
+                          <img class="w-full" src="/wp-content/themes/studio-tanak_theme/src/images/legacy-old/common/chevron-right-white-double.svg" alt="" loading="lazy" width="6" height="7">
                         </div>
                       </div>
                     </button>

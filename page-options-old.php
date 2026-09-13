@@ -12,8 +12,8 @@ get_header();
 
       <div class="relative w-full">
         <picture>
-          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanaka_theme/assets/media/images/options/optionimg_pc.webp'>
-          <img class='w-full' src='/wp-content/themes/studio-tanaka_theme/assets/media/images/options/optionimg_sp.webp' alt='オプション' loading='lazy' width='1125' height='1130'>
+          <source media='(min-width: 768px)' srcset='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/options/optionimg_pc.webp'>
+          <img class='w-full' src='/wp-content/themes/studio-tanak_theme/src/images/legacy-old/options/optionimg_sp.webp' alt='オプション' loading='lazy' width='1125' height='1130'>
         </picture>
         <div class="absolute left-0 md:left-160 pc:left-450 top-1/2 -translate-y-1/2">
           <h1 class="text-20 pc:text-30 font-zen-maru-gothic opacity-0 md:opacity-100">オプション</h1>
