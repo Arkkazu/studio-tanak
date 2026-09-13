@@ -13,6 +13,43 @@ require_once get_theme_file_path('inc/breadcrumbs.php');
 
 require_once get_theme_file_path('inc/monthly-archive-posts-per-page.php');
 
+/**
+ * 旧ページのACF画像を、現行テーマ内の隔離済みアセットへ解決する。
+ * ダンプに含まれない旧uploads画像も、ページ側のURLを変更せず表示できる。
+ */
+function legacy_old_asset_url(string $url): string
+{
+    $path = parse_url($url, PHP_URL_PATH);
+    if (!is_string($path) || strpos($path, '/wp-content/uploads/') === false) {
+        return $url;
+    }
+
+    $filename = rawurldecode(wp_basename($path));
+    $map = [
+        'birthimg_pc2.webp'       => 'birthday/birthimg_pc2.webp',
+        'birthimg_sp2.webp'       => 'birthday/birthimg_sp2.webp',
+        'buildimg_pc.webp'        => 'building/buildimg_pc.webp',
+        'buildimg_sp.webp'        => 'building/buildimg_sp.webp',
+        'newbornimg_pc.webp'      => 'new-born/newbornimg_pc.webp',
+        'newbornimg_sp.webp'      => 'new-born/newbornimg_sp.webp',
+        'weddingimg_pc.webp'      => 'wedding/weddingimg_pc.webp',
+        'weddingimg_sp.webp'      => 'wedding/weddingimg_sp.webp',
+        'DSC00064-scaled.jpg'     => 'products/productsimg_pc.webp',
+        'DSC00355-scaled.jpg'     => 'products/productsimg_pc.webp',
+        'DSC00464-scaled.jpg'     => 'products/productsimg_pc.webp',
+        '2men-1.webp'             => 'products/2men.webp',
+        'block2.webp'             => 'products/block.webp',
+        'cray-1.webp'             => 'products/clay.webp',
+        'アセット-66@2x.webp'       => 'products/productsimg_pc.webp',
+    ];
+
+    return isset($map[$filename])
+        ? get_theme_file_uri('src/images/legacy-old/' . $map[$filename])
+        : $url;
+}
+
+add_filter('wp_get_attachment_url', 'legacy_old_asset_url', 10, 2);
+
 require_once get_theme_file_path('inc/admin.php');
 // require_once get_theme_file_path('inc/admin/menu-visibility.php');
 // require_once get_theme_file_path('inc/admin/adminbar-visibility.php');
