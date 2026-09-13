@@ -105,7 +105,7 @@ $menu_sections = [
               'duration' => '60',
               'notes' => $studio_course_notes,
               'contents' => ['本人撮影', '衣装１着(洋)', '家族撮影(４名まで)'],
-              'products' => ['レタッチ済みデータ 100', 'アートデータ 1種', 'HISTOIRE 10P', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ 100', 'アートデータ', 'HISTOIRE 10P', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -135,12 +135,12 @@ get_header();
     <div class="relative h-full">
       <div class="absolute inset-0 mx-auto max-w-920">
         <div class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 flex items-end gap-12 [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
-        <h1 class="text-18 pc:text-24 font-montserrat font-light leading-none tracking-[0.18em]">
-          BABY
-        </h1>
-        <span class="text-10 pc:text-12 font-montserrat font-light leading-none tracking-[0.2em]">
-          ages 0 to 2
-        </span>
+          <h1 class="text-18 pc:text-24 font-montserrat font-light leading-none tracking-[0.18em]">
+            BABY
+          </h1>
+          <span class="text-10 pc:text-12 font-montserrat font-light leading-none tracking-[0.2em]">
+            ages 0 to 2
+          </span>
         </div>
       </div>
       <?php [$fv_pc_src, $fv_pc_wh] = theme_img_src_wh('src/images/baby/ta7ca_pc_baby01@2x.webp'); ?>
