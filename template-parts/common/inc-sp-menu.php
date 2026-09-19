@@ -17,14 +17,14 @@ $shooting_menu_items = [
 
 $site_menu_items = [
   ['label' => 'Art gallery', 'path' => '/art-gallery/'],
-  ['label' => 'News/Topics', 'path' => '/news/'],
-  ['label' => 'Costume', 'path' => '/costume/'],
-  ['label' => 'Product', 'path' => '/product/'],
-  ['label' => 'Q&A', 'path' => '/qa/'],
-  ['label' => 'Access', 'path' => '/access/'],
-  ['label' => 'Reservation', 'path' => '/reservation/'],
-  ['label' => 'Usage flow', 'path' => '/usage-flow/'],
-  ['label' => 'Recruit', 'path' => '/recruit/'],
+  // ['label' => 'News/Topics', 'path' => '/news/'],
+  // ['label' => 'Costume', 'path' => '/costume/'],
+  // ['label' => 'Product', 'path' => '/product/'],
+  // ['label' => 'Q&A', 'path' => '/qa/'],
+  // ['label' => 'Access', 'path' => '/access/'],
+  // ['label' => 'Reservation', 'path' => '/reservation/'],
+  // ['label' => 'Usage flow', 'path' => '/usage-flow/'],
+  // ['label' => 'Recruit', 'path' => '/recruit/'],
 ];
 ?>
 
@@ -63,13 +63,13 @@ $site_menu_items = [
         <?php endforeach; ?>
       </ul>
 
-      <span class="mt-48 ml-12 flex h-32 w-32 items-center justify-center text-white" role="img" aria-label="Instagram">
+      <a class="sp-menu__instagram mt-48 ml-12 flex h-32 w-32 items-center justify-center text-white" href="https://www.instagram.com/tanak_753/" target="_blank" rel="noopener noreferrer" aria-label="Instagram（別タブで開く）">
         <svg class="h-full w-full" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"></rect>
           <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"></circle>
           <circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle>
         </svg>
-      </span>
+      </a>
     </nav>
   </div>
 </div>

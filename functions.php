@@ -50,6 +50,35 @@ function legacy_old_asset_url(string $url): string
 
 add_filter('wp_get_attachment_url', 'legacy_old_asset_url', 10, 2);
 
+/**
+ * 旧ページが参照する旧メニューデータの元ページを返す。
+ * ダンプに旧ページのACF値がない環境でも、対応する現行固定ページの
+ * メニュー情報を旧テンプレートへ渡せるようにする。
+ */
+function legacy_old_data_post_id(): int
+{
+    $post_id = (int) get_queried_object_id();
+    if (!$post_id || !is_page()) {
+        return $post_id;
+    }
+
+    $source_slugs = [
+        'birthday-old'          => 'birthday',
+        'building-old'          => 'building',
+        'half-adult-ceremony-old' => 'half-adult-ceremony',
+        'new-born-old'          => 'new-born',
+        'options-old'           => 'options',
+        'wedding-old'           => 'wedding',
+    ];
+    $slug = (string) get_post_field('post_name', $post_id);
+    if (!isset($source_slugs[$slug])) {
+        return $post_id;
+    }
+
+    $source_page = get_page_by_path($source_slugs[$slug], OBJECT, 'page');
+    return $source_page instanceof WP_Post ? (int) $source_page->ID : $post_id;
+}
+
 require_once get_theme_file_path('inc/admin.php');
 // require_once get_theme_file_path('inc/admin/menu-visibility.php');
 // require_once get_theme_file_path('inc/admin/adminbar-visibility.php');
