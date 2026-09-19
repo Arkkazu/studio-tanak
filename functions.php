@@ -41,6 +41,41 @@ function legacy_old_asset_url(string $url): string
         'block2.webp'             => 'products/block.webp',
         'cray-1.webp'             => 'products/clay.webp',
         'アセット-66@2x.webp'       => 'building/asset-66.webp',
+        '3_in.webp'               => 'uploads/3_in.webp',
+        '5_in.webp'               => 'uploads/5_in.webp',
+        '7_in.webp'               => 'uploads/7_in.webp',
+        'data.webp'               => 'uploads/data.webp',
+        'lgt_in.webp'             => 'uploads/lgt_in.webp',
+        'prm_in.webp'             => 'uploads/prm_in.webp',
+        'std_in.webp'             => 'uploads/std_in.webp',
+        'wk_in.webp'              => 'uploads/wk_in.webp',
+        'print.webp'              => 'uploads/print.webp',
+        'printdata.webp'          => 'uploads/printdata.webp',
+        'アセット-26@2x.webp'      => 'uploads/アセット-26@2x.webp',
+        'アセット-27@2x.webp'      => 'uploads/アセット-27@2x.webp',
+        '20Mimg_pc.webp'          => 'uploads/20Mimg_pc.webp',
+        '20Mimg_sp.webp'          => 'uploads/20Mimg_sp.webp',
+        '753img_pc2.webp'         => 'uploads/753img_pc2.webp',
+        '753img_sp2.webp'         => 'uploads/753img_sp2.webp',
+        'gooutimg_pc3.webp'       => 'uploads/gooutimg_pc3.webp',
+        'gooutimg_sp3.webp'       => 'uploads/gooutimg_sp3.webp',
+        'hakamaimg_pc.webp'       => 'uploads/hakamaimg_pc.webp',
+        'hakamaimg_sp.webp'       => 'uploads/hakamaimg_sp.webp',
+        'miruimg_pc2.webp'        => 'uploads/miruimg_pc2.webp',
+        'miruimg_sp2.webp'        => 'uploads/miruimg_sp2.webp',
+        'nyusotsuimg_pc.webp'     => 'uploads/nyusotsuimg_pc.webp',
+        'nyusotsuimg_sp.webp'     => 'uploads/nyusotsuimg_sp.webp',
+        'omiyaimg_pc2.webp'       => 'uploads/omiyaimg_pc2.webp',
+        'omiyaimg_sp2.webp'       => 'uploads/omiyaimg_sp2.webp',
+        'otherimg_pc2.webp'       => 'uploads/otherimg_pc2.webp',
+        'otherimg_sp2.webp'       => 'uploads/otherimg_sp2.webp',
+        'seijinWimg_pc.webp'      => 'uploads/seijinWimg_pc.webp',
+        'seijinWimg_sp.webp'      => 'uploads/seijinWimg_sp.webp',
+        'block.webp'              => 'products/block.webp',
+        'claymini.webp'           => 'products/claymini.webp',
+        'coty.webp'               => 'products/coty.webp',
+        'pendant.webp'            => 'products/pendant.webp',
+        'poster.webp'             => 'products/poster.webp',
     ];
 
     return isset($map[$filename])
@@ -103,9 +138,21 @@ function legacy_old_menu_fallback(string $field): mixed
     $post_id = (int) get_queried_object_id();
     $slug = $post_id ? (string) get_post_field('post_name', $post_id) : '';
     $source_slug = str_ends_with($slug, '-old') ? substr($slug, 0, -4) : '';
-    return $source_slug !== '' && isset($data[$source_slug][$field])
-        ? $data[$source_slug][$field]
-        : null;
+    if ($source_slug === '' || !isset($data[$source_slug][$field])) {
+        return null;
+    }
+
+    $convert_urls = static function ($value) use (&$convert_urls) {
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $convert_urls($item);
+            }
+            return $value;
+        }
+        return is_string($value) ? legacy_old_asset_url($value) : $value;
+    };
+
+    return $convert_urls($data[$source_slug][$field]);
 }
 
 foreach (['menu-kv-pc', 'menu-kv-sp'] as $legacy_field) {
