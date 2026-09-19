@@ -53,6 +53,18 @@ if ($is_home) {
       $css_name = 'products';
       break;
     default:
+      // カテゴリーアーカイブ（/news/ /blog/）。カテゴリーでは get_query_var('post_type') が
+      // 空になりここへ落ちるため、カテゴリー名とサイト名で固有のtitleを作る
+      // （rules/accessibility.md「ページの基本情報」：各ページに内容と目的を表す固有のtitleを設定する）。
+      if (is_category()) {
+        $cat_name = single_cat_title('', false);
+        $cat_paged = max(1, (int) get_query_var('paged'));
+        $title = $cat_name . ($cat_paged > 1 ? '（' . $cat_paged . 'ページ目）' : '') . '｜' . get_bloginfo('name');
+        $desc  = $cat_name . 'の一覧ページです。';
+        $css_name = 'category';
+        break;
+      }
+
       $css_name = '';
       break;
   }

@@ -61,6 +61,41 @@ add_filter('term_link', 'my_custom_post_type_permalinks_set', 11, 3);
 //// end カスタム投稿パーマリンク「/taxonomy/」削除
 
 
+//// 上の term_link フィルタに対応するカテゴリーアーカイブのリライトルール（2026-09-19 追加）
+//
+// フィルタが `/category/news/` を `/news/` へ書き換えているのに、対応するリライトルールが
+// 無かった。WordPress本体が用意するのは `category/(.+?)/?$` と `category/(.+?)/page/N` だけで、
+// 接頭辞なしの `/news/` は pagename ルール（`(.?.+?)(?:/([0-9]+))?/?$`）へ落ちる。
+// 2026-09-19 実測：`/news/` `/blog/` が本文0バイト、`/news/page/2/` が404だった。
+//
+// 対象はスラッグが英数字・ハイフン・アンダースコアだけのカテゴリーに限る。
+// 日本語スラッグ（パーセントエンコード）は正規表現が壊れるため対象外とし、
+// 本体の `/category/<slug>/` で引き続き到達できる。
+// `^<slug>/?$` と `^<slug>/page/N/?$` は `/news/<投稿ID>/` に一致しないため、
+// 個別記事のURLへは影響しない。
+add_action('init', function () {
+  $slugs = get_terms([
+    'taxonomy'   => 'category',
+    'hide_empty' => false,
+    'fields'     => 'slugs',
+  ]);
+
+  if (is_wp_error($slugs) || !is_array($slugs)) {
+    return;
+  }
+
+  foreach ($slugs as $slug) {
+    if (!is_string($slug) || !preg_match('/\A[a-z0-9_-]+\z/', $slug)) {
+      continue;
+    }
+
+    add_rewrite_rule('^' . $slug . '/page/?([0-9]{1,})/?$', 'index.php?category_name=' . $slug . '&paged=$matches[1]', 'top');
+    add_rewrite_rule('^' . $slug . '/?$', 'index.php?category_name=' . $slug, 'top');
+  }
+});
+//// end カテゴリーアーカイブのリライトルール
+
+
 //// カスタム投稿タイプでカテゴリ未選択時にデフォルトのタームを設定
 // function add_defaultcategory_automatically($post_ID)
 // {
