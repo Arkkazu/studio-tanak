@@ -9,7 +9,12 @@
     "dev:local": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "coding:gate": "node MyBrain/verify/coding-rule-gate.mjs"
+    "coding:gate": "node MyBrain/verify/coding-rule-gate.mjs",
+    "report:check": "node MyBrain/verify/report-readiness-audit.mjs",
+    "rules:audit": "node MyBrain/verify/rule-size-audit.mjs MyBrain/verify/rule-size-audit.config.json",
+    "verify:sync": "node MyBrain/verify/verifier-sync-audit.mjs",
+    "verify:ownership": "node MyBrain/verify/ownership-ledger-audit.mjs",
+    "verify:receipts": "node MyBrain/verify/close-receipt-audit.mjs"
   },
   "devDependencies": {
     "fast-glob": "^3.3.3",
