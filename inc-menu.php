@@ -6,6 +6,12 @@ $menu_data_post_id = function_exists('legacy_old_data_post_id')
 if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_fallback') && function_exists('acf_setup_meta')) {
   $legacy_menu = legacy_old_menu_fallback('menu');
   $menu_field = get_field_object('menu', $menu_data_post_id) ?: get_field_object('menu');
+  if (!$menu_field) {
+    $known_menu_page = get_page_by_path('birthday-old', OBJECT, 'page');
+    if ($known_menu_page instanceof WP_Post) {
+      $menu_field = get_field_object('menu', $known_menu_page->ID);
+    }
+  }
   $menu_field_key = is_array($menu_field) && !empty($menu_field['key'])
     ? $menu_field['key']
     : 'field_68ce531be9ba2';
