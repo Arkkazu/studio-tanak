@@ -108,7 +108,7 @@ function legacy_old_menu_fallback(string $field): mixed
         : null;
 }
 
-foreach (['menu-kv-pc', 'menu-kv-sp', 'menu'] as $legacy_field) {
+foreach (['menu-kv-pc', 'menu-kv-sp'] as $legacy_field) {
     add_filter("acf/load_value/name={$legacy_field}", static function ($value) use ($legacy_field) {
         if ($value !== null && $value !== false && $value !== []) {
             return $value;
@@ -120,7 +120,7 @@ foreach (['menu-kv-pc', 'menu-kv-sp', 'menu'] as $legacy_field) {
 
 add_filter('acf/load_value', static function ($value, $post_id, $field) {
     $field_name = is_array($field) && isset($field['name']) ? (string) $field['name'] : '';
-    if (!in_array($field_name, ['menu-kv-pc', 'menu-kv-sp', 'menu'], true)) {
+    if (!in_array($field_name, ['menu-kv-pc', 'menu-kv-sp'], true)) {
         return $value;
     }
     if ($value !== null && $value !== false && $value !== []) {
