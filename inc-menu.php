@@ -3,24 +3,81 @@ $menu_data_post_id = function_exists('legacy_old_data_post_id')
   ? legacy_old_data_post_id()
   : get_queried_object_id();
 
-if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_fallback') && function_exists('acf_setup_meta')) {
+$legacy_menu = null;
+$legacy_menu_fallback_active = false;
+if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_fallback')) {
   $legacy_menu = legacy_old_menu_fallback('menu');
-  $menu_field = get_field_object('menu', $menu_data_post_id) ?: get_field_object('menu');
-  if (!$menu_field) {
-    $known_menu_page = get_page_by_path('birthday-old', OBJECT, 'page');
-    if ($known_menu_page instanceof WP_Post) {
-      $menu_field = get_field_object('menu', $known_menu_page->ID);
-    }
-  }
-  $menu_field_key = is_array($menu_field) && !empty($menu_field['key'])
-    ? $menu_field['key']
-    : 'field_68ce531be9ba2';
-  if (is_array($legacy_menu)) {
-    acf_setup_meta([$menu_field_key => $legacy_menu], $menu_data_post_id, true);
-  }
+  $legacy_menu_fallback_active = is_array($legacy_menu) && $legacy_menu !== [];
 }
 ?>
 
+<?php if ($legacy_menu_fallback_active) : ?>
+  <section class="mt-32 pc:mt-88">
+    <div class="mx-auto w-343 md:w-736 pc:w-1450">
+      <div class="flex flex-col gap-y-80">
+        <?php foreach ($legacy_menu as $menu_index => $menu) :
+          $menu_name = isset($menu['menu__name']) ? (string) $menu['menu__name'] : '';
+          $tabs = isset($menu['menu__tab']) && is_array($menu['menu__tab']) ? $menu['menu__tab'] : [];
+        ?>
+          <section class="js-menu-block scroll-mt-70 pc:scroll-mt-160" id="menu-<?php echo esc_attr($menu_index + 1); ?>">
+            <?php if ($menu_name !== '') : ?>
+              <div class="flex items-center flex-col gap-y-4 pc:gap-y-8">
+                <h2 class="text-20 pc:text-30 font-normal font-zen-maru-gothic half-leading"><?php echo esc_html($menu_name); ?></h2>
+              </div>
+            <?php endif; ?>
+            <?php if ($tabs !== []) : ?>
+              <?php if (count($tabs) > 1) : ?>
+                <div class="mt-24 pc:mt-32">
+                  <div class="flex justify-center gap-x-8 pc:gap-x-124" role="tablist" aria-label="<?php echo esc_attr($menu_name ?: 'Menu Tabs'); ?>">
+                    <?php foreach ($tabs as $tab_index => $tab) :
+                      $tab_id = 'menu-' . ($menu_index + 1) . '-tab-' . ($tab_index + 1);
+                      $tab_img = isset($tab['tab__img']) && is_array($tab['tab__img']) ? $tab['tab__img'] : [];
+                    ?>
+                      <button class="relative w-80 pc:w-160 aspect-square bg-light-gray opacity-40 aria-selected:opacity-100 transition-opacity duration-300" id="<?php echo esc_attr($tab_id); ?>" type="button" role="tab" aria-controls="<?php echo esc_attr($tab_id); ?>-panel" aria-selected="<?php echo $tab_index === 0 ? 'true' : 'false'; ?>">
+                        <?php if (!empty($tab_img['url'])) : ?>
+                          <img class="w-full h-full object-contain" src="<?php echo esc_url($tab_img['url']); ?>" alt="<?php echo esc_attr($tab_img['alt'] ?? ''); ?>" loading="lazy" width="<?php echo esc_attr($tab_img['width'] ?? ''); ?>" height="<?php echo esc_attr($tab_img['height'] ?? ''); ?>">
+                        <?php else : ?>
+                          <span class="text-20 pc:text-24 text-white"><?php echo esc_html($tab['tab__name'] ?? ''); ?></span>
+                        <?php endif; ?>
+                      </button>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+              <?php endif; ?>
+              <?php foreach ($tabs as $tab_index => $tab) :
+                $panel_id = 'menu-' . ($menu_index + 1) . '-tab-' . ($tab_index + 1) . '-panel';
+                $weekday_price = isset($tab['weekday-price']) ? (int) $tab['weekday-price'] : 0;
+              ?>
+                <div class="mt-14 pc:mt-28 relative">
+                  <div class="bg-[#f0f0eb] pt-36 pc:pt-64 px-16 pc:px-72 pb-40 overflow-hidden" id="<?php echo esc_attr($panel_id); ?>" role="tabpanel" aria-labelledby="<?php echo esc_attr(str_replace('-panel', '', $panel_id)); ?>" <?php echo $tab_index === 0 ? '' : 'hidden'; ?>>
+                    <div class="flex flex-wrap justify-center gap-24 pc:gap-48">
+                      <?php if ($weekday_price > 0) : ?>
+                        <div class="flex items-center gap-x-12 pc:gap-x-24">
+                          <?php if (!empty($tab['weekday'])) : ?><div class="shrink-0 h-16 pc:h-30 px-8 pc:px-16 bg-white border border-black flex justify-center items-center"><span class="text-12 pc:text-16 leading-none half-leading"><?php echo wp_kses_post($tab['weekday']); ?></span></div><?php endif; ?>
+                          <p class="text-16 pc:text-32 leading-none half-leading">¥<?php echo esc_html(number_format($weekday_price)); ?></p>
+                        </div>
+                      <?php endif; ?>
+                      <?php if (!empty($tab['time'])) : ?><p class="text-14 pc:text-30 leading-none half-leading"><?php echo wp_kses_post($tab['time']); ?></p><?php endif; ?>
+                    </div>
+                    <?php if (!empty($tab['price-description'])) : ?><div class="mt-32 pc:mt-40"><div class="max-w-640 mx-auto"><p class="text-14 pc:text-18 leading-[1.5] half-leading"><?php echo wp_kses_post($tab['price-description']); ?></p></div></div><?php endif; ?>
+                    <?php if (!empty($tab['course-description'])) : ?>
+                      <div class="mt-32 pc:mt-48"><div class="border-t border-black pt-32 pc:pt-48"><p class="text-18 pc:text-24 text-center font-medium">コース内容</p><div class="mt-24 pc:mt-32"><div class="max-w-640 mx-auto flex flex-col gap-y-32"><p class="text-16 pc:text-20"><?php echo wp_kses_post($tab['course-description']); ?></p><?php if (!empty($tab['course-notes'])) : ?><p class="text-14 pc:text-18"><?php echo wp_kses_post($tab['course-notes']); ?></p><?php endif; ?></div></div></div></div>
+                    <?php endif; ?>
+                    <?php if (!empty($tab['product-description'])) : ?>
+                      <div class="mt-32 pc:mt-48"><div class="border-t border-black pt-32 pc:pt-48"><p class="text-18 pc:text-24 text-center font-medium">コース商品</p><div class="mt-24 pc:mt-32"><p class="text-16 pc:text-20 max-w-640 mx-auto"><?php echo wp_kses_post($tab['product-description']); ?></p></div>
+                        <?php if (!empty($tab['product-img-list']) && is_array($tab['product-img-list'])) : ?><div class="mt-24 pc:mt-32 flex flex-wrap justify-center gap-16 pc:gap-32"><?php foreach ($tab['product-img-list'] as $product) : $product_img = isset($product['product-img']) && is_array($product['product-img']) ? $product['product-img'] : []; if (empty($product_img['url'])) continue; ?><figure class="w-[calc((100%-16rem)/2)] pc:w-[calc((100%-32rem*3)/4)]"><img class="max-w-640 w-full" src="<?php echo esc_url($product_img['url']); ?>" alt="<?php echo esc_attr($product_img['alt'] ?? ''); ?>" loading="lazy" width="<?php echo esc_attr($product_img['width'] ?? ''); ?>" height="<?php echo esc_attr($product_img['height'] ?? ''); ?>"><?php if (!empty($product['product-img-ttl'])) : ?><figcaption class="mt-8 text-12 pc:text-20 text-center"><?php echo esc_html($product['product-img-ttl']); ?></figcaption><?php endif; ?></figure><?php endforeach; ?></div><?php endif; ?>
+                      </div></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </section>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+<?php else : ?>
 <section class="mt-32 pc:mt-88">
   <div class="mx-auto w-343 md:w-736 pc:w-1450">
     <?php if (have_rows('menu', $menu_data_post_id)) : ?>
@@ -380,6 +437,7 @@ if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_f
     <?php endif; ?>
   </div>
 </section>
+<?php endif; ?>
 
 <?php
 // 現在ページのタイトル（完全一致で使用）
