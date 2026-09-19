@@ -88,6 +88,36 @@ function legacy_old_data_post_id(): int
     return $source_page instanceof WP_Post ? (int) $source_page->ID : $post_id;
 }
 
+/**
+ * ダンプ先に旧ページのACF値がない場合のメニュー情報フォールバック。
+ * 画像はテーマ内で相対URL化したデータを使用する。
+ */
+function legacy_old_menu_fallback(string $field): mixed
+{
+    static $data;
+    if ($data === null) {
+        $data_file = get_theme_file_path('inc/legacy-old-menu-data.php');
+        $data = is_readable($data_file) ? require $data_file : [];
+    }
+
+    $post_id = (int) get_queried_object_id();
+    $slug = $post_id ? (string) get_post_field('post_name', $post_id) : '';
+    $source_slug = str_ends_with($slug, '-old') ? substr($slug, 0, -4) : '';
+    return $source_slug !== '' && isset($data[$source_slug][$field])
+        ? $data[$source_slug][$field]
+        : null;
+}
+
+foreach (['menu-kv-pc', 'menu-kv-sp', 'menu'] as $legacy_field) {
+    add_filter("acf/load_value/name={$legacy_field}", static function ($value) use ($legacy_field) {
+        if ($value !== null && $value !== false && $value !== []) {
+            return $value;
+        }
+        $fallback = legacy_old_menu_fallback($legacy_field);
+        return $fallback !== null ? $fallback : $value;
+    }, 10, 1);
+}
+
 require_once get_theme_file_path('inc/admin.php');
 // require_once get_theme_file_path('inc/admin/menu-visibility.php');
 // require_once get_theme_file_path('inc/admin/adminbar-visibility.php');
