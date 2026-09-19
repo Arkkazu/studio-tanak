@@ -63,7 +63,7 @@ $site_menu_items = [
         <?php endforeach; ?>
       </ul>
 
-      <a class="sp-menu__instagram mt-48 ml-12 flex h-32 w-32 items-center justify-center text-white" href="https://www.instagram.com/tanak_753/" target="_blank" rel="noopener noreferrer" aria-label="Instagram（別タブで開く）">
+      <a class="mt-48 ml-12 flex h-32 w-32 items-center justify-center text-white" href="https://www.instagram.com/tanak_753/" target="_blank" rel="noopener noreferrer" aria-label="Instagram（別タブで開く）">
         <svg class="h-full w-full" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"></rect>
           <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"></circle>

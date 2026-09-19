@@ -323,36 +323,36 @@ get_header();
   );
   ?>
   <?php if ($front_news_query->have_posts()) : ?>
-    <section class="front-news px-40 py-80 md:py-160" id="news">
-      <div class="front-news__inner mx-auto max-w-1200">
-        <div class="front-news__body grid gap-80">
-          <div class="front-news__header flex justify-center">
-            <h2 class="front-news__heading text-17 font-semibold font-montserrat tracking-[0.05em]">
+    <section class="px-40 py-80 md:py-160" id="news">
+      <div class="mx-auto max-w-1200">
+        <div class="grid gap-80">
+          <div class="flex justify-center">
+            <h2 class="text-17 font-semibold font-montserrat tracking-[0.05em]">
               NEWS / TOPICS
             </h2>
           </div>
-          <div class="front-news__content">
-            <ul class="front-news__list grid md:grid-cols-3 gap-64">
+          <div>
+            <ul class="grid md:grid-cols-3 gap-64">
               <?php while ($front_news_query->have_posts()) : ?>
                 <?php $front_news_query->the_post(); ?>
-                <li class="front-news__item">
-                  <a class="front-news__link flex flex-col gap-16" href="<?php echo esc_url(get_permalink()); ?>">
-                    <div class="front-news__meta flex flex-col gap-8">
-                      <time class="front-news__date text-10 text-black leading-[1.3] tracking-[0.05em]" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
+                <li>
+                  <a class="flex flex-col gap-16" href="<?php echo esc_url(get_permalink()); ?>">
+                    <div class="flex flex-col gap-8">
+                      <time class="text-10 text-black leading-[1.3] tracking-[0.05em]" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
                         <?php echo esc_html(get_the_date('Y.m.d')); ?>
                       </time>
                     </div>
-                    <div class="front-news__summary flex flex-col gap-12">
-                      <h3 class="front-news__title text-12 text-black">
+                    <div class="flex flex-col gap-12">
+                      <h3 class="text-12 text-black">
                         <?php echo wp_kses(get_the_title(), $front_news_title_allowed_html); ?>
                       </h3>
                     </div>
-                    <span class="front-news__more flex items-center gap-8">
-                      <span class="front-news__more-label text-10 font-montserrat tracking-[0.05em]">
+                    <span class="flex items-center gap-8">
+                      <span class="text-10 font-montserrat tracking-[0.05em]">
                         Read More
                       </span>
                       <?php [$src, $wh] = theme_img_src_wh("src/images/common/arrow-right.svg"); ?>
-                      <img class="front-news__more-icon w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
+                      <img class="w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
                     </span>
                   </a>
                 </li>
