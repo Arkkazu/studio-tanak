@@ -4,6 +4,8 @@ $menu_data_post_id = function_exists('legacy_old_data_post_id')
   : get_queried_object_id();
 $img_pc = get_field('menu-kv-pc', $menu_data_post_id);
 $img_sp = get_field('menu-kv-sp', $menu_data_post_id);
+$img_pc = $img_pc ?: (function_exists('legacy_old_menu_fallback') ? legacy_old_menu_fallback('menu-kv-pc') : null);
+$img_sp = $img_sp ?: (function_exists('legacy_old_menu_fallback') ? legacy_old_menu_fallback('menu-kv-sp') : null);
 $menu_title = get_the_title($menu_data_post_id);
 ?>
 

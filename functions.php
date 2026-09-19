@@ -118,6 +118,18 @@ foreach (['menu-kv-pc', 'menu-kv-sp', 'menu'] as $legacy_field) {
     }, 10, 1);
 }
 
+add_filter('acf/load_value', static function ($value, $post_id, $field) {
+    $field_name = is_array($field) && isset($field['name']) ? (string) $field['name'] : '';
+    if (!in_array($field_name, ['menu-kv-pc', 'menu-kv-sp', 'menu'], true)) {
+        return $value;
+    }
+    if ($value !== null && $value !== false && $value !== []) {
+        return $value;
+    }
+    $fallback = legacy_old_menu_fallback($field_name);
+    return $fallback !== null ? $fallback : $value;
+}, 10, 3);
+
 require_once get_theme_file_path('inc/admin.php');
 // require_once get_theme_file_path('inc/admin/menu-visibility.php');
 // require_once get_theme_file_path('inc/admin/adminbar-visibility.php');
