@@ -35,12 +35,21 @@ add_action('pre_get_posts', function ($q) {
 //// end カスタム投稿を管理画面で最新の記事順
 
 
-//// カスタム分類アーカイブ用のリライトルールを追加する（カスタム投稿news タクソノミーnews_catの場合）
-add_action('init', function () {
-  add_rewrite_rule('news/([^/]+)/?$', 'index.php?news_cat=$matches[1]', 'top');  // 1ページ目: /news/{term}/
-  add_rewrite_rule('news/([^/]+)/page/([0-9]+)/?$', 'index.php?news_cat=$matches[1]&paged=$matches[2]', 'top'); // 2ページ目以降: /news/{term}/page/{n}/
-});
-//// end カスタム分類アーカイブ用のリライトルールを追加する（1ページ目＋ページング）
+//// カスタム分類アーカイブ用のリライトルール（2026-09-19 削除）
+//
+// 削除前は次の2本を 'top' 優先で登録していた。
+//   news/([^/]+)/?$               => index.php?news_cat=$matches[1]
+//   news/([^/]+)/page/([0-9]+)/?$ => index.php?news_cat=$matches[1]&paged=$matches[2]
+//
+// このサイトに `news_cat` タクソノミーは存在せず（`taxonomy_exists('news_cat') === false`、
+// public query var にも未登録）、パーマリンク構造は `/%category%/%post_id%/` である。
+// そのため `news` カテゴリーの投稿URL `/news/<投稿ID>/` が上の1本目に先に一致し、
+// 解決先が無いままWordPressの正規化リダイレクトでトップページへ301していた。
+// 2026-09-19 実測：/news/3367/ /news/3236/ /news/3055/ がいずれも 301 -> `/`。
+// `/blog/3046/` は該当ルールが無いため 200 だった。
+//
+// 対象のカスタム投稿タイプ・タクソノミーを実際に登録する時点で、
+// 投稿パーマリンクと衝突しない正規表現とともに作り直すこと。
 
 
 //// カスタム投稿パーマリンク「/taxonomy/」削除

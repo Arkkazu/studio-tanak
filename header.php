@@ -80,6 +80,16 @@ if ($is_home) {
       break;
 
     default:
+      // 通常投稿（NEWS / TOPICS の記事詳細）。post では get_query_var('post_type') が空になり
+      // ここへ落ちるため、記事タイトルとサイト名で固有のtitleを作る
+      // （rules/accessibility.md「ページの基本情報」：各ページに内容と目的を表す固有のtitleを設定する）。
+      if (is_singular('post')) {
+        $title = empty($seo_title) ? (get_the_title() . '｜' . get_bloginfo('name')) : $seo_title;
+        $desc  = empty($seo_desc)  ? wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 60, '…') : $seo_desc;
+        $css_name = 'single';
+        break;
+      }
+
       // その他の投稿タイプの場合も meta 優先（未入力時は共通）
       $title = empty($seo_title) ? $common_title : $seo_title;
       $desc  = empty($seo_desc)  ? $common_desc  : $seo_desc;

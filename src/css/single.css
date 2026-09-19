@@ -1,0 +1,132 @@
+/*
+ * 投稿詳細（single.php）の本文スタイル。
+ *
+ * ブロックエディターが出力するHTMLにはテンプレート側からクラスを付けられないため、
+ * この案件で唯一ユーティリティクラスで書けない箇所として名前付きクラスを使う。
+ * 根拠は C:/AI/web-development/rules/html.md
+ * 「Tailwind等のユーティリティで統一している案件」＞「ユーティリティで書けないものだけ、
+ * 名前付きクラスを許す」。判断の記録は MyBrain/rules/corrections.md 2026-09-19。
+ *
+ * 単位は MyBrain/rules/units.md の段階的フルードrem方式に従い、デザイン値 Npx を Nrem で書く。
+ * ブレークポイントは tailwind.config.js の screens と揃える（md: 768px / pc: 1272px）。
+ */
+
+.single-post-body {
+  color: #000;
+  font-size: 12rem;
+  line-height: 1.8;
+}
+
+.single-post-body > * + * {
+  margin-top: 24rem;
+}
+
+.single-post-body h2 {
+  font-size: 17rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 64rem;
+}
+
+.single-post-body h3 {
+  font-size: 14rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 48rem;
+}
+
+.single-post-body h4 {
+  font-size: 12rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 40rem;
+}
+
+.single-post-body ul,
+.single-post-body ol {
+  padding-left: 20rem;
+}
+
+.single-post-body ul {
+  list-style: disc;
+}
+
+.single-post-body ol {
+  list-style: decimal;
+}
+
+.single-post-body li + li {
+  margin-top: 8rem;
+}
+
+.single-post-body strong {
+  font-weight: 600;
+}
+
+.single-post-body em {
+  font-style: italic;
+}
+
+.single-post-body a {
+  text-decoration: underline;
+  text-underline-offset: 3rem;
+  transition: opacity 0.3s;
+}
+
+/* ホバー可否は画面幅ではなく入力能力で判定する（web-development rules/corrections.md 2026-07-24） */
+@media (hover: hover) and (pointer: fine) {
+  .single-post-body a:hover {
+    opacity: 0.5;
+  }
+}
+
+.single-post-body img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.single-post-body figure figcaption {
+  font-size: 10rem;
+  line-height: 1.6;
+  margin-top: 8rem;
+}
+
+.single-post-body hr {
+  border: 0;
+  border-top: 1px solid #000;
+  margin-top: 40rem;
+  opacity: 0.2;
+}
+
+.single-post-body blockquote {
+  border-left: 2px solid #000;
+  padding-left: 20rem;
+}
+
+.single-post-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.single-post-body th,
+.single-post-body td {
+  border: 1px solid #000;
+  padding: 8rem 12rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.single-post-body th {
+  font-weight: 600;
+}
+
+/* 表は本文幅を超える場合だけ横スクロールさせ、本文自体は横スクロールさせない */
+.single-post-body .wp-block-table {
+  overflow-x: auto;
+}
+
+.single-post-body .aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+}

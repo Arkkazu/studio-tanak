@@ -36,6 +36,19 @@ add_action('wp_enqueue_scripts', function () {
     return;
   }
 
+  // 投稿詳細（single.php）。ブロックエディター出力の本文だけに効く専用CSSを読み込む。
+  // 現行ページの共通CSSを上書きしないよう、投稿詳細でのみ読み込む。
+  if (is_singular('post')) {
+    $single_css = '/src/css/single.css';
+    wp_enqueue_style(
+      'ifh-single',
+      get_template_directory_uri() . $single_css,
+      [],
+      $ver($single_css)
+    );
+    return;
+  }
+
   // 旧撮影メニューページは旧テーマのユーティリティを専用CSSとして読み込む。
   // 現行ページでは読み込まないため、現行テーマのCSSへ影響させない。
   $legacy_old_pages = [
