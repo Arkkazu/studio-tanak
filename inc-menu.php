@@ -1,6 +1,12 @@
+<?php
+$menu_data_post_id = function_exists('legacy_old_data_post_id')
+  ? legacy_old_data_post_id()
+  : get_queried_object_id();
+?>
+
 <section class="mt-32 pc:mt-88">
   <div class="mx-auto w-343 md:w-736 pc:w-1450">
-    <?php if (have_rows('menu')) : ?>
+    <?php if (have_rows('menu', $menu_data_post_id)) : ?>
       <div class="flex flex-col gap-y-80">
         <?php while (have_rows('menu')) : the_row(); ?>
           <?php
@@ -360,7 +366,7 @@
 
 <?php
 // 現在ページのタイトル（完全一致で使用）
-$current_title = trim(wp_strip_all_tags(get_the_title(get_queried_object_id())));
+$current_title = trim(wp_strip_all_tags(get_the_title($menu_data_post_id)));
 
 // 固定ページでも機能するように両方を考慮
 $paged = max(1, get_query_var('paged'), get_query_var('page'));

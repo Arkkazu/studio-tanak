@@ -69,6 +69,15 @@ function legacy_old_data_post_id(): int
         'new-born-old'          => 'new-born',
         'options-old'           => 'options',
         'wedding-old'           => 'wedding',
+        'graduation-hakama-old'  => 'graduation-hakama',
+        'milmil-old'             => 'milmil',
+        'omiyamairi-old'         => 'omiyamairi',
+        'publication-old'        => 'publication',
+        'school-ceremony-old'    => 'school-ceremony',
+        'seijinshiki-ladies-old' => 'seijinshiki-ladies',
+        'seijinshiki-mens-old'   => 'seijinshiki-mens',
+        'shichigosan-old'        => 'shichigosan',
+        'various-old'            => 'various',
     ];
     $slug = (string) get_post_field('post_name', $post_id);
     if (!isset($source_slugs[$slug])) {
