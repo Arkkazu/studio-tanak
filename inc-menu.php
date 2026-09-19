@@ -6,8 +6,11 @@ $menu_data_post_id = function_exists('legacy_old_data_post_id')
 if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_fallback') && function_exists('acf_setup_meta')) {
   $legacy_menu = legacy_old_menu_fallback('menu');
   $menu_field = get_field_object('menu', $menu_data_post_id) ?: get_field_object('menu');
-  if (is_array($legacy_menu) && is_array($menu_field) && !empty($menu_field['key'])) {
-    acf_setup_meta([$menu_field['key'] => $legacy_menu], $menu_data_post_id, true);
+  $menu_field_key = is_array($menu_field) && !empty($menu_field['key'])
+    ? $menu_field['key']
+    : 'field_68ce531be9ba2';
+  if (is_array($legacy_menu)) {
+    acf_setup_meta([$menu_field_key => $legacy_menu], $menu_data_post_id, true);
   }
 }
 ?>
