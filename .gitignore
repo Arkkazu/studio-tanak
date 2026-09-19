@@ -28,5 +28,6 @@ vite.config copy.js
 *.sw?
 
 # Coding gate state / verification scratch (local tooling artifacts)
+.claude/
 .coding-gate/
 tmp/
