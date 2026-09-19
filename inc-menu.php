@@ -5,7 +5,7 @@ $menu_data_post_id = function_exists('legacy_old_data_post_id')
 
 $legacy_menu = null;
 $legacy_menu_fallback_active = false;
-if (!get_field('menu', $menu_data_post_id) && function_exists('legacy_old_menu_fallback')) {
+if (function_exists('legacy_old_menu_fallback')) {
   $legacy_menu = legacy_old_menu_fallback('menu');
   $legacy_menu_fallback_active = is_array($legacy_menu) && $legacy_menu !== [];
 }
