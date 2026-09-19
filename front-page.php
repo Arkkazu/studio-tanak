@@ -284,7 +284,7 @@ get_header();
             </div>
           </div>
           <div class="absolute -bottom-80 w-full">
-            <a class="mx-auto flex items-center justify-center max-w-295 md:max-w-440 w-full min-h-42 border border-black transition-opacity duration-300 pc:hover:opacity-50" href="">
+            <a class="mx-auto flex items-center justify-center max-w-295 md:max-w-440 w-full min-h-42 border border-black transition-opacity duration-300 pc:hover:opacity-50" href="/art-gallery/">
               <span class="text-12 text-black">
                 More
               </span>
@@ -303,84 +303,67 @@ get_header();
       </h2>
     </div>
   </section> -->
-  <section class="px-40 py-80 md:py-160" id="news">
-    <div class="mx-auto max-w-1200">
-      <div class="grid gap-80">
-        <div class="flex justify-center">
-          <h2 class="text-17 font-semibold font-montserrat tracking-[0.05em]">
-            NEWS / TOPICS
-          </h2>
-        </div>
-        <div class="">
-          <ul class="grid md:grid-cols-3 gap-64">
-            <li class="">
-              <a class="flex flex-col gap-16" href="">
-                <div class="flex flex-col gap-8">
-                  <span class="text-10 text-black leading-[1.3] tracking-[0.05em]">
-                    2026.04.04
-                  </span>
-                </div>
-                <div class="flex flex-col gap-12">
-                  <p class="text-12 text-black ">
-                    入園・入学記念写真は春がベスト！<br>今しか撮れない成長の一枚
-                  </p>
-                </div>
-                <h2 class="flex items-center gap-8">
-                  <span class="text-10 font-montserrat tracking-[0.05em]">
-                    Read More
-                  </span>
-                  <?php [$src, $wh] = theme_img_src_wh("src/images/common/arrow-right.svg"); ?>
-                  <img class="w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
-                </h2>
-              </a>
-            </li>
-            <li class="">
-              <a class="flex flex-col gap-16" href="">
-                <div class="flex flex-col gap-8">
-                  <span class="text-10 text-black leading-[1.3] tracking-[0.05em]">
-                    2026.04.04
-                  </span>
-                </div>
-                <div class="flex flex-col gap-12">
-                  <p class="text-12 text-black ">
-                    入園・入学記念写真は春がベスト！<br>今しか撮れない成長の一枚
-                  </p>
-                </div>
-                <h2 class="flex items-center gap-8">
-                  <span class="text-10 font-montserrat tracking-[0.05em]">
-                    Read More
-                  </span>
-                  <?php [$src, $wh] = theme_img_src_wh("src/images/common/arrow-right.svg"); ?>
-                  <img class="w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
-                </h2>
-              </a>
-            </li>
-            <li class="">
-              <a class="flex flex-col gap-16" href="">
-                <div class="flex flex-col gap-8">
-                  <span class="text-10 text-black leading-[1.3] tracking-[0.05em]">
-                    2026.04.04
-                  </span>
-                </div>
-                <div class="flex flex-col gap-12">
-                  <p class="text-12 text-black ">
-                    入園・入学記念写真は春がベスト！<br>今しか撮れない成長の一枚
-                  </p>
-                </div>
-                <h2 class="flex items-center gap-8">
-                  <span class="text-10 font-montserrat tracking-[0.05em]">
-                    Read More
-                  </span>
-                  <?php [$src, $wh] = theme_img_src_wh("src/images/common/arrow-right.svg"); ?>
-                  <img class="w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
-                </h2>
-              </a>
-            </li>
-          </ul>
+  <?php
+  // NEWS / TOPICS は通常投稿（post）の最新3件を表示する。
+  // 公開記事が1件も無いときはセクションごと出力しない（空の見出し・空リストを作らない）。
+  $front_news_query = new WP_Query(array(
+    'post_type'           => 'post',
+    'post_status'         => 'publish',
+    'posts_per_page'      => 3,
+    'ignore_sticky_posts' => true,
+    'no_found_rows'       => true,
+  ));
+
+  // 投稿タイトルに許可する要素。デザインの2行表示に使う改行だけを想定し、
+  // 管理者が入力したその他のHTMLは許可リストで除去する。
+  $front_news_title_allowed_html = array(
+    'br'     => array(),
+    'em'     => array(),
+    'strong' => array(),
+  );
+  ?>
+  <?php if ($front_news_query->have_posts()) : ?>
+    <section class="front-news px-40 py-80 md:py-160" id="news">
+      <div class="front-news__inner mx-auto max-w-1200">
+        <div class="front-news__body grid gap-80">
+          <div class="front-news__header flex justify-center">
+            <h2 class="front-news__heading text-17 font-semibold font-montserrat tracking-[0.05em]">
+              NEWS / TOPICS
+            </h2>
+          </div>
+          <div class="front-news__content">
+            <ul class="front-news__list grid md:grid-cols-3 gap-64">
+              <?php while ($front_news_query->have_posts()) : ?>
+                <?php $front_news_query->the_post(); ?>
+                <li class="front-news__item">
+                  <a class="front-news__link flex flex-col gap-16" href="<?php echo esc_url(get_permalink()); ?>">
+                    <div class="front-news__meta flex flex-col gap-8">
+                      <time class="front-news__date text-10 text-black leading-[1.3] tracking-[0.05em]" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
+                        <?php echo esc_html(get_the_date('Y.m.d')); ?>
+                      </time>
+                    </div>
+                    <div class="front-news__summary flex flex-col gap-12">
+                      <h3 class="front-news__title text-12 text-black">
+                        <?php echo wp_kses(get_the_title(), $front_news_title_allowed_html); ?>
+                      </h3>
+                    </div>
+                    <span class="front-news__more flex items-center gap-8">
+                      <span class="front-news__more-label text-10 font-montserrat tracking-[0.05em]">
+                        Read More
+                      </span>
+                      <?php [$src, $wh] = theme_img_src_wh("src/images/common/arrow-right.svg"); ?>
+                      <img class="front-news__more-icon w-[10.54rem] block" src="<?php echo $src; ?>" alt="" aria-hidden="true" loading="lazy" <?php echo $wh; ?>>
+                    </span>
+                  </a>
+                </li>
+              <?php endwhile; ?>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <?php endif; ?>
+  <?php wp_reset_postdata(); ?>
   <section class="px-40 py-80 md:py-160" id="shooting">
     <div class="mx-auto max-w-1200">
       <div class="grid gap-80">

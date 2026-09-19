@@ -26,3 +26,7 @@ vite.config copy.js
 *.njsproj
 *.sln
 *.sw?
+
+# Coding gate state / verification scratch (local tooling artifacts)
+.coding-gate/
+tmp/
