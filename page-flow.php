@@ -3,7 +3,7 @@
 
 [$flow_fv_pc_src, $flow_fv_pc_wh] = theme_img_src_wh('src/images/flow/アセット 178.webp');
 [$flow_fv_sp_src, $flow_fv_sp_wh] = theme_img_src_wh('src/images/flow/アセット 179.webp');
-[$flow_qr_src, $flow_qr_wh] = theme_img_src_wh('src/images/legacy-old/flow/qr-line.webp');
+[$flow_qr_src, $flow_qr_wh] = theme_img_src_wh('src/images/common/qr-line.webp');
 
 get_header();
 ?>
