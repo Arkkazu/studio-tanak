@@ -21,10 +21,10 @@ $site_menu_items = [
   // ['label' => 'Costume', 'path' => '/costume/'],
   // ['label' => 'Product', 'path' => '/product/'],
   // ['label' => 'Q&A', 'path' => '/qa/'],
-  // ['label' => 'Access', 'path' => '/access/'],
+  ['label' => 'Access', 'path' => '/access/'],
   // ['label' => 'Reservation', 'path' => '/reservation/'],
-  // ['label' => 'Usage flow', 'path' => '/usage-flow/'],
-  // ['label' => 'Recruit', 'path' => '/recruit/'],
+  ['label' => 'Usage flow', 'path' => '/flow/'],
+  ['label' => 'Recruit', 'path' => '/recruit/'],
 ];
 ?>
 

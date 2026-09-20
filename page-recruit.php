@@ -46,7 +46,7 @@ $recruit_jobs = [
 
 [$recruit_fv_pc_src, $recruit_fv_pc_wh] = theme_img_src_wh('src/images/recruit/fv-pc.webp');
 [$recruit_fv_sp_src, $recruit_fv_sp_wh] = theme_img_src_wh('src/images/recruit/fv-sp.webp');
-[$recruit_qr_src, $recruit_qr_wh] = theme_img_src_wh('src/images/legacy-old/flow/qr-line.webp');
+[$recruit_qr_src, $recruit_qr_wh] = theme_img_src_wh('src/images/common/qr-line.webp');
 
 get_header();
 ?>
