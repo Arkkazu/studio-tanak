@@ -74,7 +74,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['本人撮影', '衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ', 'MURAL or PETIT BOIS', 'HISTOIRE 10P', 'アートデータ'],
+              'products' => ['レタッチ済みデータ', 'MURAL or PETIT BOIS', 'HISTOIRE 10P', 'アートデータ ２種'],
             ],
           ],
         ],
