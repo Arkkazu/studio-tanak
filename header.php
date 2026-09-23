@@ -3,8 +3,9 @@
 $is_front_page = is_front_page();
 $is_home = (is_home() || $is_front_page);
 
-$common_title = '';
-$common_desc  = '';
+$site_name = trim((string) get_bloginfo('name')) ?: 'スタジオタナカ';
+$common_title = '高崎のフォトスタジオ｜' . $site_name;
+$common_desc  = '群馬県高崎市のフォトスタジオ、スタジオタナカ。七五三、お宮参り、ニューボーン、成人式、卒業袴、家族写真など、大切な記念日を写真とアートで残します。';
 $common_ogp   = get_template_directory_uri() . '/images/common/ogp.png';
 
 $og_site_name = get_bloginfo('name');
@@ -14,6 +15,45 @@ $title       = $common_title;
 $desc        = $common_desc;
 $preload_img = [];
 $css_name    = '';
+
+$page_meta_defaults = [
+  'kids' => [
+    'title' => '七五三・入園入学の写真撮影｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカのキッズ撮影。七五三、入園・卒園・入学・卒業、ハーフ成人式を家族の思い出として残します。',
+  ],
+  'baby' => [
+    'title' => 'ニューボーン・お宮参り・誕生日の写真撮影｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカのベビー撮影。ニューボーン、お宮参り、1歳からのお誕生日を自然な表情で撮影します。',
+  ],
+  'kimono-hakama' => [
+    'title' => '成人式・卒業袴の写真撮影｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカの成人式・卒業袴撮影。前撮り、当日撮影、着付け、ヘアメイクまでご案内します。',
+  ],
+  'others' => [
+    'title' => '証明写真・出張撮影・店舗撮影｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカ。証明写真、店舗・住宅撮影、出張撮影、結婚式前撮りなど幅広い撮影に対応します。',
+  ],
+  'options' => [
+    'title' => '撮影オプション｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカの撮影・販売・レタッチ・出張撮影オプションをご案内します。',
+  ],
+  'access' => [
+    'title' => 'アクセス・店舗情報｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => 'スタジオタナカは群馬県高崎市宮元町のフォトスタジオです。店舗へのアクセス、駐車場、地図をご案内します。',
+  ],
+  'flow' => [
+    'title' => 'ご利用の流れ｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカのご予約からご来店、撮影、お写真のお渡しまでの流れをご案内します。',
+  ],
+  'recruit' => [
+    'title' => '採用情報｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカの採用情報です。撮影・接客・ヘアメイクなどのスタッフを募集しています。',
+  ],
+  'shichigosan' => [
+    'title' => '七五三の写真撮影｜高崎のフォトスタジオ スタジオタナカ',
+    'desc' => '高崎のフォトスタジオ、スタジオタナカの七五三撮影。衣装、着付け、ヘアメイク、家族撮影までお任せください。',
+  ],
+];
 
 if ($is_home) {
   // トップページ対象IDの特定
@@ -43,14 +83,25 @@ if ($is_home) {
   $slug = get_query_var('post_type');
   switch ($slug) {
     case 'news':
-      $title = '新着情報｜○○（案件名）';
-      $desc  = '新着情報一覧ページです。';
+      $title = '新着情報｜' . $site_name;
+      $desc  = 'スタジオタナカからのお知らせ、撮影メニューや営業に関する最新情報をご案内します。';
       $css_name = 'news';
       break;
     case 'products':
-      $title = '商品一覧｜○○（案件名）';
-      $desc  = '商品の一覧ページです。';
+      $title = '商品一覧｜高崎のフォトスタジオ ' . $site_name;
+      $desc  = '高崎のフォトスタジオ、スタジオタナカで取り扱うアルバムや写真商品をご案内します。';
       $css_name = 'products';
+      break;
+    case 'ai_gallery':
+    case 'ai-gallery':
+      $title = 'アートギャラリー｜高崎のフォトスタジオ ' . $site_name;
+      $desc  = '高崎のフォトスタジオ、スタジオタナカのアートギャラリー。作品と写真表現をご紹介します。';
+      $css_name = 'gallery';
+      break;
+    case 'costume':
+      $title = '衣装ギャラリー｜高崎のフォトスタジオ ' . $site_name;
+      $desc  = '高崎のフォトスタジオ、スタジオタナカの衣装ギャラリー。撮影で選べる衣装をご紹介します。';
+      $css_name = 'costume';
       break;
     default:
       // カテゴリーアーカイブ（/news/ /blog/）。カテゴリーでは get_query_var('post_type') が
@@ -80,14 +131,14 @@ if ($is_home) {
   switch ($slug) {
     case 'news':
       // 未入力時のみ既存ロジックへフォールバック
-      $title = empty($seo_title) ? (get_the_title() . '｜○○（案件名）') : $seo_title;
-      $desc  = empty($seo_desc)  ? ('加盟参考情報「' . get_the_title() . '」の詳細ページです') : $seo_desc;
+      $title = empty($seo_title) ? (get_the_title() . '｜' . $site_name) : $seo_title;
+      $desc  = empty($seo_desc)  ? ('高崎のフォトスタジオ ' . $site_name . 'からのお知らせ「' . get_the_title() . '」です。') : $seo_desc;
       $css_name = 'news';
       break;
 
     case 'products':
-      $title = empty($seo_title) ? (get_the_title() . '｜○○（案件名）') : $seo_title;
-      $desc  = empty($seo_desc)  ? ('商品「' . get_the_title() . '」の詳細ページです') : $seo_desc;
+      $title = empty($seo_title) ? (get_the_title() . '｜高崎のフォトスタジオ ' . $site_name) : $seo_title;
+      $desc  = empty($seo_desc)  ? ('高崎のフォトスタジオ ' . $site_name . 'の商品「' . get_the_title() . '」の詳細ページです。') : $seo_desc;
       $css_name = 'products';
       break;
 
@@ -129,8 +180,12 @@ if ($is_home) {
   $seo_title = ($page_id > 0) ? get_post_meta($page_id, '_seo_title', true) : '';
   $seo_desc  = ($page_id > 0) ? get_post_meta($page_id, '_seo_desc',  true) : '';
 
-  $title = empty($seo_title) ? $common_title : $seo_title;
-  $desc  = empty($seo_desc)  ? $common_desc  : $seo_desc;
+  $page_meta = $page_meta_defaults[$slug] ?? null;
+  $fallback_page_title = $page_meta['title'] ?? ((get_the_title($page_id) ?: 'フォトスタジオ') . '｜高崎のフォトスタジオ ' . $site_name);
+  $fallback_page_desc = $page_meta['desc'] ?? ('高崎のフォトスタジオ ' . $site_name . 'の「' . (get_the_title($page_id) ?: '撮影メニュー') . '」をご案内します。');
+
+  $title = empty($seo_title) ? $fallback_page_title : $seo_title;
+  $desc  = empty($seo_desc)  ? $fallback_page_desc  : $seo_desc;
 
 
   switch ($slug) {
@@ -142,7 +197,7 @@ if ($is_home) {
       break;
   }
 } elseif (is_404()) {
-  $title = 'お探しのページは見つかりませんでした｜○○（案件名）';
+  $title = 'お探しのページは見つかりませんでした｜' . $site_name;
   $desc  = 'お探しのページは一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。URLをご確認いただくか、トップページを表示しメニューより目的のページをお探しください。';
   $css_name = '404';
 } else {
