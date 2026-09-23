@@ -100,7 +100,9 @@ $render_course_modal_section = static function (string $title, string $title_ja,
                 <?php endif; ?>
               </li>
             <?php endforeach; ?>
-            <li>前撮りと当日のお仕度の合計所要時間となります</li>
+            <?php if ($group_title === '前撮り／当日外出') : ?>
+              <li>前撮りと当日のお仕度の合計所要時間となります</li>
+            <?php endif; ?>
           </ul>
 
           <?php
