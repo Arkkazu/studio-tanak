@@ -45,7 +45,7 @@ get_header();
           PARKING
         </h2>
         <p class="mt-40 text-center text-10 pc:text-12 font-noto-sans leading-[1.8]">
-          スタジオ向かいに８台駐車可能となっております。<br>
+          スタジオ向かいに5台駐車可能となっております。<br>
           赤い箇所が駐車可能スペースです。<br>
           空きがない、場所がわからないなどございましたらお電話ください。
         </p>

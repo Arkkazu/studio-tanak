@@ -92,6 +92,9 @@ $render_course_modal_section = static function (string $title, string $title_ja,
           </div>
 
           <ul class="mt-40 flex flex-col items-center gap-16 text-14 font-noto-sans font-light leading-[1.4]">
+            <?php if ($group_title === '前撮り／当日外出') : ?>
+              <li>＊ 前撮りと当日のお仕度の合計所要時間となります</li>
+            <?php endif; ?>
             <?php foreach ($modal['notes'] as $note) : ?>
               <li>
                 <?php echo esc_html($note['text']); ?>
@@ -100,9 +103,6 @@ $render_course_modal_section = static function (string $title, string $title_ja,
                 <?php endif; ?>
               </li>
             <?php endforeach; ?>
-            <?php if ($group_title === '前撮り／当日外出') : ?>
-              <li>前撮りと当日のお仕度の合計所要時間となります</li>
-            <?php endif; ?>
           </ul>
 
           <?php
