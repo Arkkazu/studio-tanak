@@ -145,7 +145,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ'],
+              'products' => ['レタッチ済みデータ 100'],
             ],
           ],
           [
@@ -160,7 +160,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ'],
+              'products' => ['レタッチ済みデータ 100'],
             ],
           ],
           [
@@ -175,7 +175,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ'],
+              'products' => ['レタッチ済みデータ 100'],
             ],
           ],
         ],
