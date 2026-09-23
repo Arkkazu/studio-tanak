@@ -135,7 +135,7 @@ $menu_sections = [
         'courses' => [
           [
             'name' => '3 years',
-            'price' => '¥66,000',
+            'price' => '¥77,000',
             'modal' => [
               'id' => 'kids-course-modal-location-3-years',
               'name' => '3 years',
@@ -143,14 +143,14 @@ $menu_sections = [
               'subtitle' => '出張撮影あり',
               'duration' => '60',
               'notes' => $studio_course_notes,
-              'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
+              'contents' => ['衣裳１着', 'ヘアメ', '着付け', '家族撮影（制限なし）', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ 100'],
+              'products' => ['レタッチ済データ100'],
             ],
           ],
           [
             'name' => '5 years',
-            'price' => '¥66,000',
+            'price' => '¥77,000',
             'modal' => [
               'id' => 'kids-course-modal-location-5-years',
               'name' => '5 years',
@@ -158,9 +158,9 @@ $menu_sections = [
               'subtitle' => '出張撮影あり',
               'duration' => '60',
               'notes' => $studio_course_notes,
-              'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
+              'contents' => ['衣裳１着', 'ヘアメ', '着付け', '家族撮影（制限なし）', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ 100'],
+              'products' => ['レタッチ済データ100'],
             ],
           ],
           [
@@ -173,9 +173,9 @@ $menu_sections = [
               'subtitle' => '出張撮影あり',
               'duration' => '120',
               'notes' => $studio_course_notes,
-              'contents' => ['衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
+              'contents' => ['衣裳１着', 'ヘアメ', '着付け', '家族撮影（制限なし）', '兄弟撮影'],
               'contents_note' => $location_course_note,
-              'products' => ['レタッチ済みデータ 100'],
+              'products' => ['レタッチ済データ100'],
             ],
           ],
         ],
