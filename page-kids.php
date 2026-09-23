@@ -36,22 +36,22 @@ $menu_sections = [
         'courses' => [
           [
             'name' => 'STANDARD',
-            'price' => '¥88,000',
+            'price' => '¥66,000',
             'emphasis' => true,
             'modal' => [
               'id' => 'kids-course-modal-standard',
               'name' => 'STANDARD COURSE',
               'subtitle' => '平日／スタンダードコース',
-              'duration' => '180',
+              'duration' => '120',
               'notes' => $studio_course_notes,
-              'contents' => ['本人撮影', '衣装２着(洋 & 和)', '着付け', 'ヘアメイク', '家族撮影(４名まで)', '兄弟撮影'],
+              'contents' => ['本人撮影', '衣装１着(洋 or 和)', '着付け', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 10P', 'アートデータ ２種', 'アルバムスタンド S'],
             ],
           ],
           [
             'name' => 'PREMIUM',
-            'price' => '¥110,000',
+            'price' => '¥99,000',
             'modal' => [
               'id' => 'kids-course-modal-premium',
               'name' => 'PREMIUM COURSE',
@@ -60,7 +60,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['本人撮影', '衣装２着(洋 & 和)', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M', "２Lサイズ２枚\nor\nA4サイズ１枚印刷"],
+              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ ２種', 'アルバムスタンド M'],
             ],
           ],
           [
