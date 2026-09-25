@@ -19,7 +19,7 @@ $site_menu_items = [
   ['label' => 'Art gallery', 'path' => '/art-gallery/'],
   // ['label' => 'News/Topics', 'path' => '/news/'],
   // ['label' => 'Costume', 'path' => '/costume/'],
-  // ['label' => 'Product', 'path' => '/product/'],
+  ['label' => 'Product', 'path' => '/products/'],
   // ['label' => 'Q&A', 'path' => '/qa/'],
   ['label' => 'Access', 'path' => '/access/'],
   // ['label' => 'Reservation', 'path' => '/reservation/'],
