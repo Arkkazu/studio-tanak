@@ -38,14 +38,16 @@ get_header();
 
 <main class="overflow-hidden bg-white pb-120 pc:pb-240">
   <section class="relative aspect-square pc:aspect-[1920/400] overflow-hidden bg-[#f1ede7]" aria-labelledby="products-title">
-    <picture>
-      <source media="(min-width: 1272px)" srcset="<?php echo $fv_pc_src; ?>">
-      <img class="absolute inset-0 block h-full w-full object-cover" src="<?php echo $fv_sp_src; ?>" alt="" loading="eager" fetchpriority="high" <?php echo $fv_sp_wh; ?>>
-    </picture>
-    <div class="absolute inset-0 mx-auto max-w-800">
-      <h1 id="products-title" class="absolute left-24 pc:left-64 top-88 pc:top-190 text-18 pc:text-20 font-montserrat font-light leading-none tracking-[0.18em] pc:tracking-[0.22em] text-white [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
-        P R O D U C T S
-      </h1>
+    <div class="relative h-full">
+      <picture>
+        <source media="(min-width: 1272px)" srcset="<?php echo esc_url($fv_pc_src); ?>">
+        <img class="absolute inset-0 block h-full w-full object-cover" src="<?php echo esc_url($fv_sp_src); ?>" alt="" loading="eager" fetchpriority="high" <?php echo $fv_sp_wh; ?>>
+      </picture>
+      <div class="absolute inset-0 mx-auto max-w-920">
+        <h1 id="products-title" class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 text-18 pc:text-20 font-montserrat font-light leading-none tracking-[0.18em] pc:tracking-[0.22em] text-white [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
+          P R O D U C T S
+        </h1>
+      </div>
     </div>
   </section>
 
