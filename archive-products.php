@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Products archive. The supplied product images are the source of truth for
  * the catalog; the _1 images are for cards and the _2 images are for dialogs.
@@ -125,25 +126,25 @@ get_header();
         <span class="absolute h-[1px] w-16 -rotate-45 bg-white"></span>
       </button>
     </div>
-    <div class="js-products-scroll min-h-0 flex-1 overflow-y-auto bg-white">
-    <?php foreach ($products as $index => $product) : ?>
-      <?php [$detail_src, $detail_wh] = theme_img_src_wh('src/images/products/product_' . $product['image'] . '_2@2x.webp'); ?>
-      <section class="js-products-panel" data-product-panel="<?php echo esc_attr((string) $index); ?>" aria-labelledby="products-panel-title-<?php echo esc_attr((string) $index); ?>" hidden>
-        <div class="px-40 pt-40 pb-16 text-center">
-          <h2 id="products-panel-title-<?php echo esc_attr((string) $index); ?>" class="text-10 font-montserrat font-medium tracking-[0.08em]"><?php echo esc_html($product['name']); ?></h2>
-          <?php if (!empty($product['name_ja'])) : ?>
-            <p class="mt-4 text-8 font-light"><?php echo esc_html($product['name_ja']); ?></p>
-          <?php endif; ?>
-          <img class="mx-auto mt-12 block aspect-[4/3] w-full object-contain" src="<?php echo esc_url($detail_src); ?>" alt="<?php echo esc_attr($product['name']); ?>" loading="lazy" <?php echo $detail_wh; ?>>
-          <?php if (!empty($product['description'])) : ?>
-            <div class="mt-16 text-9 font-light leading-[1.8]">
-              <p class="whitespace-pre-line"><?php echo esc_html($product['description']); ?></p>
-              <p class="mt-4 font-montserrat"><?php if (!empty($product['size'])) : ?>size:<?php echo esc_html($product['size']); ?>　<?php endif; ?>price:<?php echo esc_html($product['price']); ?></p>
-            </div>
-          <?php endif; ?>
-        </div>
-      </section>
-    <?php endforeach; ?>
+    <div class="js-products-scroll min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden bg-white">
+      <?php foreach ($products as $index => $product) : ?>
+        <?php [$detail_src, $detail_wh] = theme_img_src_wh('src/images/products/product_' . $product['image'] . '_2@2x.webp'); ?>
+        <section class="js-products-panel" data-product-panel="<?php echo esc_attr((string) $index); ?>" aria-labelledby="products-panel-title-<?php echo esc_attr((string) $index); ?>" hidden>
+          <div class="px-40 pt-24 pb-24 text-center">
+            <h2 id="products-panel-title-<?php echo esc_attr((string) $index); ?>" class="text-10 font-montserrat font-medium tracking-[0.08em]"><?php echo esc_html($product['name']); ?></h2>
+            <?php if (!empty($product['name_ja'])) : ?>
+              <p class="mt-4 text-8 font-light"><?php echo esc_html($product['name_ja']); ?></p>
+            <?php endif; ?>
+            <img class="mx-auto mt-12 block aspect-[4/3] w-full object-contain" src="<?php echo esc_url($detail_src); ?>" alt="<?php echo esc_attr($product['name']); ?>" loading="lazy" <?php echo $detail_wh; ?>>
+            <?php if (!empty($product['description'])) : ?>
+              <div class="mt-16 text-9 font-light leading-[1.8]">
+                <p class="whitespace-pre-line"><?php echo esc_html($product['description']); ?></p>
+                <p class="mt-4 font-montserrat"><?php if (!empty($product['size'])) : ?>size:<?php echo esc_html($product['size']); ?>　<?php endif; ?>price:<?php echo esc_html($product['price']); ?></p>
+              </div>
+            <?php endif; ?>
+          </div>
+        </section>
+      <?php endforeach; ?>
     </div>
     <nav class="flex h-58 shrink-0 items-center justify-center gap-56 bg-[#797575]" aria-label="商品詳細の切り替え">
       <button type="button" class="js-products-prev flex size-40 items-center justify-center text-28 font-light text-white" aria-label="前の商品">‹</button>
