@@ -1,26 +1,14 @@
 <?php
-//// 商品一覧アーカイブ（/products/）
-add_action('init', function () {
-  if (post_type_exists('products')) {
+//// 商品ページへの切り替え後、旧アーカイブのリライトルールを一度だけ除去
+add_action('wp_loaded', function () {
+  if (get_option('studio_tanaka_products_page_rewrite_version') === '1') {
     return;
   }
 
-  register_post_type('products', [
-    'labels' => [
-      'name' => '商品',
-      'singular_name' => '商品',
-      'add_new_item' => '商品を追加',
-      'edit_item' => '商品を編集',
-    ],
-    'public' => true,
-    'has_archive' => 'products',
-    'rewrite' => ['slug' => 'products', 'with_front' => false],
-    'show_in_rest' => true,
-    'supports' => ['title', 'editor', 'thumbnail', 'revisions'],
-    'menu_icon' => 'dashicons-portfolio',
-  ]);
+  flush_rewrite_rules(false);
+  update_option('studio_tanaka_products_page_rewrite_version', '1', false);
 });
-//// end 商品一覧アーカイブ
+//// end 商品ページへの切り替え
 
 //// カスタム投稿を管理画面で最新の記事順
 add_action('pre_get_posts', function ($q) {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Products archive. The supplied product images are the source of truth for
+ * Products page. The supplied product images are the source of truth for
  * the catalog; the _1 images are for cards and the _2 images are for dialogs.
  */
 
