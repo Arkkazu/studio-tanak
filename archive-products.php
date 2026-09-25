@@ -131,10 +131,12 @@ get_header();
         <?php [$detail_src, $detail_wh] = theme_img_src_wh('src/images/products/product_' . $product['image'] . '_2@2x.webp'); ?>
         <section class="js-products-panel" data-product-panel="<?php echo esc_attr((string) $index); ?>" aria-labelledby="products-panel-title-<?php echo esc_attr((string) $index); ?>" hidden>
           <div class="px-40 pt-24 pb-24 text-center">
-            <h2 id="products-panel-title-<?php echo esc_attr((string) $index); ?>" class="text-10 font-montserrat font-medium tracking-[0.08em]"><?php echo esc_html($product['name']); ?></h2>
-            <?php if (!empty($product['name_ja'])) : ?>
-              <p class="mt-4 text-8 font-light"><?php echo esc_html($product['name_ja']); ?></p>
-            <?php endif; ?>
+            <div class="min-h-32">
+              <h2 id="products-panel-title-<?php echo esc_attr((string) $index); ?>" class="text-10 font-montserrat font-medium tracking-[0.08em]"><?php echo esc_html($product['name']); ?></h2>
+              <?php if (!empty($product['name_ja'])) : ?>
+                <p class="mt-4 text-8 font-light"><?php echo esc_html($product['name_ja']); ?></p>
+              <?php endif; ?>
+            </div>
             <img class="mx-auto mt-12 block aspect-[4/3] w-full object-contain" src="<?php echo esc_url($detail_src); ?>" alt="<?php echo esc_attr($product['name']); ?>" loading="lazy" <?php echo $detail_wh; ?>>
             <?php if (!empty($product['description'])) : ?>
               <div class="mt-16 text-9 font-light leading-[1.8]">
