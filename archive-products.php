@@ -85,7 +85,7 @@ get_header();
 </main>
 
 <dialog id="products-dialog" class="js-products-dialog fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-[#797575] pc:bg-transparent p-0 text-[#231815] backdrop:bg-black/60" aria-label="商品詳細">
-  <div class="flex min-h-full flex-col items-center justify-center pc:p-40">
+  <div class="flex min-h-full flex-col items-center justify-start pc:justify-center pc:p-40">
     <div class="relative w-full pc:max-w-500 bg-[#797575] pc:px-60 pc:pt-60">
       <div class="relative h-60 pc:h-0">
         <button type="button" class="js-products-close absolute right-20 pc:-right-48 top-8 pc:-top-52 z-10 flex h-44 w-44 items-center justify-center text-32 font-thin leading-none text-white" aria-label="商品詳細を閉じる">×</button>

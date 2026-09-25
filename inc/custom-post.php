@@ -1,4 +1,27 @@
 <?php
+//// 商品一覧アーカイブ（/products/）
+add_action('init', function () {
+  if (post_type_exists('products')) {
+    return;
+  }
+
+  register_post_type('products', [
+    'labels' => [
+      'name' => '商品',
+      'singular_name' => '商品',
+      'add_new_item' => '商品を追加',
+      'edit_item' => '商品を編集',
+    ],
+    'public' => true,
+    'has_archive' => 'products',
+    'rewrite' => ['slug' => 'products', 'with_front' => false],
+    'show_in_rest' => true,
+    'supports' => ['title', 'editor', 'thumbnail', 'revisions'],
+    'menu_icon' => 'dashicons-portfolio',
+  ]);
+});
+//// end 商品一覧アーカイブ
+
 //// カスタム投稿を管理画面で最新の記事順
 add_action('pre_get_posts', function ($q) {
   if (!is_admin() || !$q->is_main_query()) {
