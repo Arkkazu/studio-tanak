@@ -272,7 +272,7 @@ get_header();
           <span class="absolute h-[1px] w-16 -rotate-45 bg-white"></span>
         </button>
       </div>
-      <div class="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden bg-white p-20">
+      <div class="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden p-20">
         <h2 id="costume-dialog-title" class="sr-only" data-costume-modal-heading><?php echo esc_html($costume_items[0]['title']); ?></h2>
         <img class="block min-h-0 max-h-full w-full object-contain" data-costume-modal-detail src="<?php echo esc_url($costume_items[0]['url']); ?>" alt="<?php echo esc_attr($costume_items[0]['alt']); ?>" loading="lazy" width="<?php echo esc_attr((string) $costume_items[0]['width']); ?>" height="<?php echo esc_attr((string) $costume_items[0]['height']); ?>">
       </div>
