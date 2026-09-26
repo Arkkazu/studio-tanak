@@ -10,6 +10,25 @@ add_action('wp_loaded', function () {
 });
 //// end 商品ページへの切り替え
 
+// Keep the gallery URL consistent when the custom post type's archive slug
+// still differs between local and staging WordPress settings.
+add_action('init', function () {
+  if (!post_type_exists('ai-gallery')) {
+    return;
+  }
+
+  add_rewrite_rule('^art-gallery/?$', 'index.php?post_type=ai-gallery', 'top');
+}, 99);
+
+add_action('wp_loaded', function () {
+  if (!post_type_exists('ai-gallery') || get_option('studio_tanaka_art_gallery_route_version') === '1') {
+    return;
+  }
+
+  flush_rewrite_rules(false);
+  update_option('studio_tanaka_art_gallery_route_version', '1', false);
+});
+
 //// カスタム投稿を管理画面で最新の記事順
 add_action('pre_get_posts', function ($q) {
   if (!is_admin() || !$q->is_main_query()) {
