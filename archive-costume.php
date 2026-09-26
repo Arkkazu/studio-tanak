@@ -107,19 +107,30 @@ $costume_query_args = [
   'no_found_rows'  => true,
 ];
 
-if ($active_filter !== 'all' && taxonomy_exists('costume-cat')) {
-  $costume_query_args['tax_query'] = [
-    [
-      'taxonomy' => 'costume-cat',
-      'field'    => 'slug',
-      'terms'    => $costume_filters[$active_filter]['terms'],
-      'operator' => 'IN',
-    ],
-  ];
-}
-
 $costume_posts = get_posts($costume_query_args);
 $costume_items = [];
+$visible_count = 0;
+
+// Prime attachment metadata in one query instead of querying each card separately.
+$thumbnail_ids = array_filter(array_map('get_post_thumbnail_id', $costume_posts));
+if ($thumbnail_ids) {
+  get_posts(['post_type' => 'attachment', 'post_status' => 'inherit', 'post__in' => array_values(array_unique($thumbnail_ids)), 'posts_per_page' => -1, 'no_found_rows' => true]);
+}
+
+// Include descendants, matching WP_Tax_Query's existing include_children behavior.
+$filter_term_ids = [];
+foreach ($costume_filters as $key => $filter) {
+  $filter_term_ids[$key] = [];
+  foreach ($filter['terms'] as $slug) {
+    $term = get_term_by('slug', $slug, 'costume-cat');
+    if (!$term) continue;
+    $children = get_term_children($term->term_id, 'costume-cat');
+    $filter_term_ids[$key][] = (int) $term->term_id;
+    if (!is_wp_error($children)) {
+      $filter_term_ids[$key] = array_merge($filter_term_ids[$key], array_map('intval', $children));
+    }
+  }
+}
 
 foreach ($costume_posts as $costume_post) {
   $thumbnail_id = get_post_thumbnail_id($costume_post->ID);
@@ -134,12 +145,32 @@ foreach ($costume_posts as $costume_post) {
     continue;
   }
 
+  // Share production uploads across local/staging without copying media files.
+  // Keep the original upload path and leave theme/external assets untouched.
+  $image[0] = preg_replace(
+    '#^(?:https?:)?//[^/]+/wp-content/uploads/#i',
+    'https://www.studio-tanaka.co.jp/wp-content/uploads/',
+    $image[0]
+  );
+
   $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
   if ($alt === '') {
     $alt = get_the_title($costume_post->ID);
   }
 
+  $terms = get_the_terms($costume_post->ID, 'costume-cat');
+  $term_ids = is_array($terms) ? array_map('intval', wp_list_pluck($terms, 'term_id')) : [];
+  $matches = ['all'];
+  foreach ($filter_term_ids as $key => $ids) {
+    if ($key !== 'all' && (!taxonomy_exists('costume-cat') || array_intersect($term_ids, $ids))) {
+      $matches[] = $key;
+    }
+  }
+  $visible = in_array($active_filter, $matches, true);
+  $visible_count += (int) $visible;
   $costume_items[] = [
+    'filters' => implode(' ', $matches),
+    'visible' => $visible,
     'url'    => $image[0],
     'width'  => (int) ($image[1] ?? 0),
     'height' => (int) ($image[2] ?? 0),
@@ -184,7 +215,7 @@ get_header();
       衣装一覧
     </h2>
 
-    <nav class="flex flex-col gap-12" aria-label="衣装カテゴリー">
+    <nav class="flex flex-col gap-12" aria-label="衣装カテゴリー" data-costume-filters>
       <?php foreach ($costume_filter_groups as $group_index => $group) : ?>
         <?php
         $group_count = count($group);
@@ -200,7 +231,7 @@ get_header();
               ? 'bg-[#605f5f] text-white'
               : 'bg-white text-[#231815]';
             ?>
-            <a class="flex min-h-32 items-center justify-center border border-[#605f5f] px-8 py-8 text-12 font-montserrat font-light leading-none tracking-[0.05em] transition-opacity duration-300 hoverable:hover:opacity-50 <?php echo esc_attr($filter_class); ?>" href="<?php echo esc_url($filter_url); ?>" <?php echo $filter['key'] === $active_filter ? 'aria-current="page"' : ''; ?>>
+            <a class="flex min-h-32 items-center justify-center border border-[#605f5f] px-8 py-8 text-12 font-montserrat font-light leading-none tracking-[0.05em] transition-opacity duration-300 hoverable:hover:opacity-50 <?php echo esc_attr($filter_class); ?>" href="<?php echo esc_url($filter_url); ?>" data-costume-filter="<?php echo esc_attr($filter['key']); ?>" <?php echo $filter['key'] === $active_filter ? 'aria-current="page"' : ''; ?>>
               <?php echo esc_html($filter['label']); ?>
             </a>
           <?php endforeach; ?>
@@ -208,10 +239,10 @@ get_header();
       <?php endforeach; ?>
     </nav>
 
-    <?php if ($costume_items) : ?>
-      <ul class="mx-auto mt-80 pc:mt-150 grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64">
+      <p class="sr-only" role="status" data-costume-status></p>
+      <ul class="mx-auto mt-80 pc:mt-150 grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64" data-costume-grid <?php echo $visible_count ? '' : 'hidden'; ?>>
         <?php foreach ($costume_items as $costume_item) : ?>
-          <li class="min-w-0">
+          <li class="min-w-0" data-costume-item="<?php echo esc_attr($costume_item['filters']); ?>" <?php echo $costume_item['visible'] ? '' : 'hidden'; ?>>
             <a class="block aspect-square overflow-hidden border border-[#c8c5c2] bg-[#f8f7f5] transition-opacity duration-300 hoverable:hover:opacity-70" href="<?php echo esc_url($costume_item['url']); ?>">
               <img
                 class="block h-full w-full object-cover"
@@ -225,11 +256,9 @@ get_header();
           </li>
         <?php endforeach; ?>
       </ul>
-    <?php else : ?>
-      <p class="mt-80 text-center text-14 font-noto-sans font-light text-gray">
+      <p class="mt-80 text-center text-14 font-noto-sans font-light text-gray" data-costume-empty <?php echo $visible_count ? 'hidden' : ''; ?>>
         該当する衣装がありません。
       </p>
-    <?php endif; ?>
   </section>
 </main>
 
