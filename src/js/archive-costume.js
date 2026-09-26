@@ -50,3 +50,43 @@ if (filters && grid && empty && status && !filters.dataset.costumeReady) {
   window.addEventListener('popstate', () => render(currentFilter()));
   render(currentFilter(), false);
 }
+
+const costumeDialog = document.querySelector('[data-costume-dialog]');
+
+if (costumeDialog && grid) {
+  const triggers = [...grid.querySelectorAll('[data-costume-modal-trigger]')];
+  const heading = costumeDialog.querySelector('[data-costume-modal-heading]');
+  const detail = costumeDialog.querySelector('[data-costume-modal-detail]');
+  const previous = costumeDialog.querySelector('[data-costume-modal-prev]');
+  const next = costumeDialog.querySelector('[data-costume-modal-next]');
+  let activeTrigger = null;
+
+  const visibleTriggers = () => triggers.filter((trigger) => !trigger.closest('[data-costume-item]').hidden);
+  const showCostume = (trigger) => {
+    const thumbnail = trigger.querySelector('[data-costume-modal-image]');
+    if (!thumbnail || !detail || !heading) return;
+    activeTrigger = trigger;
+    heading.textContent = trigger.dataset.costumeModalTitle;
+    detail.src = thumbnail.src;
+    detail.alt = trigger.dataset.costumeModalAlt;
+    detail.width = Number(thumbnail.getAttribute('width')) || thumbnail.naturalWidth;
+    detail.height = Number(thumbnail.getAttribute('height')) || thumbnail.naturalHeight;
+    const multiple = visibleTriggers().length > 1;
+    previous.disabled = !multiple;
+    next.disabled = !multiple;
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => showCostume(trigger), { capture: true });
+  });
+
+  const step = (direction) => {
+    const visible = visibleTriggers();
+    if (!visible.length) return;
+    const index = visible.indexOf(activeTrigger);
+    showCostume(visible[(index + direction + visible.length) % visible.length]);
+  };
+
+  previous.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(1));
+}

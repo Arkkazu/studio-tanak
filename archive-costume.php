@@ -243,16 +243,17 @@ get_header();
       <ul class="mx-auto mt-80 pc:mt-150 grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64" data-costume-grid <?php echo $visible_count ? '' : 'hidden'; ?>>
         <?php foreach ($costume_items as $costume_item) : ?>
           <li class="min-w-0" data-costume-item="<?php echo esc_attr($costume_item['filters']); ?>" <?php echo $costume_item['visible'] ? '' : 'hidden'; ?>>
-            <a class="block aspect-square overflow-hidden border border-[#c8c5c2] bg-[#f8f7f5] transition-opacity duration-300 hoverable:hover:opacity-70" href="<?php echo esc_url($costume_item['url']); ?>">
+            <button type="button" class="js-kids-course-modal-trigger block aspect-square w-full overflow-hidden border border-[#c8c5c2] bg-[#f8f7f5] transition-opacity duration-300 hoverable:hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#605f5f] focus-visible:outline-offset-2" data-costume-modal-trigger data-costume-modal-title="<?php echo esc_attr($costume_item['title']); ?>" data-costume-modal-alt="<?php echo esc_attr($costume_item['alt']); ?>" data-kids-course-modal-target="costume-dialog" aria-haspopup="dialog" aria-controls="costume-dialog" aria-label="<?php echo esc_attr($costume_item['title'] . 'の画像を拡大表示'); ?>">
               <img
                 class="block h-full w-full object-cover"
+                data-costume-modal-image
                 src="<?php echo esc_url($costume_item['url']); ?>"
-                alt="<?php echo esc_attr($costume_item['alt']); ?>"
+                alt=""
                 loading="lazy"
                 decoding="async"
                 width="<?php echo esc_attr((string) $costume_item['width']); ?>"
                 height="<?php echo esc_attr((string) $costume_item['height']); ?>">
-            </a>
+            </button>
           </li>
         <?php endforeach; ?>
       </ul>
@@ -261,5 +262,26 @@ get_header();
       </p>
   </section>
 </main>
+
+<?php if ($costume_items) : ?>
+  <dialog id="costume-dialog" class="js-kids-course-modal fixed top-1/2 left-1/2 m-0 h-500 max-h-[100dvh] w-full max-w-375 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-0 bg-[#797575] p-0 text-[#231815] opacity-0 transition-opacity duration-300 backdrop:bg-[rgba(0,0,0,0.6)]" aria-labelledby="costume-dialog-title" data-costume-dialog>
+    <div class="flex h-full flex-col">
+      <div class="relative h-62 shrink-0 bg-[#797575]">
+        <button type="button" class="js-kids-course-modal-close absolute top-11 right-16 z-10 flex size-40 items-center justify-center focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-white focus-visible:outline-offset-2" aria-label="モーダルを閉じる">
+          <span class="absolute h-[1px] w-16 rotate-45 bg-white"></span>
+          <span class="absolute h-[1px] w-16 -rotate-45 bg-white"></span>
+        </button>
+      </div>
+      <div class="flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden bg-white p-20">
+        <h2 id="costume-dialog-title" class="sr-only" data-costume-modal-heading><?php echo esc_html($costume_items[0]['title']); ?></h2>
+        <img class="block min-h-0 max-h-full w-full object-contain" data-costume-modal-detail src="<?php echo esc_url($costume_items[0]['url']); ?>" alt="<?php echo esc_attr($costume_items[0]['alt']); ?>" loading="lazy" width="<?php echo esc_attr((string) $costume_items[0]['width']); ?>" height="<?php echo esc_attr((string) $costume_items[0]['height']); ?>">
+      </div>
+      <nav class="flex h-58 shrink-0 items-center justify-center gap-56 bg-[#797575]" aria-label="衣装画像の切り替え">
+        <button type="button" class="flex size-40 items-center justify-center text-28 font-light text-white focus-visible:outline focus-visible:outline-1 focus-visible:outline-white" data-costume-modal-prev aria-label="前の衣装">‹</button>
+        <button type="button" class="flex size-40 items-center justify-center text-28 font-light text-white focus-visible:outline focus-visible:outline-1 focus-visible:outline-white" data-costume-modal-next aria-label="次の衣装">›</button>
+      </nav>
+    </div>
+  </dialog>
+<?php endif; ?>
 
 <?php get_footer(); ?>
