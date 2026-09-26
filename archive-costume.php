@@ -145,6 +145,14 @@ foreach ($costume_posts as $costume_post) {
     continue;
   }
 
+  // Share production uploads across local/staging without copying media files.
+  // Keep the original upload path and leave theme/external assets untouched.
+  $image[0] = preg_replace(
+    '#^(?:https?:)?//[^/]+/wp-content/uploads/#i',
+    'https://www.studio-tanaka.co.jp/wp-content/uploads/',
+    $image[0]
+  );
+
   $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
   if ($alt === '') {
     $alt = get_the_title($costume_post->ID);
