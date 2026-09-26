@@ -1,6 +1,6 @@
-<a class="js-scroll-lock-fixed block fixed bottom-20 right-20 size-120 mix-blend-difference group z-[500]" href="https://lin.ee/3qsIYBuw" target="_blank" rel="noopener noreferrer">
+<a class="js-scroll-lock-fixed block fixed bottom-20 right-20 size-120 mix-blend-difference group z-[500]" href="https://lin.ee/3qsIYBuw" target="_blank" rel="noopener noreferrer" aria-label="LINEで予約する">
   <div class="abs-center bg-[rgba(255,255,255,0.5)] size-0 rounded-full duration-500 group-hover:size-100"></div>
-  <div class="circle-text-wrap relative size-120 rounded-full" aria-label="click here to make a reservations">
+  <div class="circle-text-wrap relative size-120 rounded-full" aria-hidden="true">
     <span class="circle-text-char" style="--i: 0;">c</span>
     <span class="circle-text-char" style="--i: 1;">l</span>
     <span class="circle-text-char" style="--i: 2;">i</span>
