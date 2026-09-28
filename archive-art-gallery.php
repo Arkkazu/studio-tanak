@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Gallery archive template.
+ * Art gallery archive template.
  *
  * The gallery images are managed as the ai-gallery custom post type. Images are
  * rendered from each post's featured image so editors can add or reorder work

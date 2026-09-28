@@ -20,6 +20,15 @@ add_action('init', function () {
   add_rewrite_rule('^art-gallery/?$', 'index.php?post_type=ai-gallery', 'top');
 }, 99);
 
+// Use the public-facing template name without migrating existing gallery posts.
+add_filter('archive_template_hierarchy', static function (array $templates): array {
+  if (is_post_type_archive('ai-gallery')) {
+    array_unshift($templates, 'archive-art-gallery.php');
+  }
+
+  return $templates;
+});
+
 add_action('wp_loaded', function () {
   if (!post_type_exists('ai-gallery') || get_option('studio_tanaka_art_gallery_route_version') === '1') {
     return;
