@@ -5,6 +5,7 @@ $modal_title = $modal['title'] ?? '';
 $modal_title_ja = $modal['title_ja'] ?? '';
 $modal_items = $modal['items'] ?? [];
 $modal_note = $modal['note'] ?? '';
+$modal_products = $modal['products'] ?? ($modal_id === 'options-modal-location' ? ['レタッチ済みデータ100カットまで'] : []);
 ?>
 
 <dialog id="<?php echo esc_attr($modal_id); ?>" class="js-kids-course-modal fixed top-1/2 left-1/2 m-0 max-h-none h-[100dvh] w-full max-w-480 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-0 bg-white p-0 text-black opacity-0 transition-opacity duration-300 md:h-[calc(100dvh-40rem)] md:backdrop:bg-[rgba(0,0,0,0.6)]" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
@@ -43,6 +44,21 @@ $modal_note = $modal['note'] ?? '';
           <p class="mt-32 text-11 font-noto-sans font-light leading-[1.8] whitespace-pre-line">
             <?php echo esc_html($modal_note); ?>
           </p>
+        <?php endif; ?>
+        <?php if (!empty($modal_products)) : ?>
+          <section class="mt-80">
+            <h3 class="border-b border-black pb-12 text-14 font-montserrat font-light leading-none tracking-[0.05em]">COURSE CONTENTS</h3>
+            <p class="mt-16 text-12 font-noto-sans font-light leading-none tracking-[0.12em]">コース内容</p>
+            <div class="mt-40 flex flex-col gap-40">
+              <?php foreach ($modal_products as $index => $product) : ?>
+                <div class="flex items-baseline gap-16">
+                  <span class="text-11 font-montserrat font-light leading-none whitespace-nowrap">Product /<?php echo esc_html(sprintf('%02d', $index + 1)); ?></span>
+                  <span class="flex-1 border-b border-dashed border-black"></span>
+                  <span class="text-12 font-noto-sans font-light leading-[1.7] text-right"><?php echo esc_html($product); ?></span>
+                </div>
+              <?php endforeach; ?>
+            </div>
+          </section>
         <?php endif; ?>
       </div>
     </div>
