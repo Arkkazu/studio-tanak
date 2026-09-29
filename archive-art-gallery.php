@@ -121,7 +121,7 @@ get_header();
 </main>
 
 <?php if ($gallery_items) : ?>
-  <dialog id="gallery-dialog" class="js-kids-course-modal fixed top-1/2 left-1/2 m-0 h-500 max-h-[100dvh] w-full max-w-375 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-0 bg-[#797575] p-0 text-[#231815] opacity-0 transition-opacity duration-300 backdrop:bg-[rgba(0,0,0,0.6)]" aria-labelledby="gallery-dialog-title" data-gallery-dialog>
+  <dialog id="gallery-dialog" class="js-kids-course-modal fixed top-1/2 left-1/2 m-0 h-600 max-h-[calc(100dvh_-_32rem)] w-[calc(100%_-_32rem)] max-w-450 -translate-x-1/2 -translate-y-1/2 overflow-hidden border-0 bg-[#797575] p-0 text-[#231815] opacity-0 transition-opacity duration-300 backdrop:bg-[rgba(0,0,0,0.6)]" aria-labelledby="gallery-dialog-title" data-gallery-dialog>
     <div class="flex h-full flex-col">
       <div class="relative h-62 shrink-0 bg-[#797575]">
         <button type="button" class="js-kids-course-modal-close absolute top-11 right-16 z-10 flex size-40 items-center justify-center focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-white focus-visible:outline-offset-2" aria-label="モーダルを閉じる">
