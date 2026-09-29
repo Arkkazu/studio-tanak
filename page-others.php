@@ -127,7 +127,7 @@ $menu_sections = [
               'duration' => '120',
               'notes' => $studio_course_notes,
               'contents' => ['出張撮影'],
-              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
           [
@@ -140,7 +140,7 @@ $menu_sections = [
               'duration' => '120',
               'notes' => $studio_course_notes,
               'contents' => ['出張撮影'],
-              'products' => ['レタッチ済みデータ 100', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'HISTOIRE 10P', 'アートデータ', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -170,9 +170,9 @@ get_header();
     <div class="relative h-full">
       <div class="absolute inset-0 mx-auto max-w-920">
         <div class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 flex items-end gap-12 [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
-        <h1 class="text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:text-24">
-          OTHERS
-        </h1>
+          <h1 class="text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:text-24">
+            OTHERS
+          </h1>
         </div>
       </div>
       <?php [$fv_pc_src, $fv_pc_wh] = theme_img_src_wh('src/images/others/ta7ca_pc_other01@2x.webp'); ?>

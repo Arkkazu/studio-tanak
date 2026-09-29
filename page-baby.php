@@ -105,7 +105,7 @@ $menu_sections = [
               'duration' => '60',
               'notes' => $studio_course_notes,
               'contents' => ['本人撮影', '衣装１着(洋)', '家族撮影(４名まで)'],
-              'products' => ['レタッチ済みデータ 100', 'アートデータ', 'HISTOIRE 10P', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'アートデータ', 'HISTOIRE 10P', 'アルバムスタンド S'],
             ],
           ],
           [

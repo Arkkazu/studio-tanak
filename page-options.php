@@ -71,9 +71,9 @@ $option_modals = [
     'title' => 'LOCATION PHOTO OPTION',
     'title_ja' => '出張撮影オプション',
     'items' => [
-      ['label' => '出張撮影', 'price' => '¥33,000'],
+      ['label' => '出張撮影', 'price' => '¥44,000'],
       ['label' => '５km 毎に追加料金※', 'price' => '¥1,100'],
-      ['label' => '出張撮影当日キャンセル', 'price' => '¥33,000'],
+      ['label' => '出張撮影当日キャンセル', 'price' => '¥44,000'],
     ],
     'note' => implode("\n", [
       '・事前にお打ち合わせをLINEもしくはお電話にてお願いします。',
@@ -144,9 +144,9 @@ get_header();
     <div class="relative h-full">
       <div class="absolute inset-0 mx-auto max-w-920">
         <div class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 flex items-end gap-12 [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
-        <h1 class="text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:text-24">
-          OPTIONS
-        </h1>
+          <h1 class="text-18 font-montserrat font-light leading-none tracking-[0.18em] pc:text-24">
+            OPTIONS
+          </h1>
         </div>
       </div>
       <?php [$fv_pc_src, $fv_pc_wh] = theme_img_src_wh('src/images/options/ta7ca_pc_option01@2x.webp'); ?>

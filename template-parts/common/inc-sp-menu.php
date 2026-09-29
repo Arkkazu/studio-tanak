@@ -18,8 +18,8 @@ $shooting_menu_items = [
 $site_menu_items = [
   ['label' => 'Art gallery', 'path' => '/art-gallery/'],
   // ['label' => 'News/Topics', 'path' => '/news/'],
-  ['label' => 'Costume', 'path' => '/costume/'],
-  ['label' => 'Product', 'path' => '/products/'],
+  // ['label' => 'Costume', 'path' => '/costume/'],
+  ['label' => 'Products', 'path' => '/products/'],
   ['label' => 'Q&A', 'path' => '/faq/'],
   ['label' => 'Access', 'path' => '/access/'],
   // ['label' => 'Reservation', 'path' => '/reservation/'],

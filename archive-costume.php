@@ -204,7 +204,7 @@ get_header();
       </picture>
       <div class="absolute inset-0 mx-auto max-w-920">
         <h1 id="costume-page-title" class="absolute left-24 pc:left-64 top-96 pc:top-176 z-10 text-18 pc:text-20 font-montserrat font-light leading-none tracking-[0.18em] pc:tracking-[0.22em] [writing-mode:vertical-rl] pc:[writing-mode:horizontal-tb]">
-          C L O T H I N G
+          C O S T U M E
         </h1>
       </div>
     </div>
@@ -239,27 +239,27 @@ get_header();
       <?php endforeach; ?>
     </nav>
 
-      <p class="sr-only" role="status" data-costume-status></p>
-      <ul class="mx-auto mt-80 pc:mt-150 grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64" data-costume-grid <?php echo $visible_count ? '' : 'hidden'; ?>>
-        <?php foreach ($costume_items as $costume_item) : ?>
-          <li class="min-w-0" data-costume-item="<?php echo esc_attr($costume_item['filters']); ?>" <?php echo $costume_item['visible'] ? '' : 'hidden'; ?>>
-            <button type="button" class="js-kids-course-modal-trigger block aspect-square w-full overflow-hidden border border-[#c8c5c2] bg-[#f8f7f5] transition-opacity duration-300 hoverable:hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#605f5f] focus-visible:outline-offset-2" data-costume-modal-trigger data-costume-modal-title="<?php echo esc_attr($costume_item['title']); ?>" data-costume-modal-alt="<?php echo esc_attr($costume_item['alt']); ?>" data-kids-course-modal-target="costume-dialog" aria-haspopup="dialog" aria-controls="costume-dialog" aria-label="<?php echo esc_attr($costume_item['title'] . 'の画像を拡大表示'); ?>">
-              <img
-                class="block h-full w-full object-cover"
-                data-costume-modal-image
-                src="<?php echo esc_url($costume_item['url']); ?>"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width="<?php echo esc_attr((string) $costume_item['width']); ?>"
-                height="<?php echo esc_attr((string) $costume_item['height']); ?>">
-            </button>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-      <p class="mt-80 text-center text-14 font-noto-sans font-light text-gray" data-costume-empty <?php echo $visible_count ? 'hidden' : ''; ?>>
-        該当する衣装がありません。
-      </p>
+    <p class="sr-only" role="status" data-costume-status></p>
+    <ul class="mx-auto mt-80 pc:mt-150 grid max-w-840 grid-cols-2 pc:grid-cols-4 gap-x-20 pc:gap-x-40 gap-y-40 pc:gap-y-64" data-costume-grid <?php echo $visible_count ? '' : 'hidden'; ?>>
+      <?php foreach ($costume_items as $costume_item) : ?>
+        <li class="min-w-0" data-costume-item="<?php echo esc_attr($costume_item['filters']); ?>" <?php echo $costume_item['visible'] ? '' : 'hidden'; ?>>
+          <button type="button" class="js-kids-course-modal-trigger block aspect-square w-full overflow-hidden border border-[#c8c5c2] bg-[#f8f7f5] transition-opacity duration-300 hoverable:hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#605f5f] focus-visible:outline-offset-2" data-costume-modal-trigger data-costume-modal-title="<?php echo esc_attr($costume_item['title']); ?>" data-costume-modal-alt="<?php echo esc_attr($costume_item['alt']); ?>" data-kids-course-modal-target="costume-dialog" aria-haspopup="dialog" aria-controls="costume-dialog" aria-label="<?php echo esc_attr($costume_item['title'] . 'の画像を拡大表示'); ?>">
+            <img
+              class="block h-full w-full object-cover"
+              data-costume-modal-image
+              src="<?php echo esc_url($costume_item['url']); ?>"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width="<?php echo esc_attr((string) $costume_item['width']); ?>"
+              height="<?php echo esc_attr((string) $costume_item['height']); ?>">
+          </button>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <p class="mt-80 text-center text-14 font-noto-sans font-light text-gray" data-costume-empty <?php echo $visible_count ? 'hidden' : ''; ?>>
+      該当する衣装がありません。
+    </p>
   </section>
 </main>
 

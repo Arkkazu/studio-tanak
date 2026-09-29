@@ -36,7 +36,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -50,7 +50,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)', '兄弟撮影'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
           [
@@ -129,7 +129,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['羽織袴１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'HISTOIRE 10P', 'アートデータ', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -143,7 +143,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['スーツ撮影', '羽織袴１着', '着付', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
           [
@@ -204,7 +204,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -218,7 +218,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)', '兄弟撮影'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
           [
@@ -252,7 +252,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)', '早朝料金無料'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド S'],
+              'products' => ['レタッチ済みデータ100カットまで', 'HISTOIRE 10P', 'アートデータ', 'アルバムスタンド S'],
             ],
           ],
           [
@@ -266,7 +266,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(制限なし)', '兄弟撮影', '早朝料金無料'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ 100', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
           [
@@ -318,7 +318,7 @@ $menu_sections = [
               'notes' => $studio_course_notes,
               'contents' => ['衣装１着', '着付け', 'ヘアメイク', '家族撮影(４名まで)', '兄弟撮影', '早朝料金無料'],
               'contents_note' => $studio_course_hair_note,
-              'products' => ['レタッチ済みデータ', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
+              'products' => ['レタッチ済みデータ100カットまで', 'MURAL or PETIT BOIS', 'HISTOIRE 20P', 'アートデータ', 'アルバムスタンド M'],
             ],
           ],
         ],
